@@ -1,0 +1,144 @@
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif; 
+}
+
+h1,
+h2,
+h6 {
+  color: #bc8909;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+.nav-item{
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.nav-link {
+  color: #096533;
+}
+
+.nav-item .nav-link:hover {
+  color: #bc8909 !important;
+}
+
+
+#presentation h1:hover {
+  color: #096533;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #bc8909; 
+  color: #fff;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-discover {
+  display: block; /* Pour que le bouton occupe toute la largeur */
+  margin: 0 auto; /* Pour le centrer horizontalement */
+  width: 300px; /* Ajustez la largeur selon vos besoins */
+}
+
+.btn-discover:hover {
+  background-color: #096533;
+}
+
+
+section {
+  padding: 15px 0;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+#avis {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fcfef9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ajout de l'ombre portée */
+}
+
+
+.avis {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.avis-text {
+  font-style: italic;
+  margin: 10px;
+}
+
+.avis-auteur {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.service {
+  background-color: #fdfbfa; 
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.service h3,
+.service p {
+  color: #000;
+  color: #096533;
+}
+
+.service h3:hover {
+  color: #bc8909;
+}
+
+
+
+.habitat-img {
+  border-radius: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto; 
+}
+
+footer p {
+  margin: 28px;
+  font-size: 12px; 
+}
+
