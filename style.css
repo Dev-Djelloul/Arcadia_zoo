@@ -11,7 +11,7 @@ a {
   padding: 0;
   list-style: none;
   text-decoration: none;
-  font-family: 'Lato', sans-serif; 
+  font-family: 'Roboto', sans-serif; 
 }
 
 h1,
@@ -77,6 +77,10 @@ img {
   background-color: #096533;
 }
 
+.btn:hover {
+  background-color: #096533;
+}
+
 
 section {
   padding: 15px 0;
@@ -128,7 +132,9 @@ section {
   color: #bc8909;
 }
 
-
+.habitat {
+ color:#096533;
+}
 
 .habitat-img {
   border-radius: 15px;
