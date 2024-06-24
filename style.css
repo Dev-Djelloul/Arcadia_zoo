@@ -81,6 +81,7 @@ img {
   background-color: #096533;
 }
 
+ 
 
 section {
   padding: 15px 0;
@@ -120,6 +121,11 @@ section {
   margin-bottom: 0px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+}
+
+.service-link:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
 }
 
 .service h3,
