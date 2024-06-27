@@ -1,12 +1,11 @@
 **Projet Zoo Application Web**
 
-Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats, les services offerts et les horaires du zoo. L'application fournira également un espace pour les vétérinaires et le personnel du zoo pour saisir des informations sur les animaux.
+Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats, les services offerts et les horaires du zoo.
+L'application fournira également un espace pour les vétérinaires et le personnel du zoo pour saisir des informations sur les animaux.
 
 **Installation**
 
 Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
-bash
-Copy code
 git clone <URL_DU_DÉPÔT>
 
 **Utilisation**
@@ -15,7 +14,8 @@ git clone <URL_DU_DÉPÔT>
 
 **Contribution**
 
-Les contributions sont les bienvenues! N'hésitez pas à ouvrir une Pull Request pour proposer des améliorations ou signaler des problèmes.
+Toutes les contributions sont les bienvenues! 
+N'hésitez pas à ouvrir une Pull Request pour proposer des améliorations ou signaler un problème.
 
 **Licence**
 

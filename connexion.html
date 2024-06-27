@@ -1,100 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connexion - Arcadia Zoo</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-1">
-            <a href="/index.html">
-              <img
-                src="images/logo-arcadia.jpeg"
-                alt="Arcadia Zoo"
-                class="logo"
-              />
-            </a>
-          </div>
-          <div class="col-md-10 mx-auto">
-            <!-- Utilisation de mx-auto pour centrer -->
-            <nav>
-              <ul class="nav justify-content-center">
-                <li class="nav-item">
-                  <a href="/index.html" class="nav-link" style="font-size: 20px;">Accueil</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/services.html" class="nav-link" style="font-size: 20px;">Nos Services</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/habitats.html" class="nav-link" style="font-size: 20px;">Les Animaux</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/contact.html" class="nav-link" style="font-size: 20px;">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/connexion.html" class="nav-link" style="font-size: 20px;">Connexion</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-md-1">
-            <a href="/index.html">
-              <img
-                src="images/logo-arcadia.jpeg"
-                alt="Arcadia Zoo"
-                class="logo"
-              />
-            </a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion - Arcadia Zoo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-1">
+          <a href="/index.html">
+            <img src="images/logo-arcadia.jpeg" alt="Arcadia Zoo" class="logo" />
+          </a>
         </div>
-      </div>
-    </header>
-
-    <div class="container mt-4">
-      <h2 class="text-center mb-4">Connectez-vous ici</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <form id="loginForm">
-            <div class="form-group">
-              <label for="username">Nom d'utilisateur :</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="password">Mot de passe :</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                required
-              />
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">
-                Se connecter
-              </button>
-            </div>
-          </form>
-          <div id="loginMessage" class="mt-3 text-center"></div>
+        <div class="col-md-10 mx-auto">
+          <nav>
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a href="/index.html" class="nav-link" style="font-size: 20px;">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a href="/services.html" class="nav-link" style="font-size: 20px;">Nos Services</a>
+              </li>
+              <li class="nav-item">
+                <a href="/habitats.html" class="nav-link" style="font-size: 20px;">Nos Habitats</a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact.html" class="nav-link" style="font-size: 20px;">Contact</a>
+              </li>
+              <li class="nav-item" id="loginNavItem">
+                <a id="loginLink" href="/connexion.html" class="nav-link" style="font-size: 20px;">Connexion</a>
+              </li>              
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-1">
+          <a href="/index.html">
+            <img src="images/logo-arcadia.jpeg" alt="Arcadia Zoo" class="logo" />
+          </a>
         </div>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/login.js"></script>
-  </body>
+  </header>
+
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">Connectez-vous ici</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" class="form-control" id="username" name="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" class="form-control" id="password" name="password" required />
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+          </div>
+        </form>
+        <div id="loginMessage" class="mt-3 text-center"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-4 mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h6 class="text-center">Comment venir au parc zoologique d'Arcadia ?</h6>
+          <p class="text-center text-white">
+            Arcadia Zoo<br />
+            123 Rue des Animaux<br />
+            Ville des Animaux, 12345<br />
+          <h6 class="text-center">Nous contacter</h6>
+            <p  class="text-center text-white">
+                Téléphone: 123-456-7890<br />
+                Email: info@arcadiazoo.com
+            </p> 
+        </div>
+        <div class="col-md-8">
+          <h6 class="text-center">Suivez-nous :</h6>
+          <div class="text-center">
+            <!-- Icônes de réseaux sociaux -->
+            <a href="https://www.facebook.com/" class="social-icon"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://twitter.com/?lang=fr" class="social-icon"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram-square"></i> Instagram</a>
+            <a href="https://www.linkedin.com/feed/" class="social-icon"><i class="fab fa-linkedin"></i> Linkedin</a>                
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="js/login.js"></script>
+  
+</body>
 </html>
