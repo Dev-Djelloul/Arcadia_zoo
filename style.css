@@ -14,8 +14,13 @@ a {
   font-family: 'Roboto', sans-serif; 
 }
 
+ul{
+  color:#096533;
+}
+
 h1,
 h2,
+h5,
 h6 {
   color: #bc8909;
   text-align: center;
@@ -112,6 +117,23 @@ section {
   font-weight: bold;
   text-align: center;
   margin-top: 50px;
+}
+
+.card {
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.card-body {
+  padding: 20px;
+  text-align: center;
 }
 
 .service {

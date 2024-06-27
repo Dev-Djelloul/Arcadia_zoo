@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laisser un avis - Arcadia Zoo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Laisser un avis</h2>
+
+  <form id="avisForm">
+    <label for="pseudo">Votre pseudo :</label>
+    <input type="text" id="pseudo" name="pseudo" required /><br />
+    <label for="avis">Votre avis :</label><br />
+    <textarea id="avis" name="avis" rows="4" cols="50" required></textarea><br />
+    <button type="submit">Soumettre l'avis</button>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $('#avisForm').on('submit', function(event) {
+        event.preventDefault();
+        const pseudo = $('#pseudo').val();
+        const avis = $('#avis').val();
+
+        $.ajax({
+          url: '/visiteur/avis',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ pseudo, avis }),
+          success: function(response) {
+            alert(response.message);
+            $('#avisForm')[0].reset(); // Réinitialisation du formulaire après succès
+          },
+          error: function(error) {
+            alert('Erreur lors de la soumission de l\'avis');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
