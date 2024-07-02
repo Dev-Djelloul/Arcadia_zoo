@@ -6,11 +6,11 @@ L'application fournira également un espace pour les vétérinaires et le person
 **Installation**
 
 Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
-git clone <URL_DU_DÉPÔT>
+git clone ...
 
 **Utilisation**
 
-(...) À compléter une fois les étapes de déploiement détaillées (...)
+À compléter une fois les étapes de déploiement détaillées (...)
 
 **Contribution**
 
@@ -19,4 +19,7 @@ N'hésitez pas à ouvrir une Pull Request pour proposer des améliorations ou si
 
 **Licence**
 
-Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
+Voir le fichier LICENSE pour plus de détails.
+=======
+# ZooArcadia
+Arcadia
