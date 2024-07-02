@@ -7,15 +7,15 @@ p,
 ul,
 li,
 a {
-  margin: 0;
+  margin: 5px;
   padding: 0;
   list-style: none;
   text-decoration: none;
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
 }
 
-ul{
-  color:#096533;
+ul {
+  color: #096533;
 }
 
 h1,
@@ -32,7 +32,6 @@ h6 {
   padding: 0 20px;
 }
 
-
 .logo {
   width: 100px;
   height: 100px;
@@ -40,8 +39,7 @@ h6 {
   display: block;
 }
 
-
-.nav-item{
+.nav-item {
   display: inline-block;
   margin: 0 5px;
 }
@@ -54,7 +52,6 @@ h6 {
   color: #bc8909 !important;
 }
 
-
 #presentation h1:hover {
   color: #096533;
 }
@@ -66,27 +63,22 @@ img {
 .btn {
   display: inline-block;
   padding: 5px 15px;
-  background-color: #bc8909; 
+  background-color: #bc8909;
   color: #fff;
   border-radius: 15px;
   transition: background-color 0.3s ease;
 }
 
 .btn-discover {
-  display: block; /* Pour que le bouton occupe toute la largeur */
-  margin: 0 auto; /* Pour le centrer horizontalement */
-  width: 300px; /* Ajustez la largeur selon vos besoins */
+  display: block;
+  margin: 0 auto;
+  width: 300px;
 }
 
-.btn-discover:hover {
-  background-color: #096533;
-}
-
+.btn-discover:hover,
 .btn:hover {
   background-color: #096533;
 }
-
- 
 
 section {
   padding: 15px 0;
@@ -98,25 +90,12 @@ section {
   width: 100%;
   border-radius: 10px;
   background-color: #fcfef9;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ajout de l'ombre portée */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;  
 }
 
-
-.avis {
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 0px;
-}
-
-.avis-text {
-  font-style: italic;
-  margin: 10px;
-}
-
-.avis-auteur {
-  font-weight: bold;
-  text-align: center;
-  margin-top: 50px;
+#avis .btn {
+  margin-top: 10px;  
 }
 
 .card {
@@ -126,18 +105,20 @@ section {
   margin-bottom: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+
 .card img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
+
 .card-body {
   padding: 20px;
   text-align: center;
 }
 
 .service {
-  background-color: #fdfbfa; 
+  background-color: #fdfbfa;
   text-align: center;
   padding: 10px;
   margin-bottom: 0px;
@@ -151,28 +132,31 @@ section {
 }
 
 .service h3,
-.service p {
-  color: #000;
+.service p,
+.habitat h3 {  
   color: #096533;
-}
+  transition: color 0.3s ease;  
 
-.service h3:hover {
+.service h3:hover,
+.habitat h3:hover,
+.service p:hover,
+.habitat p:hover
+{  
   color: #bc8909;
-}
-
-.habitat {
- color:#096533;
 }
 
 .habitat-img {
   border-radius: 15px;
   margin-bottom: 10px;
   width: 100%;
-  height: auto; 
+  height: auto;
+}
+
+.service img { 
+  border: 20px solid rgb(37, 37, 37);
 }
 
 footer p {
   margin: 28px;
-  font-size: 12px; 
+  font-size: 12px;
 }
-
