@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'veterinaire') {
+    header("Location: /public/connexion.html");
+    exit();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
