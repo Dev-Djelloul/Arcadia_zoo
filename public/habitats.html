@@ -8,7 +8,14 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="/espace-connexion_utilisateurs/style.css" />
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-XDw1Ua9p9LxD4XK9Lc9/7ifdSvMwzz55IviNdZ+rzxgC+SZIZCcU4p3KLJZGKQ0+7MO9Dp8CemixjLRGYKs+0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -37,16 +44,15 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        background-color: transparent;  
-        padding: 0; 
+        background-color: transparent;
+        padding: 0;
         position: relative;
-
       }
       .modal-body {
         padding: 1rem;
         overflow-y: auto;
       }
-      
+
       .modal-background-image {
         position: absolute;
         top: 0;
@@ -55,313 +61,344 @@
         height: 100%;
         background-size: cover;
         background-position: center;
-        z-index: -15;  
-        opacity: 1, 6;  
+        z-index: -15;
+        opacity: 1, 6;
       }
     </style>
   </head>
-  <body>
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Arcadia Zoo - Accueil</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="/espace-connexion_utilisateurs/style.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-XDw1Ua9p9LxD4XK9Lc9/7ifdSvMwzz55IviNdZ+rzxgC+SZIZCcU4p3KLJZGKQ0+7MO9Dp8CemixjLRGYKs+0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
-    <body>
-      <header>
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-1">
-              <a href="/index.html">
-                <img src="/espace-connexion_utilisateurs/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
-              </a>
+      <body>
+        <header>
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-1">
+                <a href="index.html">
+                  <img
+                    src="/assets/images/logo-arcadia.jpeg"
+                    alt="Logo Arcadia Zoo"
+                    class="logo"
+                  />
+                </a>
+              </div>
+              <div class="col-md-10">
+                <nav>
+                  <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                      <a
+                        href="/index.html"
+                        class="nav-link"
+                        style="font-size: 20px"
+                        >Accueil</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        href="/public/services.html"
+                        class="nav-link"
+                        style="font-size: 20px"
+                        >Nos Services</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        href="/public/habitats.html"
+                        class="nav-link"
+                        style="font-size: 20px"
+                        >Nos Habitats</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        href="/public/contact.html"
+                        class="nav-link"
+                        style="font-size: 20px"
+                        >Contact</a
+                      >
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                      <a
+                        id="loginLink"
+                        href="/public/connexion.html"
+                        class="nav-link"
+                        style="font-size: 20px"
+                        >Connexion</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="col-md-1">
+                <a href="/index.html">
+                  <img
+                    src="/assets/images/logo-arcadia.jpeg"
+                    alt="Logo Arcadia Zoo"
+                    class="logo"
+                  />
+                </a>
+              </div>
             </div>
-            <div class="col-md-10">
-              <nav>
-                <ul class="nav justify-content-center">
-                  <li class="nav-item">
-                    <a href="/index.html" class="nav-link" style="font-size: 20px;">Accueil</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/public/services.html" class="nav-link" style="font-size: 20px;">Nos Services</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/public/habitats.html" class="nav-link" style="font-size: 20px;">Nos Habitats</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/public/contact.html" class="nav-link" style="font-size: 20px;">Contact</a>
-                  </li>
-                  <li class="nav-item" id="loginNavItem">
-                    <a id="loginLink" href="/public/connexion.html" class="nav-link" style="font-size: 20px;">Connexion</a>
-                  </li>              
-                </ul>
-              </nav>
+          </div>
+        </header>
+
+        <div class="container mt-4">
+          <h1 class="text-center mb-4">Les habitats et nos animaux</h1>
+          <div class="row text-center">
+            <div class="col-md-3">
+              <div
+                class="habitat"
+                data-toggle="modal"
+                data-target="#habitatModal"
+                data-habitat="savane"
+              >
+                <img
+                  src="/assets/images/couple-lion.jpeg"
+                  alt="Savane"
+                  class="img-fluid"
+                />
+                <h3>La savane</h3>
+                <p>
+                  Découvrez les majestueux lions, les éléphants et les girafes.
+                </p>
+              </div>
             </div>
-            <div class="col-md-1">
-           <a href="/index.html">
-                <img src="/espace-connexion_utilisateurs/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
-              </a>
+            <div class="col-md-3">
+              <div
+                class="habitat"
+                data-toggle="modal"
+                data-target="#habitatModal"
+                data-habitat="jungle"
+              >
+                <img
+                  src="/assets/images/monkey.jpeg"
+                  alt="Jungle"
+                  class="img-fluid"
+                />
+                <h3>La jungle</h3>
+                <p>
+                  Rencontrez les singes, les serpents et les oiseaux exotiques.
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-    <div class="container mt-4">
-      <h1 class="text-center mb-4">Les habitats et nos animaux</h1>
-      <div class="row text-center">
-        <div class="col-md-3">
-          <div
-            class="habitat"
-            data-toggle="modal"
-            data-target="#habitatModal"
-            data-habitat="savane"
-          >
-            <img
-              src="/espace-connexion_utilisateurs/images/couple-lion.jpeg"
-              alt="Savane"
-              class="img-fluid"
-            />
-            <h3>La savane</h3>
-            <p>Découvrez les majestueux lions, les éléphants et les girafes.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="habitat"
-            data-toggle="modal"
-            data-target="#habitatModal"
-            data-habitat="jungle"
-          >
-            <img
-              src="/espace-connexion_utilisateurs/images/monkey.jpeg"
-              alt="Jungle"
-              class="img-fluid"
-            />
-            <h3>La jungle</h3>
-            <p>Rencontrez les singes, les serpents et les oiseaux exotiques.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="habitat"
-            data-toggle="modal"
-            data-target="#habitatModal"
-            data-habitat="marais"
-          >
-            <img
-              src="/espace-connexion_utilisateurs/images/crocodile.jpeg"
-              alt="Marais"
-              class="img-fluid"
-            />
-            <h3>Les marais</h3>
-            <p>
-              Explorez les mystères des crocodiles, des tortues et des oiseaux
-              aquatiques.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div
-            class="habitat"
-            data-toggle="modal"
-            data-target="#habitatModal"
-            data-habitat="voliere"
-          >
-            <img
-              src="/espace-connexion_utilisateurs/images/voliere-parc-zoo.jpeg"
-              alt="Volière"
-              class="img-fluid"
-            />
-            <h3>La grande volière</h3>
-            <p>
-              Admirez la beauté des oiseaux colorés dans un habitat spacieux et
-              sécurisé.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Habitat Modal -->
-    <div
-      class="modal fade"
-      id="habitatModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="habitatModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-circle">
-          <div
-            class="modal-background-image"
-            style="background-image: url('/espace-connexion_utilisateurs/images/habitat-background.jpeg')"
-          ></div>
-          <div class="modal-body">
-            <div id="habitat-details"></div>
-          </div>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <footer class="bg-dark text-white py-4 mt-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h6 class="text-center">
-              Comment venir au parc zoologique d'Arcadia ?
-            </h6>
-            <p class="text-center text-white">
-              Arcadia Zoo<br />
-              123 Rue des Animaux<br />
-              Ville des Animaux, 12345<br />
-            </p>
-
-            <h6 class="text-center">Nous contacter</h6>
-            <p class="text-center text-white">
-              Téléphone: 123-456-7890<br />
-              Email: info.arcadiazoo@gmail.com
-            </p>
-          </div>
-          <div class="col-md-8">
-            <h6 class="text-center">Suivez-nous :</h6>
-            <div class="text-center">
-              <a href="https://www.facebook.com/" class="social-icon"
-                ><i class="fab fa-facebook"></i> Facebook</a
+            <div class="col-md-3">
+              <div
+                class="habitat"
+                data-toggle="modal"
+                data-target="#habitatModal"
+                data-habitat="marais"
               >
-              <a href="https://twitter.com/?lang=fr" class="social-icon"
-                ><i class="fab fa-twitter"></i> Twitter</a
+                <img
+                  src="/assets/images/crocodile.jpeg"
+                  alt="Marais"
+                  class="img-fluid"
+                />
+                <h3>Les marais</h3>
+                <p>
+                  Explorez les mystères des crocodiles, des tortues et des
+                  oiseaux aquatiques.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div
+                class="habitat"
+                data-toggle="modal"
+                data-target="#habitatModal"
+                data-habitat="voliere"
               >
-              <a href="https://www.instagram.com/" class="social-icon"
-                ><i class="fab fa-instagram-square"></i> Instagram</a
-              >
-              <a href="https://www.linkedin.com/feed/" class="social-icon"
-                ><i class="fab fa-linkedin"></i> Linkedin</a
-              >
+                <img
+                  src="/assets/images/voliere-parc-zoo.jpeg"
+                  alt="Volière"
+                  class="img-fluid"
+                />
+                <h3>La grande volière</h3>
+                <p>
+                  Admirez la beauté des oiseaux colorés dans un habitat spacieux
+                  et sécurisé.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        const habitats = {
-          savane: {
-            name: "la savane",
-            description:
-              "Découvrez les majestueux lions, les éléphants et les girafes.",
-            animals: [
-              {
-                name: "Simba",
-                race: "le lion",
-                image: "/espace-connexion_utilisateurs/images/lion.jpeg",
-              },
-              {
-                name: "Dumbo",
-                race: "l'éléphant",
-                image: "/espace-connexion_utilisateurs/images/elephant.jpeg",
-              },
-              {
-                name: "Melman",
-                race: "la girafe",
-                image: "/espace-connexion_utilisateurs/images/girafe.jpeg",
-              },
-            ],
-          },
-          jungle: {
-            name: "la jungle",
-            description:
-              "Rencontrez les singes, les serpents et les oiseaux exotiques.",
-            animals: [
-              {
-                name: "George",
-                race: "le singe",
-                image:
-                  "/espace-connexion_utilisateurs/images/funny-monkey-zoo.jpg",
-              },
-              {
-                name: "Kaa",
-                race: "le serpent",
-                image: "/espace-connexion_utilisateurs/images/serpent.jpeg",
-              },
-              {
-                name: "Zazu",
-                race: "l'oiseau",
-                image: "/espace-connexion_utilisateurs/images/oiseau.jpeg",
-              },
-            ],
-          },
-          marais: {
-            name: "les marais",
-            description:
-              "Explorez les mystères des crocodiles, des tortues et des oiseaux aquatiques.",
-            animals: [
-              {
-                name: "Gena",
-                race: "le crocodile",
-                image: "/espace-connexion_utilisateurs/images/crocodile.jpeg",
-              },
-              {
-                name: "Speedy",
-                race: "la tortue",
-                image: "/espace-connexion_utilisateurs/images/tortue.jpeg",
-              },
-              {
-                name: "Quack",
-                race: "le canard",
-                image: "/espace-connexion_utilisateurs/images/canard.jpeg",
-              },
-            ],
-          },
-          voliere: {
-            name: "la volière",
-            description:
-              "Admirez la beauté des oiseaux colorés dans un habitat spacieux et sécurisé.",
-            animals: [
-              {
-                name: "Polly",
-                race: "le perroquet",
-                image:
-                  "/espace-connexion_utilisateurs/images/colorful-parrots-rhodes-greece.jpg",
-              },
-              {
-                name: "Tweety",
-                race: "le canari",
-                image: "/espace-connexion_utilisateurs/images/canari.jpeg",
-              },
-              {
-                name: "Kiwi",
-                race: "l'oiseau austral",
-                image: "/espace-connexion_utilisateurs/images/kiwi.jpeg",
-              },
-            ],
-          },
-        };
+        <!-- Habitat Modal -->
+        <div
+          class="modal fade"
+          id="habitatModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="habitatModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-circle">
+              <div
+                class="modal-background-image"
+                style="
+                  background-image: url('/assets/images/backrgound-zoo.jpeg');
+                "
+              ></div>
+              <div class="modal-body">
+                <div id="habitat-details"></div>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
-        $("#habitatModal").on("show.bs.modal", function (event) {
-          const button = $(event.relatedTarget);
-          const habitatKey = button.data("habitat");
-          const habitat = habitats[habitatKey];
+        <footer class="bg-dark text-white py-4 mt-4">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <h6 class="text-center">
+                  Comment venir au parc zoologique d'Arcadia ?
+                </h6>
+                <p class="text-center text-white">
+                  Arcadia Zoo<br />
+                  123 Rue des Animaux<br />
+                  Ville des Animaux, 12345<br />
+                </p>
 
-          let habitatDetails = `<h4>Dans ${habitat.name} ...</h4>`;
+                <h6 class="text-center">Nous contacter</h6>
+                <p class="text-center text-white">
+                  Téléphone: 123-456-7890<br />
+                  Email: info.arcadiazoo@gmail.com
+                </p>
+              </div>
+              <div class="col-md-8">
+                <h6 class="text-center">Suivez-nous :</h6>
+                <div class="text-center">
+                  <a href="https://www.facebook.com/" class="social-icon"
+                    ><i class="fab fa-facebook"></i> Facebook</a
+                  >
+                  <a href="https://twitter.com/?lang=fr" class="social-icon"
+                    ><i class="fab fa-twitter"></i> Twitter</a
+                  >
+                  <a href="https://www.instagram.com/" class="social-icon"
+                    ><i class="fab fa-instagram-square"></i> Instagram</a
+                  >
+                  <a href="https://www.linkedin.com/feed/" class="social-icon"
+                    ><i class="fab fa-linkedin"></i> Linkedin</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
 
-          habitatDetails += `
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            const habitats = {
+              savane: {
+                name: "la savane",
+                description:
+                  "Découvrez les majestueux lions, les éléphants et les girafes.",
+                animals: [
+                  {
+                    name: "Simba",
+                    race: "le lion",
+                    image: "/espace-connexion_utilisateurs/images/lion.jpeg",
+                  },
+                  {
+                    name: "Dumbo",
+                    race: "l'éléphant",
+                    image:
+                      "/espace-connexion_utilisateurs/images/elephant.jpeg",
+                  },
+                  {
+                    name: "Melman",
+                    race: "la girafe",
+                    image: "/espace-connexion_utilisateurs/images/girafe.jpeg",
+                  },
+                ],
+              },
+              jungle: {
+                name: "la jungle",
+                description:
+                  "Rencontrez les singes, les serpents et les oiseaux exotiques.",
+                animals: [
+                  {
+                    name: "George",
+                    race: "le singe",
+                    image:
+                      "/espace-connexion_utilisateurs/images/funny-monkey-zoo.jpg",
+                  },
+                  {
+                    name: "Kaa",
+                    race: "le serpent",
+                    image: "/espace-connexion_utilisateurs/images/serpent.jpeg",
+                  },
+                  {
+                    name: "Zazu",
+                    race: "l'oiseau",
+                    image: "/espace-connexion_utilisateurs/images/oiseau.jpeg",
+                  },
+                ],
+              },
+              marais: {
+                name: "les marais",
+                description:
+                  "Explorez les mystères des crocodiles, des tortues et des oiseaux aquatiques.",
+                animals: [
+                  {
+                    name: "Gena",
+                    race: "le crocodile",
+                    image:
+                      "/espace-connexion_utilisateurs/images/crocodile.jpeg",
+                  },
+                  {
+                    name: "Speedy",
+                    race: "la tortue",
+                    image: "/espace-connexion_utilisateurs/images/tortue.jpeg",
+                  },
+                  {
+                    name: "Quack",
+                    race: "le canard",
+                    image: "/espace-connexion_utilisateurs/images/canard.jpeg",
+                  },
+                ],
+              },
+              voliere: {
+                name: "la volière",
+                description:
+                  "Admirez la beauté des oiseaux colorés dans un habitat spacieux et sécurisé.",
+                animals: [
+                  {
+                    name: "Polly",
+                    race: "le perroquet",
+                    image:
+                      "/espace-connexion_utilisateurs/images/colorful-parrots-rhodes-greece.jpg",
+                  },
+                  {
+                    name: "Tweety",
+                    race: "le canari",
+                    image: "/espace-connexion_utilisateurs/images/canari.jpeg",
+                  },
+                  {
+                    name: "Kiwi",
+                    race: "l'oiseau austral",
+                    image: "/espace-connexion_utilisateurs/images/kiwi.jpeg",
+                  },
+                ],
+              },
+            };
+
+            $("#habitatModal").on("show.bs.modal", function (event) {
+              const button = $(event.relatedTarget);
+              const habitatKey = button.data("habitat");
+              const habitat = habitats[habitatKey];
+
+              let habitatDetails = `<h4>Dans ${habitat.name} ...</h4>`;
+
+              habitatDetails += `
           <ul class="list-unstyled">
             ${habitat.animals
               .map(
@@ -379,21 +416,23 @@
           </ul>
         `;
 
-          $("#habitat-details").html(habitatDetails);
+              $("#habitat-details").html(habitatDetails);
 
-          // afficher l'image de l'animal au survol
-          $(".animal-link").hover(
-            function () {
-              const animalData = JSON.parse($(this).data("animal"));
-              const animalImage = `<img src="${animalData.image}" alt="${animalData.name}" class="img-fluid animal-image">`;
-              $("#animal-details").html(animalImage);
-            },
-            function () {
-              $("#animal-details").html("");
-            }
-          );
-        });
-      });
-    </script>
+              // afficher l'image de l'animal au survol
+              $(".animal-link").hover(
+                function () {
+                  const animalData = JSON.parse($(this).data("animal"));
+                  const animalImage = `<img src="${animalData.image}" alt="${animalData.name}" class="img-fluid animal-image">`;
+                  $("#animal-details").html(animalImage);
+                },
+                function () {
+                  $("#animal-details").html("");
+                }
+              );
+            });
+          });
+        </script>
+      </body>
+    </html>
   </body>
 </html>
