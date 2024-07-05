@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../back-end-php/config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
+require '../config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $username;
 
                 if ($user['TypeUtilisateur'] == 'administrateur') {
-                    header("Location: /espace-connexion_utilisateurs/users/admin_dashboard.php");
+                    header("Location: /back-end-php/users/admin/admin_dashboard.php");
                 } elseif ($user['TypeUtilisateur'] == 'veterinaire') {
-                    header("Location: /espace-connexion_utilisateurs/users/veterinaire_dashboard.php");
+                    header("Location: /back-end-php/users/veterinaire/veterinaire_dashboard.php");
                 } elseif ($user['TypeUtilisateur'] == 'employe') {
-                    header("Location: /espace-connexion_utilisateurs/users/employe_dashboard.php");
+                    header("Location: /back-end-php/users/employe/employe_dashboard.php");
                 } else {
                     header("Location: /public/visiteur_dashboard.php");
                 }
