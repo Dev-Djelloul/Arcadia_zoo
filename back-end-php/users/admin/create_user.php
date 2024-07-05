@@ -5,7 +5,7 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../back-end-php/config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
+require '../../config.php';  // Vérifiez bien le chemin pour inclure correctement config.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
