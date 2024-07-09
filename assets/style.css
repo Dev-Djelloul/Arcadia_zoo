@@ -1,0 +1,162 @@
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+a {
+  margin: 5px;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+ul {
+  color: #096533;
+}
+
+h1,
+h2,
+h5,
+h6 {
+  color: #bc8909;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+}
+
+.nav-item {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.nav-link {
+  color: #096533;
+}
+
+.nav-item .nav-link:hover {
+  color: #bc8909 !important;
+}
+
+#presentation h1:hover {
+  color: #096533;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #bc8909;
+  color: #fff;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-discover {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.btn-discover:hover,
+.btn:hover {
+  background-color: #096533;
+}
+
+section {
+  padding: 15px 0;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+#avis {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fcfef9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;  
+}
+
+#avis .btn {
+  margin-top: 10px;  
+}
+
+.card {
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.service {
+  background-color: #fdfbfa;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.service-link:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
+}
+
+.service h3,
+.service p,
+.habitat h3 {  
+  color: #096533;
+  transition: color 0.3s ease;  
+
+.service h3:hover,
+.habitat h3:hover,
+.service p:hover,
+.habitat p:hover
+{  
+  color: #bc8909;
+}
+
+.habitat-img {
+  border-radius: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.service img { 
+  border: 20px solid rgb(37, 37, 37);
+}
+
+footer p {
+  margin: 28px;
+  font-size: 12px;
+}
