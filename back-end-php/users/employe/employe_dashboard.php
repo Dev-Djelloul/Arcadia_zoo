@@ -124,34 +124,7 @@ require '../../config.php';
     </table>
 </main>
 
-<footer class="bg-dark text-white py-4 mt-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h6 class="text-center">Comment venir au parc zoologique d'Arcadia ?</h6>
-                <p class="text-center text-white">
-                    Arcadia Zoo<br>
-                    123 Rue des Animaux<br>
-                    Ville des Animaux, 12345<br>
-                </p>
-                <h6 class="text-center">Nous contacter</h6>
-                <p class="text-center text-white">
-                    Téléphone: 123-456-7890<br>
-                    Email: info.arcadiazoo@gmail.com
-                </p>
-            </div>
-            <div class="col-md-8">
-                <h6 class="text-center">Suivez-nous :</h6>
-                <div class="text-center">
-                    <a href="https://www.facebook.com/" class="social-icon"><i class="fab fa-facebook"></i> Facebook</a>
-                    <a href="https://twitter.com/?lang=fr" class="social-icon"><i class="fab fa-twitter"></i> Twitter</a>
-                    <a href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram-square"></i> Instagram</a>
-                    <a href="https://www.linkedin.com/feed/" class="social-icon"><i class="fab fa-linkedin"></i> Linkedin</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -206,5 +179,13 @@ require '../../config.php';
         });
     });
 </script>
+
+<footer>
+<ul>
+<li class="nav-item">
+<a href="/index.html" class="nav-link" style="font-size: 20px">&copy; 2024 Arcadia Zoo</a>
+</li>
+</ul>
+</footer>
 </body>
 </html>

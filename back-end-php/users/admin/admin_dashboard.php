@@ -5,7 +5,7 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php';  // Vérifiez bien le chemin pour inclure correctement config.php
+require '../../config.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +23,7 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
         <div class="row align-items-center">
             <div class="col-md-1">
                 <a href="index.html">
-                    <img
-                        src="/assets/images/logo-arcadia.jpeg"
-                        alt="Logo Arcadia Zoo"
-                        class="logo"
-                    />
+                    <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
                 </a>
             </div>
             <div class="col-md-10">
@@ -40,7 +36,7 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
                             <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                            <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                         </li>
                         <li class="nav-item">
                             <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
@@ -53,11 +49,7 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
             </div>
             <div class="col-md-1">
                 <a href="/index.html">
-                    <img
-                        src="/assets/images/logo-arcadia.jpeg"
-                        alt="Logo Arcadia Zoo"
-                        class="logo"
-                    />
+                    <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
                 </a>
             </div>
         </div>
@@ -75,6 +67,7 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
         </div>
     <?php endif; ?>
 
+    <!-- Gestion des utilisateurs -->
     <h2>Gérer les utilisateurs</h2>
     <form action="create_user.php" method="post">
         <div class="form-group">
@@ -93,10 +86,10 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
                 <option value="administrateur">Administrateur</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Créer l'utilisateur</button>
+        <button type="submit" class="btn btn-primary">Création d'un nouvel utilisateur</button>
     </form>
 
-    <!-- Table des utilisateurs existants -->
+    <!-- Liste des utilisateurs existants -->
     <h2>Liste des utilisateurs</h2>
     <table class="table">
         <thead>
@@ -125,26 +118,25 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
     </table>
 
     <hr>
-
+    <!-- Gestion des services -->
     <h2>Gérer les services</h2>
-    <form action="/back-end-php/users/admin/create_service.php" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="service_name">Nom du service :</label>
-        <input type="text" class="form-control" id="service_name" name="service_name" required>
-    </div>
-    <div class="form-group">
-        <label for="service_description">Description du service :</label>
-        <textarea class="form-control" id="service_description" name="service_description" rows="3" required></textarea>
-    </div>
-    <div class="form-group">
-        <label for="service_image">Image du service :</label>
-        <input type="file" class="form-control-file" id="service_image" name="service_image" accept="image/*">
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter le service</button>
-</form>
+    <form action="create_service.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="service_name">Nom du service :</label>
+            <input type="text" class="form-control" id="service_name" name="service_name" required>
+        </div>
+        <div class="form-group">
+            <label for="service_description">Description du service :</label>
+            <textarea class="form-control" id="service_description" name="service_description" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="service_image">Image du service :</label>
+            <input type="file" class="form-control-file" id="service_image" name="service_image" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter le service</button>
+    </form>
 
-
-    <!-- Table des services existants -->
+    <!-- Liste des services existants -->
     <h2>Liste des services</h2>
     <table class="table">
         <thead>
@@ -171,11 +163,65 @@ require '../../config.php';  // Vérifiez bien le chemin pour inclure correcteme
             ?>
         </tbody>
     </table>
+    <hr>    
+
+
+
+<!-- Gestion des habitats -->
+<h2>Gérer les habitats</h2>
+<form action="create_habitats.php" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="nomHabitat">Nom de l'Habitat :</label>
+        <input type="text" class="form-control" id="nomHabitat" name="nomHabitat" required>
+    </div>
+    <div class="form-group">
+        <label for="descriptionHabitat">Description de l'Habitat :</label>
+        <textarea class="form-control" id="descriptionHabitat" name="descriptionHabitat" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="imageHabitat">Image de l'Habitat :</label>
+        <input type="file" class="form-control-file" id="imageHabitat" name="imageHabitat" accept="image/*">
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter l'Habitat</button>
+</form>
+
+<!-- Table des habitats existants -->
+<h2>Liste des habitats</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom de l'Habitat</th>
+            <th>Description de l'Habitat</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $sql_habitats = "SELECT * FROM Habitat";
+        $stmt_habitats = $conn->query($sql_habitats);
+        while ($row = $stmt_habitats->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>{$row['NomHabitat']}</td>";
+            echo "<td>{$row['DescriptionHabitat']}</td>";
+            echo "<td><img src='{$row['ImageHabitat']}' alt='Image' style='max-width: 100px;'></td>";
+            echo "<td>";
+            echo "<a href='edit_habitats.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
+            echo "<a href='delete_habitats.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
 </main>
 
 <footer>
-    <p>&copy; 2024 Arcadia Zoo</p>
+<ul>
+<li class="nav-item">
+<a href="/index.html" class="nav-link" style="font-size: 20px">&copy; 2024 Arcadia Zoo</a>
+</li>
+</ul>
 </footer>
-
 </body>
 </html>

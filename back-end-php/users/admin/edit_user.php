@@ -5,7 +5,7 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../back-end-php/config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
+require '../../config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['username'])) {
     $username = $_GET['username'];
@@ -52,15 +52,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Utilisateur</title>
+    <title>Modification de l'utilisateur</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
     <header>
-        <h1>Modifier Utilisateur</h1>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-1">
+                    <a href="index.html">
+                        <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo"/>
+                    </a>
+                </div>
+                <div class="col-md-10">
+                    <nav>
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a href="/index.html" class="nav-link" style="font-size: 20px">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
+                            </li>
+                            <li class="nav-item" id="loginNavItem">
+                                <a id="loginLink" href="/public/connexion.html" class="nav-link" style="font-size: 20px">Connexion</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-1">
+                    <a href="/index.html">
+                        <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
     <main class="container mt-4">
+    <h1>Modifier l'utilisateur</h1>
         <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-<?= $_SESSION['msg_type'] ?>">
             <?= $_SESSION['message']; ?>
@@ -79,13 +114,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" id="userType" name="userType" required>
                     <option value="employe" <?= $user['TypeUtilisateur'] == 'employe' ? 'selected' : '' ?>>Employé</option>
                     <option value="veterinaire" <?= $user['TypeUtilisateur'] == 'veterinaire' ? 'selected' : '' ?>>Vétérinaire</option>
+                    <option value="administrateur" <?= $user['TypeUtilisateur'] == 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </main>
-    <footer>
-        <p>&copy; 2024 Arcadia Zoo</p>
-    </footer>
 </body>
 </html>

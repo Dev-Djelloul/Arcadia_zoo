@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier le service</title>
+    <title>Modification du service</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -152,9 +152,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
             <button type="submit" class="btn btn-primary">Mettre à jour</button>
         </form>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Arcadia Zoo</p>
-    </footer>
 </body>
 </html>

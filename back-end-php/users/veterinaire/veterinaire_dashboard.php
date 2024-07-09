@@ -90,5 +90,15 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'veterinaire') {
 
 <body>
     <h1>Bienvenue dans votre espace vétérinaire</h1>
+
+
+
+<footer>
+<ul>
+<li class="nav-item">
+<a href="/index.html" class="nav-link" style="font-size: 20px">&copy; 2024 Arcadia Zoo</a>
+</li>
+</ul>
+</footer>
 </body>
 </html>
