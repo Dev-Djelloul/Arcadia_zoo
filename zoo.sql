@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 04 juil. 2024 à 04:34
+-- Généré le : sam. 06 juil. 2024 à 02:11
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -45,7 +45,6 @@ CREATE TABLE `avis` (
   `id` int(11) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `avis` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `approuve` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -53,12 +52,14 @@ CREATE TABLE `avis` (
 -- Déchargement des données de la table `avis`
 --
 
-INSERT INTO `avis` (`id`, `pseudo`, `avis`, `date`, `approuve`) VALUES
-(1, 'nicolas', 'super ludique ! ', '2024-06-30 01:05:41', 1),
-(2, 'djelloul', 'un parc plaisant et des animaux joyeux et jolis 😇🦅🦋🦕', '2024-06-30 01:19:08', 1),
-(3, 'elodie ', 'je me suis bien amusé en famille, les enfants ont adoré ! je reviendrais très prochainement :)', '2024-06-30 01:20:27', 1),
-(7, 'wilfried ', 'J\'ai passé ma journée au vivarium 🦎🐍🐊', '2024-06-30 03:26:18', 1),
-(8, 'batman', 'Les deux girafes se sont battues 🦒🤭', '2024-07-03 22:34:00', 1);
+INSERT INTO `avis` (`id`, `pseudo`, `avis`, `approuve`) VALUES
+(1, 'nicolas', 'super ludique ! ', 1),
+(2, 'djelloul', 'un parc plaisant et des animaux joyeux et jolis 😇🦅🦋🦕', 1),
+(3, 'elodie ', 'je me suis bien amusé en famille, les enfants ont adoré ! je reviendrais très prochainement :)', 1),
+(7, 'wilfried ', 'J\'ai passé ma journée au vivarium 🦎🐍🐊', 1),
+(8, 'batman', 'Les deux girafes se sont battues 🦒🤭', 1),
+(10, 'Romano ', 'J\'ai aimé les dauphins surtout 🐬🐬🐬', 1),
+(15, 'nicolette', 'Ma petite fille a adoré et moi aussi ! merci ! ', 1);
 
 -- --------------------------------------------------------
 
@@ -96,21 +97,45 @@ CREATE TABLE `Consultation` (
 
 CREATE TABLE `Habitat` (
   `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `description` text NOT NULL
+  `NomHabitat` varchar(255) NOT NULL,
+  `DescriptionHabitat` text NOT NULL,
+  `ImageHabitat` varchar(255) DEFAULT NULL,
+  `ListeAnimaux` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Service`
+-- Structure de la table `Horaires`
 --
 
-CREATE TABLE `Service` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `description` text NOT NULL
+CREATE TABLE `Horaires` (
+  `jour` varchar(50) NOT NULL,
+  `heure_ouverture` time DEFAULT NULL,
+  `heure_fermeture` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Services`
+--
+
+CREATE TABLE `Services` (
+  `IdService` int(11) NOT NULL,
+  `NomService` varchar(100) NOT NULL,
+  `DescriptionService` text DEFAULT NULL,
+  `ImageService` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Services`
+--
+
+INSERT INTO `Services` (`IdService`, `NomService`, `DescriptionService`, `ImageService`) VALUES
+(7, 'Fast Food Monkey', 'Manger dans notre nouveau restaurant pour tous en bonne compagnie 😝', '/uploads/fast-food-monkey.jpeg'),
+(24, 'Visite du zoo en train', 'Découvrez le zoo à bord de notre train magique ! ', '/uploads/train-zoo.jpeg'),
+(25, 'Boutique de souvenirs ', 'Laissez vous charmer par notre boutique qui vous émerveillera par ses objets en tous genre pour les petits et les grands !  ', '/uploads/boutique-souvenirs-zoo.jpeg');
 
 -- --------------------------------------------------------
 
@@ -129,9 +154,9 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`Username`, `MotDePasse`, `TypeUtilisateur`) VALUES
-('admin@arcadiazoo.com', 'arcadia', 'administrateur'),
-('employe@arcadiazoo.com', 'arcadia', 'employe'),
-('veterinaire@arcadiazoo.com', 'arcadia', 'veterinaire');
+('admin@arcadiazoo.com', '$2y$10$XPSaMkmMu4yql9TG6VdCwe7dB6wqh5gowvBvooUihwKkAoYk9SzGS', 'administrateur'),
+('employe@arcadiazoo.com', '$2y$10$cXed4xhKNIn6MA.mG4Sre.vROFtQBZpZKEK0iBhU2YWQft1WCrlHa', 'employe'),
+('veterinaire@arcadiazoo.com', '$2y$10$LFpUtsW49UZnDA9NGD22/uPVnA/hfg55PBxwn8ETHr.sAX6EvVBBW', 'veterinaire');
 
 --
 -- Index pour les tables déchargées
@@ -171,10 +196,16 @@ ALTER TABLE `Habitat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Service`
+-- Index pour la table `Horaires`
 --
-ALTER TABLE `Service`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `Horaires`
+  ADD PRIMARY KEY (`jour`);
+
+--
+-- Index pour la table `Services`
+--
+ALTER TABLE `Services`
+  ADD PRIMARY KEY (`IdService`);
 
 --
 -- Index pour la table `Utilisateur`
@@ -196,7 +227,7 @@ ALTER TABLE `Animal`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `CompteRenduVeterinaire`
@@ -217,10 +248,10 @@ ALTER TABLE `Habitat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `Service`
+-- AUTO_INCREMENT pour la table `Services`
 --
-ALTER TABLE `Service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Services`
+  MODIFY `IdService` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Contraintes pour les tables déchargées

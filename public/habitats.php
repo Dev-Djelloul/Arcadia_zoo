@@ -1,11 +1,18 @@
+<?php
+require_once('../back-end-php/config.php');
+
+$sql = "SELECT NomHabitat, DescriptionHabitat, ImageHabitat FROM Habitat"; // Assurez-vous que le nom de la table et des colonnes est correct
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Connectez-vous à l'espace personnel Arcadia Zoo</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos habitats à Arcadia Zoo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-XDw1Ua9p9LxD4XK9Lc9/7ifdSvMwzz55IviNdZ+rzxgC+SZIZCcU4p3KLJZGKQ0+7MO9Dp8CemixjLRGYKs+0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -14,104 +21,69 @@
       <div class="row align-items-center">
         <div class="col-md-1">
           <a href="/index.html">
-            <img
-              src="/assets/images/logo-arcadia.jpeg"
-              alt="Logo Arcadia Zoo"
-              class="logo"
-            />
+            <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo">
           </a>
         </div>
         <div class="col-md-10">
           <nav>
             <ul class="nav justify-content-center">
               <li class="nav-item">
-                <a href="/index.html" class="nav-link" style="font-size: 20px"
-                  >Accueil</a
-                >
+                <a href="/index.html" class="nav-link" style="font-size: 20px">Accueil</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="/public/services.php"
-                  class="nav-link"
-                  style="font-size: 20px"
-                  >Nos Services</a
-                >
+                <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="/public/habitats.php"
-                  class="nav-link"
-                  style="font-size: 20px"
-                  >Nos Habitats</a
-                >
+                <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="/public/contact.html"
-                  class="nav-link"
-                  style="font-size: 20px"
-                  >Contact</a
-                >
+                <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
               </li>
               <li class="nav-item" id="loginNavItem">
-                <a
-                  id="loginLink"
-                  href="/public/connexion.html"
-                  class="nav-link"
-                  style="font-size: 20px"
-                  >Connexion</a
-                >
+                <a id="loginLink" href="/public/connexion.html" class="nav-link" style="font-size: 20px">Connexion</a>
               </li>
             </ul>
           </nav>
         </div>
         <div class="col-md-1">
           <a href="/index.html">
-            <img
-              src="/assets/images/logo-arcadia.jpeg"
-              alt="Logo Arcadia Zoo"
-              class="logo"
-            />
+            <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo">
           </a>
         </div>
       </div>
     </div>
   </header>
-    <div class="container mt-4">
-      <h2 class="text-center mb-4">Connectez-vous à votre espace</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <form id="loginForm" action="/back-end-php/login_users/login.php" method="POST">
-            <div class="form-group">
-              <label for="username">Nom d'utilisateur :</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                required
-              />
+
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">Visitez l'espace d'une journée nos merveilleux habitats avec nos animaux de toute beauté ! </h2>
+    <div class="row">
+      <?php
+      if ($result !== false && $result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+          <div class="col-md-4">
+            <div class="habitat">
+              <?php
+              if (!empty($row['ImageHabitat'])) {
+                echo '<img src="' . htmlspecialchars($row['ImageHabitat']) . '" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />';
+              } else {
+                echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
+              }
+              ?>
+              <h3><?php echo htmlspecialchars($row['NomHabitat']); ?></h3>
+              <p><?php echo htmlspecialchars($row['DescriptionHabitat']); ?></p>
             </div>
-            <div class="form-group">
-              <label for="password">Mot de passe :</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                required
-              />
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">
-                Se connecter
-              </button>
-            </div>
-          </form>
-          <div id="loginMessage" class="mt-3 text-center"></div>
-        </div>
-      </div>
+          </div>
+          <?php
+        }
+      } else {
+        ?>
+        <p class="text-center">Aucun habitat disponible pour le moment.</p>
+        <?php
+      }
+      ?>
     </div>
+  </div>
 <!-- Footer -->
 <footer class="bg-dark text-white py-4 mt-4">
   <div class="container">
@@ -173,6 +145,11 @@
   </div>
 </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
 </html>
+<?php
+// Fermeture de la connexion à la base de données
+$conn = null;
+?>
