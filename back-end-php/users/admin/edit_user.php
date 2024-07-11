@@ -112,9 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="userType">Type d'utilisateur :</label>
                 <select class="form-control" id="userType" name="userType" required>
+                <option value="administrateur" <?= $user['TypeUtilisateur'] == 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
                     <option value="employe" <?= $user['TypeUtilisateur'] == 'employe' ? 'selected' : '' ?>>Employé</option>
                     <option value="veterinaire" <?= $user['TypeUtilisateur'] == 'veterinaire' ? 'selected' : '' ?>>Vétérinaire</option>
-                    <option value="administrateur" <?= $user['TypeUtilisateur'] == 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
