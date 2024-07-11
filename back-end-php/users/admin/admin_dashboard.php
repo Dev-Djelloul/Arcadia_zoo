@@ -81,9 +81,9 @@ require '../../config.php';
         <div class="form-group">
             <label for="userType">Type d'utilisateur :</label>
             <select class="form-control" id="userType" name="userType" required>
+                <option value="administrateur">Administrateur</option>
                 <option value="employe">Employé</option>
                 <option value="veterinaire">Vétérinaire</option>
-                <option value="administrateur">Administrateur</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Création d'un nouvel utilisateur</button>

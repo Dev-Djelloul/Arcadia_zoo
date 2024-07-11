@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérification des champs requis
     if (empty($nomService) || empty($descriptionService)) {
-        $_SESSION['message'] = "L'image dépasse la taille maximale autorisée de 2 MB.";
+        $_SESSION['message'] = "L'image dépasse la taille maximale autorisée de 20 MB.";
         $_SESSION['msg_type'] = "danger";
         header("Location: admin_dashboard.php");
         exit();

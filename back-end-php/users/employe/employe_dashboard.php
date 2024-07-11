@@ -36,7 +36,7 @@ require '../../config.php';
                             <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                            <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                         </li>
                         <li class="nav-item">
                             <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
