@@ -5,8 +5,9 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php';
+require '../../config.php'; // Inclusion de la connexion à la base de données
 
+// Suppression de l'habitat
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -20,7 +21,8 @@ if (isset($_GET['id'])) {
         $_SESSION['message'] = "Erreur lors de la suppression de l'habitat";
         $_SESSION['msg_type'] = "danger";
     }
-
+    
+    // Redirection vers la page d'administration
     header("Location: admin_dashboard.php");
     exit();
 }

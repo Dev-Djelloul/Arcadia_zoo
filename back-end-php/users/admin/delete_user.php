@@ -5,13 +5,14 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
+require '../../config.php'; // Inclusion de la connexion à la base de données
 
+// Suppression de l'utilisateur
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['username'])) {
     $username = $_GET['username'];
 
     try {
-        // Supprimer l'utilisateur
+        // Supprimer l'utilisateur de la base de données
         $sql = "DELETE FROM Utilisateur WHERE Username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$username]);

@@ -5,12 +5,14 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
+require '../../config.php'; // Inclusion de la connexion à la base de données
 
+
+// Récupérer les informations de l'utilisateur à éditer
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['username'])) {
     $username = $_GET['username'];
 
-    // Récupérer les informations de l'utilisateur à éditer
+    // Récupérer l'utilisateur
     $sql = "SELECT * FROM Utilisateur WHERE Username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$username]);
@@ -24,12 +26,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['username'])) {
     }
 }
 
+// Mettre à jour l'utilisateur
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $userType = $_POST['userType'];
 
     try {
-        // Mettre à jour le type d'utilisateur
+        // Mettre à jour l'utilisateur dans la base de données
         $sql = "UPDATE Utilisateur SET TypeUtilisateur = ? WHERE Username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$userType, $username]);

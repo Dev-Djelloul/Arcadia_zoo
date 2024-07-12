@@ -5,8 +5,9 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php';  // Assurez-vous du bon chemin vers config.php
+require '../../config.php';  // Inclusion de la connexion à la base de données
 
+// Traitement du formulaire d'ajout
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomService = $_POST['service_name'] ?? '';  // Utilisation de l'opérateur de fusion null (??) pour éviter les erreurs si non défini
     $descriptionService = $_POST['service_description'] ?? '';
@@ -30,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Insérer dans la base de données avec l'URL de l'image
+ 
+    // Insertion dans la base de données
     $sql = "INSERT INTO Services (NomService, DescriptionService, ImageService) VALUES (:nomService, :descriptionService, :imagePath)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':nomService', $nomService);
@@ -45,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['msg_type'] = "danger";
     }
 
-    header("Location: admin_dashboard.php");  // Redirection vers le tableau de bord admin
+    // Redirection vers la page d'accueil
+    header("Location: admin_dashboard.php");  
     exit();
 }
 ?>

@@ -4,7 +4,7 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'employe') {
     header("Location: /public/connexion.html");
     exit();
 }
-require '../../config.php';
+require '../../config.php'; // Inclusion de la connexion à la base de données
 ?>
 
 <!DOCTYPE html>
