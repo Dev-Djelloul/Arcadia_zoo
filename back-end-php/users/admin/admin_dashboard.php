@@ -136,34 +136,35 @@ require '../../config.php';
         <button type="submit" class="btn btn-primary">Ajouter le service</button>
     </form>
 
-    <!-- Liste des services existants -->
-    <h2>Liste des services</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom du service</th>
-                <th>Description du service</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sql_services = "SELECT * FROM Services";
-            $stmt_services = $conn->query($sql_services);
-            while ($row = $stmt_services->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
-                echo "<td>{$row['NomService']}</td>";
-                echo "<td>{$row['DescriptionService']}</td>";
-                echo "<td>";
-                echo "<a href='edit_service.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
-                echo "<a href='delete_service.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    <hr>    
+<!-- Liste des services existants -->
+<h2>Liste des services</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom du service</th>
+            <th>Description du service</th>
+            <th>Image du service</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $sql_services = "SELECT * FROM Services";
+        $stmt_services = $conn->query($sql_services);
+        while ($row = $stmt_services->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>{$row['NomService']}</td>";
+            echo "<td>{$row['DescriptionService']}</td>";
+            echo "<td><img src='{$row['ImageService']}' alt='Image du service' style='max-width: 100px;'></td>";
+            echo "<td>";
+            echo "<a href='edit_service.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
+            echo "<a href='delete_service.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
 
 
 
