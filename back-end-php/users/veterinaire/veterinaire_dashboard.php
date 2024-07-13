@@ -6,8 +6,6 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'veterinaire') {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
