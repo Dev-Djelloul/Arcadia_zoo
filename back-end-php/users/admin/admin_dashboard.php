@@ -215,6 +215,74 @@ require '../../config.php';
         ?>
     </tbody>
 </table>
+
+
+
+
+ <!-- Gestion des animaux -->
+ <section id="gestion-animaux">
+        <h2>Gérer les animaux</h2>
+        <form action="create_animal.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="prenom">Prénom de l'animal :</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+                <label for="race">Race de l'animal :</label>
+                <input type="text" class="form-control" id="race" name="race" required>
+            </div>
+            <div class="form-group">
+                <label for="imageAnimal">Image de l'animal :</label>
+                <input type="file" class="form-control-file" id="imageAnimal" name="imageAnimal" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="nomHabitat">Nom de l'habitat :</label>
+                <select class="form-control" id="nomHabitat" name="nomHabitat" required>
+                    <?php
+                    $sql_habitats = "SELECT NomHabitat FROM Habitat";
+                    $stmt_habitats = $conn->query($sql_habitats);
+                    while ($row = $stmt_habitats->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='{$row['NomHabitat']}'>{$row['NomHabitat']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter l'animal</button>
+        </form>
+
+        <hr>
+
+        <h2>Liste des animaux</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Race</th>
+                    <th>Image</th>
+                    <th>Habitat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql_animaux = "SELECT * FROM Animal";
+                $stmt_animaux = $conn->query($sql_animaux);
+                while ($row = $stmt_animaux->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>{$row['Prenom']}</td>";
+                    echo "<td>{$row['Race']}</td>";
+                    echo "<td><img src='{$row['ImageAnimal']}' alt='Image de l'animal' style='max-width: 100px;'></td>";
+                    echo "<td>{$row['NomHabitat']}</td>";
+                    echo "<td>";
+                    echo "<a href='edit_animal.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
+                    echo "<a href='delete_animal.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </section>
 </main>
 
 <footer>

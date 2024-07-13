@@ -61,7 +61,7 @@ $result = $conn->query($sql);
       if ($result !== false && $result->rowCount() > 0) {
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
           ?>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="service">
               <?php
               if (!empty($row['ImageService'])) {
