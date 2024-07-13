@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : sam. 06 juil. 2024 à 02:11
+-- Généré le : sam. 13 juil. 2024 à 21:03
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -29,11 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Animal` (
   `id` int(11) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  `race` varchar(255) NOT NULL,
-  `images` text DEFAULT NULL,
-  `habitat_id` int(11) NOT NULL
+  `Prenom` varchar(255) NOT NULL,
+  `Race` varchar(255) DEFAULT NULL,
+  `ImageAnimal` varchar(255) DEFAULT NULL,
+  `NomHabitat` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Animal`
+--
+
+INSERT INTO `Animal` (`id`, `Prenom`, `Race`, `ImageAnimal`, `NomHabitat`) VALUES
+(2, 'Cuzco', 'Perroquet ', '/uploads/colorful-parrots.png', 'La Grande Volière '),
+(4, 'Léo ', 'Félins', '/uploads/couple-lion.jpeg', 'La Savane'),
+(5, 'Alli le croco ', 'Reptiles', '/uploads/crocodile.jpeg', 'Le Marais'),
+(6, 'Mowgli', 'Famille des Lemuridae', '/uploads/lemurs-playing.jpg', 'La Jungle');
 
 -- --------------------------------------------------------
 
@@ -64,34 +74,6 @@ INSERT INTO `avis` (`id`, `pseudo`, `avis`, `approuve`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `CompteRenduVeterinaire`
---
-
-CREATE TABLE `CompteRenduVeterinaire` (
-  `id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `etat` varchar(255) NOT NULL,
-  `commentaire` text DEFAULT NULL,
-  `animal_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Consultation`
---
-
-CREATE TABLE `Consultation` (
-  `id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `alimentation` varchar(255) NOT NULL,
-  `grammage` double NOT NULL,
-  `animal_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `Habitat`
 --
 
@@ -99,21 +81,18 @@ CREATE TABLE `Habitat` (
   `id` int(11) NOT NULL,
   `NomHabitat` varchar(255) NOT NULL,
   `DescriptionHabitat` text NOT NULL,
-  `ImageHabitat` varchar(255) DEFAULT NULL,
-  `ListeAnimaux` text DEFAULT NULL
+  `ImageHabitat` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `Horaires`
+-- Déchargement des données de la table `Habitat`
 --
 
-CREATE TABLE `Horaires` (
-  `jour` varchar(50) NOT NULL,
-  `heure_ouverture` time DEFAULT NULL,
-  `heure_fermeture` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `Habitat` (`id`, `NomHabitat`, `DescriptionHabitat`, `ImageHabitat`) VALUES
+(2, 'Le Marais', 'Les marais sont des zones humides riches en biodiversité, abritant une variété d\'oiseaux, de reptiles et de mammifères adaptés à ce milieu aquatique. Les visiteurs peuvent observer des crocodiles, des alligators, des flamants roses, des hérons et d\'autres espèces qui dépendent des marais pour leur nourriture et leur habitat. Des passerelles et des observatoires offrent aux visiteurs des vues privilégiées sur ces habitats aquatiques.', '/uploads/crocodile.jpeg'),
+(3, 'La Jungle', 'La jungle est une forêt dense et luxuriante où la lumière du soleil peine à pénétrer à travers le feuillage dense. Cette partie du parc est peuplée de singes, de perroquets aux couleurs vives, de serpents, de jaguars et d\'autres créatures étonnantes. Les chemins sinueux à travers la végétation offrent aux visiteurs une immersion totale dans cet habitat mystérieux et vibrant de vie.', '/uploads/monkey.jpeg'),
+(9, 'La Savane', 'La savane est un vaste paysage ouvert caractérisé par de l\'herbe courte et des arbres dispersés, typique des régions tropicales et subtropicales. Dans cette partie du parc, vous pouvez observer des animaux emblématiques comme les lions, les éléphants, les girafes et les antilopes. Les vastes plaines permettent aux visiteurs de voir ces majestueux animaux se déplacer librement à travers leur environnement naturel.	', '/uploads/couple-lion.jpeg'),
+(10, 'La Grande Volière ', 'La grande volière est un espace spectaculaire où les visiteurs peuvent découvrir une variété d\'oiseaux exotiques vivant dans un environnement similaire à leur habitat naturel. Ce sanctuaire aérien offre aux oiseaux la liberté de voler et de se déplacer dans un espace vaste et diversifié, rempli de végétation luxuriante et de points d\'eau. Les visiteurs peuvent admirer des espèces colorées telles que les perroquets, les aras, les toucans et les loriquets qui volent au-dessus de leurs têtes ou se perchent dans les arbres et les buissons. Des chemins panoramiques et des plateformes d\'observation permettent aux visiteurs de se rapprocher des oiseaux et d\'observer leurs comportements naturels, comme la recherche de nourriture, les interactions sociales et les moments de repos. La grande volière est un lieu d\'émerveillement pour les amateurs d\'oiseaux de tous âges, offrant une expérience immersive et éducative sur la diversité des espèces aviaires et leur adaptation aux différents habitats à travers le monde.', '/uploads/voliere-parc-zoo.jpeg');
 
 -- --------------------------------------------------------
 
@@ -133,9 +112,10 @@ CREATE TABLE `Services` (
 --
 
 INSERT INTO `Services` (`IdService`, `NomService`, `DescriptionService`, `ImageService`) VALUES
-(7, 'Fast Food Monkey', 'Manger dans notre nouveau restaurant pour tous en bonne compagnie 😝', '/uploads/fast-food-monkey.jpeg'),
-(24, 'Visite du zoo en train', 'Découvrez le zoo à bord de notre train magique ! ', '/uploads/train-zoo.jpeg'),
-(25, 'Boutique de souvenirs ', 'Laissez vous charmer par notre boutique qui vous émerveillera par ses objets en tous genre pour les petits et les grands !  ', '/uploads/boutique-souvenirs-zoo.jpeg');
+(7, 'Notre coin resto monkey ', 'Manger dans notre nouveau restaurant pour tous en bonne compagnie 😝', '/uploads/fast-food-monkey.jpeg'),
+(24, 'Le Train Magique', 'Découvrez le zoo à bord de notre train magique !', '/uploads/train-zoo.jpeg'),
+(25, 'Notre boutique de souvenirs ', 'Laissez vous charmer par notre boutique qui vous émerveillera par ses objets en tous genre pour les petits et les grands !  ', '/uploads/boutique-souvenirs-zoo.jpeg'),
+(32, 'La visite guidée', 'Explorez les habitats avec nos guides experts le temps d\'une après-midi ! ', '/uploads/guide-zoo.jpeg');
 
 -- --------------------------------------------------------
 
@@ -166,8 +146,7 @@ INSERT INTO `Utilisateur` (`Username`, `MotDePasse`, `TypeUtilisateur`) VALUES
 -- Index pour la table `Animal`
 --
 ALTER TABLE `Animal`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `habitat_id` (`habitat_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `avis`
@@ -176,30 +155,10 @@ ALTER TABLE `avis`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `CompteRenduVeterinaire`
---
-ALTER TABLE `CompteRenduVeterinaire`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `animal_id` (`animal_id`);
-
---
--- Index pour la table `Consultation`
---
-ALTER TABLE `Consultation`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `animal_id` (`animal_id`);
-
---
 -- Index pour la table `Habitat`
 --
 ALTER TABLE `Habitat`
   ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `Horaires`
---
-ALTER TABLE `Horaires`
-  ADD PRIMARY KEY (`jour`);
 
 --
 -- Index pour la table `Services`
@@ -221,7 +180,7 @@ ALTER TABLE `Utilisateur`
 -- AUTO_INCREMENT pour la table `Animal`
 --
 ALTER TABLE `Animal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `avis`
@@ -230,50 +189,16 @@ ALTER TABLE `avis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT pour la table `CompteRenduVeterinaire`
---
-ALTER TABLE `CompteRenduVeterinaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Consultation`
---
-ALTER TABLE `Consultation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `Habitat`
 --
 ALTER TABLE `Habitat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `IdService` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `Animal`
---
-ALTER TABLE `Animal`
-  ADD CONSTRAINT `animal_ibfk_1` FOREIGN KEY (`habitat_id`) REFERENCES `Habitat` (`id`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `CompteRenduVeterinaire`
---
-ALTER TABLE `CompteRenduVeterinaire`
-  ADD CONSTRAINT `compterenduveterinaire_ibfk_1` FOREIGN KEY (`animal_id`) REFERENCES `Animal` (`id`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `Consultation`
---
-ALTER TABLE `Consultation`
-  ADD CONSTRAINT `consultation_ibfk_1` FOREIGN KEY (`animal_id`) REFERENCES `Animal` (`id`) ON DELETE CASCADE;
+  MODIFY `IdService` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

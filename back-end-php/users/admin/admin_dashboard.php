@@ -22,7 +22,7 @@ require '../../config.php';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-1">
-                <a href="index.html">
+                <a href="/index.html">
                     <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
                 </a>
             </div>
@@ -172,15 +172,15 @@ require '../../config.php';
 <h2>Gérer les habitats</h2>
 <form action="create_habitats.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="nomHabitat">Nom de l'Habitat :</label>
+        <label for="nomHabitat">Nom de l'habitat :</label>
         <input type="text" class="form-control" id="nomHabitat" name="nomHabitat" required>
     </div>
     <div class="form-group">
-        <label for="descriptionHabitat">Description de l'Habitat :</label>
+        <label for="descriptionHabitat">Description de l'habitat :</label>
         <textarea class="form-control" id="descriptionHabitat" name="descriptionHabitat" rows="3" required></textarea>
     </div>
     <div class="form-group">
-        <label for="imageHabitat">Image de l'Habitat :</label>
+        <label for="imageHabitat">Image de l'habitat :</label>
         <input type="file" class="form-control-file" id="imageHabitat" name="imageHabitat" accept="image/*">
     </div>
     <button type="submit" class="btn btn-primary">Ajouter l'Habitat</button>
@@ -191,8 +191,8 @@ require '../../config.php';
 <table class="table">
     <thead>
         <tr>
-            <th>Nom de l'Habitat</th>
-            <th>Description de l'Habitat</th>
+            <th>Type d'habitat</th>
+            <th>Description de l'habitat</th>
             <th>Image</th>
             <th>Actions</th>
         </tr>
@@ -230,13 +230,9 @@ require '../../config.php';
             <div class="form-group">
                 <label for="race">Race de l'animal :</label>
                 <input type="text" class="form-control" id="race" name="race" required>
-            </div>
+            </div>  
             <div class="form-group">
-                <label for="imageAnimal">Image de l'animal :</label>
-                <input type="file" class="form-control-file" id="imageAnimal" name="imageAnimal" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="nomHabitat">Nom de l'habitat :</label>
+                <label for="nomHabitat">Type d'habitat :</label>
                 <select class="form-control" id="nomHabitat" name="nomHabitat" required>
                     <?php
                     $sql_habitats = "SELECT NomHabitat FROM Habitat";
@@ -247,6 +243,11 @@ require '../../config.php';
                     ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="imageAnimal">Image de l'animal :</label>
+                <input type="file" class="form-control-file" id="imageAnimal" name="imageAnimal" accept="image/*">
+            </div>
+          
             <button type="submit" class="btn btn-primary">Ajouter l'animal</button>
         </form>
 
@@ -259,7 +260,7 @@ require '../../config.php';
                     <th>Prénom</th>
                     <th>Race</th>
                     <th>Image</th>
-                    <th>Habitat</th>
+                    <th>Type d'habitat</th>
                     <th>Actions</th>
                 </tr>
             </thead>
