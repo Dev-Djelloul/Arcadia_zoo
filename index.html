@@ -1,428 +1,332 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>L'accueil de Arcadia Zoo</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="assets/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-XDw1Ua9p9LxD4XK9Lc9/7ifdSvMwzz55IviNdZ+rzxgC+SZIZCcU4p3KLJZGKQ0+7MO9Dp8CemixjLRGYKs+0w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-     
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-1">
-            <a href="/index.html">
-              <img
-                src="assets/images/logo-arcadia.jpeg"
-                alt="Logo Arcadia Zoo"
-                class="logo"
-              />
-            </a>
-          </div>
-          <div class="col-md-10">
-            <nav>
-              <ul class="nav justify-content-center">
-                <li class="nav-item">
-                  <a href="/index.html" class="nav-link" style="font-size: 20px"
-                    >Accueil</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="/public/services.php"
-                    class="nav-link"
-                    style="font-size: 20px"
-                    >Nos Services</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="/public/habitats.php"
-                    class="nav-link"
-                    style="font-size: 20px"
-                    >Nos Habitats</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="/public/contact.html"
-                    class="nav-link"
-                    style="font-size: 20px"
-                    >Contact</a
-                  >
-                </li>
-                <li class="nav-item" id="loginNavItem">
-                  <a
-                    id="loginLink"
-                    href="/public/connexion.html"
-                    class="nav-link"
-                    style="font-size: 20px"
-                    >Connexion</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-md-1">
-            <a href="/index.html">
-              <img
-                src="assets/images/logo-arcadia.jpeg"
-                alt="Logo Arcadia Zoo"
-                class="logo"
-              />
-            </a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'accueil de Arcadia Zoo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-XDw1Ua9p9LxD4XK9Lc9/7ifdSvMwzz55IviNdZ+rzxgC+SZIZCcU4p3KLJZGKQ0+7MO9Dp8CemixjLRGYKs+0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-1">
+          <a href="/index.html">
+            <img src="assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
+          </a>
+        </div>
+        <div class="col-md-10">
+          <nav>
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a href="/index.html" class="nav-link" style="font-size: 20px">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
+              </li>
+              <li class="nav-item">
+                <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+              </li>
+              <li class="nav-item">
+                <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
+              </li>
+              <li class="nav-item" id="loginNavItem">
+                <a id="loginLink" href="/public/connexion.html" class="nav-link" style="font-size: 20px">Connexion</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-1">
+          <a href="/index.html">
+            <img src="assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
+          </a>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Présentation du zoo -->
-    <section
-      id="presentation"
-      class="row justify-content-center"
-      style="color: #096533"
-    >
-      <div class="col-md-6">
-        <a href="/public/services.php">
-          <img
-            src="assets/images/Ticketzoo.jpeg"
-            class="img-fluid"
-            alt="Ticket Zoo"
-          />
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h1>Bienvenue au Zoo Arcadia</h1>
-        <br />
-        <p>
-          Découvrez la magie de la nature au cœur de notre parc zoologique de
-          près de 16 hectares.
-        </p>
-        <p>
-          Plongez dans l'univers fascinant de la faune et la flore au coeur de
-          la ville. Notre zoo offre une expérience unique où vous pourrez
-          observer une variété d'animaux exotiques dans leur habitat naturel.
-        </p>
-        <p>
-          Chaque jour, notre équipe dévouée veille au bien-être de nos résidents
-          à plumes, à poils et à écailles, assurant ainsi une atmosphère
-          paisible et harmonieuse.
-        </p>
-        <p>
-          Laissez vous tenter par une aventure inoubliable en famille ou entre
-          amis. Nous avons hâte de vous accueillir !
-        </p>
-        <br />
-        <a href="/public/habitats.php" class="btn btn-primary btn-discover"
-          >🐞 Découvrez nos habitats 🦋</a
-        >
-      </div>
-    </section>
+  <!-- Présentation du zoo -->
+  <section id="presentation" class="row justify-content-center" style="color: #096533">
+    <div class="col-md-6">
+      <a href="/public/services.php">
+        <img src="assets/images/Ticketzoo.jpeg" class="img-fluid" alt="Ticket Zoo" />
+      </a>
+    </div>
+    <div class="col-md-6">
+      <h1>Bienvenue à Arcadia Zoo</h1>
+      <br />
+      <p>
+        Découvrez la magie de la nature au cœur de notre parc zoologique de près de 16 hectares.
+      </p>
+      <p>
+        Plongez dans l'univers fascinant de la faune et la flore au coeur de la ville. Notre zoo offre une expérience unique où vous pourrez observer une variété d'animaux exotiques dans leur habitat naturel.
+      </p>
+      <p>
+        Chaque jour, notre équipe dévouée veille au bien-être de nos résidents à plumes, à poils et à écailles, assurant ainsi une atmosphère paisible et harmonieuse.
+      </p>
+      <p>
+        Laissez vous tenter par une aventure inoubliable en famille ou entre amis. Nous avons hâte de vous accueillir !
+      </p>
+      <br />
+      <a href="/public/habitats.php" class="btn btn-primary btn-discover">🐞 Découvrez nos habitats 🦋</a>
+    </div>
+  </section>
 
-    <!-- Habitats et Services du zoo -->
-    <section
-      id="habitats-services"
-      class="row justify-content-center text-white"
-      style="
-        background-image: url('assets/images/backrgound-zoo.jpeg');
-        background-size: cover;
-      "
-    >
-      <!-- Nos Habitats -->
-      <div class="col-md-6">
-        <a
-          href="/public/habitats.php"
-          class="service-link"
-          style="text-decoration: none; color: inherit"
-        >
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="habitat">
-                <img
-                  src="assets/images/couple-lion.jpeg"
-                  alt="La savane"
-                  class="img-fluid"
-                />
-                <h3>La Savane</h3>
-                <p>
-                  Découvrez les majestueux lions, les éléphants et les girafes
-                </p>
+  <!-- Habitats et Services du zoo -->
+  <section id="habitats-services" class="row justify-content-center text-white" style="background-image: url('assets/images/backrgound-zoo.jpeg'); background-size: cover;">
+    <!-- Carrousel pour Nos Habitats -->
+    <div id="carouselHabitats" class="carousel slide col-md-6" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="/public/habitats.php" class="service-link" style="text-decoration: none; color: inherit">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="habitat">
+                  <img src="assets/images/couple-lion.jpeg" alt="La savane" class="img-fluid" />
+                  <h3>La Savane</h3>
+                  <p>Découvrez les majestueux lions, les éléphants et les girafes</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="habitat">
+                  <img src="assets/images/monkey.jpeg" alt="La jungle" class="img-fluid" />
+                  <h3>La Jungle</h3>
+                  <p>Rencontrez les singes, les serpents et les oiseaux exotiques</p>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="habitat">
-                <img
-                  src="assets/images/monkey.jpeg"
-                  alt="La jungle"
-                  class="img-fluid"
-                />
-                <h3>La Jungle</h3>
-                <p>
-                  Rencontrez les singes, les serpents et les oiseaux exotiques
-                </p>
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="/public/habitats.php" class="service-link" style="text-decoration: none; color: inherit">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="habitat">
+                  <img src="assets/images/crocodile.jpeg" alt="Les marais" class="img-fluid" />
+                  <h3>Les Marais</h3>
+                  <p>Explorez les mystères des crocodiles, des tortues et des oiseaux aquatiques</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="habitat">
+                  <img src="assets/images/voliere-parc-zoo.jpeg" alt="La grande volière" class="img-fluid" />
+                  <h3>La Volière</h3>
+                  <p>Admirez la beauté des oiseaux colorés dans un habitat spacieux et sécurisé.</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="habitat">
-                <img
-                  src="assets/images/crocodile.jpeg"
-                  alt="Les marais"
-                  class="img-fluid"
-                />
-                <h3>Les Marais</h3>
-                <p>
-                  Explorez les mystères des crocodiles, des tortues et des
-                  oiseaux aquatiques
-                </p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="habitat">
-                <img
-                  src="assets/images/voliere-parc-zoo.jpeg"
-                  alt="La grande volière"
-                  class="img-fluid"
-                />
-                <h3>La Volière</h3>
-                <p>
-                  Admirez la beauté des oiseaux colorés dans un habitat spacieux et
-                  sécurisé.
-                </p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <!-- Nos Services -->
-      <div class="col-md-6">
-        <a
-          href="/public/services.php"
-          class="service-link"
-          style="text-decoration: none; color: inherit"
-        >
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="service">
-                <img
-                  src="assets/images/guide-zoo.jpeg"
-                  alt="Restauration"
-                  class="img-fluid"
-                />
-                <h3>La visite guidée</h3>
-                <p>Explorez les habitats avec nos guides experts</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="service">
-                <img
-                  src="assets/images/train-zoo.jpeg"
-                  alt="Visite guidée"
-                  class="img-fluid"
-                />
-                <h3>Le Train touristique</h3>
-                <p>Parcourez le zoo en train pour une visite panoramique</p>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="service">
-                <img
-                  src="assets/images/fast-food-monkey.jpeg"
-                  alt="Train touristique"
-                  class="img-fluid"
-                />
-                <h3>Notre coin restauration</h3>
-                <p>Dégustez des plats savoureux dans nos restaurants</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="service">
-                <img
-                  src="assets/images/boutique-souvenirs-zoo.jpeg"
-                  alt="Aire de jeux"
-                  class="img-fluid"
-                />
-                <h3>Boutiques de souvenirs</h3>
-                <p>Ramenez des souvenirs de votre visite</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- Section pour afficher les avis approuvés -->
-    <section id="avisApprouves" class="container mt-5">
-      <h2 class="text-center">Les avis de nos clients</h2>
-      <div id="avisContainer" class="row justify-content-center">
-        <!-- Les avis approuvés sont affichés ici -->
-      </div>
-    </section>
-
-    <!-- Section pour soumettre un avis -->
-    <section id="avis" class="container mt-5">
-      <h5 class="text-center">Laissez le vôtre 😉</h5>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <form id="reviewForm">
-            <div class="form-group">
-              <label for="pseudo">Pseudo</label>
-              <input
-                type="text"
-                class="form-control"
-                id="pseudo"
-                name="pseudo"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="avis">Avis</label>
-              <textarea
-                class="form-control"
-                id="avis"
-                name="avis"
-                rows="4"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">
-             Envoyez le ! 
-            </button>
-          </form>
+          </a>
         </div>
       </div>
-    </section>
-<!-- Footer -->
-<footer class="bg-dark text-white py-4 mt-4">
-  <div class="container">
-    <div class="row">
-      <!-- Première colonne -->
-      <div class="col-md-4">
-        <div class="mb-4">
-          <h6 class="text-center">
-            Comment venir au parc zoologique d'Arcadia ?
-          </h6>
-          <p class="text-center text-white">
-            Arcadia Zoo<br />
-            123 Rue des Animaux<br />
-            Ville des Animaux, 12345<br />
-          </p>
-        </div>
+      <a class="carousel-control-prev" href="#carouselHabitats" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselHabitats" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
 
-        <div>
-          <h6 class="text-center">Nous contacter</h6>
-          <p class="text-center text-white">
-            Téléphone: 0123-456-789<br />
-            Email: info.arcadiazoo@gmail.com
-          </p>
+    <!-- Carrousel pour Nos Services -->
+    <div id="carouselServices" class="carousel slide col-md-6" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="/public/services.php" class="service-link" style="text-decoration: none; color: inherit">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="service">
+                  <img src="assets/images/guide-zoo.jpeg" alt="Restauration" class="img-fluid" />
+                  <h3>La visite guidée</h3>
+                  <p>Explorez les habitats avec nos guides experts</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="service">
+                  <img src="assets/images/train-zoo.jpeg" alt="Visite guidée" class="img-fluid" />
+                  <h3>Le Train touristique</h3>
+                  <p>Parcourez le zoo en train pour une visite panoramique</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="carousel-item">
+          <a href="/public/services.php" class="service-link" style="text-decoration: none; color: inherit">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="service">
+                  <img src="assets/images/fast-food-monkey.jpeg" alt="Train touristique" class="img-fluid" />
+                  <h3>Notre coin restauration</h3>
+                  <p>Dégustez des plats savoureux dans nos restaurants</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="service">
+                  <img src="assets/images/boutique-souvenirs-zoo.jpeg" alt="Aire de jeux" class="img-fluid" />
+                  <h3>Boutiques de souvenirs</h3>
+                  <p>Ramenez des souvenirs de votre visite</p>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-      <!-- /Première colonne -->
+      <a class="carousel-control-prev" href="#carouselServices" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselServices" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </section>
 
-      <!-- Deuxième colonne -->
-      <div class="col-md-8 text-center">
-        <div class="mb-4">
-          <h6>Horaires d'ouverture </h6>
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <p class="text-white">Lundi à Vendredi</p>
-              <p class="text-white">Samedi et Dimanche</p>
-            </div>
-            <div class="col-md-6">
-              <p class="text-white">De 9h à 18h</p>
-              <p class="text-white">De 9h à 20h</p>
-            </div>
+  <!-- Section pour afficher les avis approuvés -->
+  <section id="avisApprouves" class="container mt-5">
+    <h2 class="text-center">Les avis de nos clients</h2>
+    <div id="avisContainer" class="row justify-content-center">
+      <!-- Les avis approuvés sont affichés ici -->
+    </div>
+  </section>
+
+  <!-- Section pour soumettre un avis -->
+  <section id="avis" class="container mt-5">
+    <h5 class="text-center">Laissez le vôtre 😉</h5>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form id="reviewForm">
+          <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" required />
           </div>
+          <div class="form-group">
+            <label for="avis">Avis</label>
+            <textarea class="form-control" id="avis" name="avis" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyez le !</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-4">
+    <div class="container">
+      <div class="row">
+        <!-- Première colonne -->
+        <div class="col-md-4">
+          <div class="mb-4">
+            <h6 class="text-center">Comment venir au parc zoologique d'Arcadia ?</h6>
+            <p class="text-center text-white">
+              Arcadia Zoo<br />
+              123 Rue des Animaux<br />
+              Ville des Animaux, 12345<br />
+            </p>
+          </div>
+          <div>
+            <h6 class="text-center">Nous contacter</h6>
+            <p class="text-center text-white">
+              Téléphone: 0123-456-789<br />
+              Email: info.arcadiazoo@gmail.com
+            </p>
+          </div>
+        </div>
+        <!-- /Première colonne -->
+
+        <!-- Deuxième colonne -->
+        <div class="col-md-8 text-center">
+          <div class="mb-4">
+            <h6>Horaires d'ouverture </h6>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <p class="text-white">Lundi à Vendredi</p>
+                <p class="text-white">Samedi et Dimanche</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-white">De 9h à 18h</p>
+                <p class="text-white">De 9h à 20h</p>
+              </div>
+            </div>
             <div class="col-md-6">
               <p class="text-white">Fermé le mardi et les jours fériés</p>
           </div>
 
-        <div>
-          <h6>Suivez-nous </h6>
-          <div class="d-flex justify-content-center">
-            <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://www.instagram.com/" class="social-icon mx-2"><i class="fab fa-instagram-square"></i> Instagram</a>
-            <a href="https://www.linkedin.com/feed/" class="social-icon mx-2"><i class="fab fa-linkedin"></i> Linkedin</a>
+          <div>
+            <h6>Suivez-nous </h6>
+            <div class="d-flex justify-content-center">
+              <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
+              <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
+              <a href="https://www.instagram.com/" class="social-icon mx-2"><i class="fab fa-instagram-square"></i> Instagram</a>
+              <a href="https://www.linkedin.com/feed/" class="social-icon mx-2"><i class="fab fa-linkedin"></i> Linkedin</a>
+            </div>
           </div>
         </div>
+        <!-- /Deuxième colonne -->
+
       </div>
-      <!-- /Deuxième colonne -->
-
     </div>
-  </div>
-</footer>
+  </footer>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
+  <script>
+    $(document).ready(function () {
       // Charge les avis approuvés par l'employé
-        $.ajax({
-          type: "GET",
-          url: "/back-end-php/visiteur_avis/avisApprouves.php",
-          dataType: "json",
-          success: function (avis) {
-            avis.forEach(function (avi) {
-              var avisHtml = `
-                  <div class="col-md-4">
-                    <div class="card mb-3">
-                      <div class="card-body">
-                        <p class="card-text">${avi.avis}</p>
-                        <p class="card-text"><small class="text-muted">- ${avi.pseudo}</small></p>
-                      </div>
-                    </div>
+      $.ajax({
+        type: "GET",
+        url: "/back-end-php/visiteur_avis/avisApprouves.php",
+        dataType: "json",
+        success: function (avis) {
+          avis.forEach(function (avi) {
+            var avisHtml = `
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <p class="card-text">${avi.avis}</p>
+                    <p class="card-text"><small class="text-muted">- ${avi.pseudo}</small></p>
                   </div>
-                `;
-              $("#avisContainer").append(avisHtml);
-            });
+                </div>
+              </div>
+            `;
+            $("#avisContainer").append(avisHtml);
+          });
+        },
+        error: function (xhr, status, error) {
+          alert("Erreur lors du chargement des avis.");
+        },
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      // Soumission du formulaire d'avis par le visiteur
+      $("#reviewForm").submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: "/back-end-php/visiteur_avis/soumettreAvis.php",
+          data: $(this).serialize(),
+          dataType: "json",
+          success: function (response) {
+            alert(response.message);
+            if (response.success) {
+              $("#reviewForm")[0].reset();
+            }
           },
           error: function (xhr, status, error) {
-            alert("Erreur lors du chargement des avis.");
+            alert("Une erreur s'est produite. Veuillez réessayer.");
           },
         });
       });
-    </script>
-    <script>
-      $(document).ready(function () {
-    // Soumission du formulaire d'avis par le visiteur
-        $("#reviewForm").submit(function (event) {
-          event.preventDefault();
-
-          $.ajax({
-            type: "POST",
-            url: "/back-end-php/visiteur_avis/soumettreAvis.php",
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function (response) {
-              alert(response.message);
-              if (response.success) {
-                $("#reviewForm")[-1].reset();
-              }
-            },
-            error: function (xhr, status, error) {
-              alert("Une erreur s'est produite. Veuillez réessayer.");
-            },
-          });
-        });
-      });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

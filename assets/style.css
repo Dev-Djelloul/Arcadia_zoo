@@ -6,7 +6,7 @@ ul,
 li,
 a {
   margin: 10px;
-  padding: 10px;
+  padding: 0px;
   list-style: none;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
@@ -21,7 +21,7 @@ h5,
 h6 {
   color: #bc8909;
   text-align: center;
-  margin-bottom: 0px;
+  margin: 20px;
 }
 
 .container {
@@ -115,7 +115,6 @@ section {
 }
 
 .service {
-  background-color: #fdfbfa;
   text-align: center;
   padding: 10px;
   margin-bottom: 0px;
