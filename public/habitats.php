@@ -86,7 +86,7 @@ $result = $conn->query($sql);
                             ?>
                             <h3><?php echo htmlspecialchars($row['NomHabitat']); ?></h3>
                             <p><?php echo htmlspecialchars($row['DescriptionHabitat']); ?></p>
-                            <a href="animal.php?NomHabitat=<?php echo urlencode($row['NomHabitat']); ?>" class="btn btn-primary">🐒 👈 Nos animaux c'est par ici 👉 🐒</a>
+                            <a href="animal.php?NomHabitat=<?php echo urlencode($row['NomHabitat']); ?>" class="btn btn-primary">🐒 👈 Nos vedettes c'est par ici 👉 🐒</a>
                         </div>
                     </div>
                     <?php
