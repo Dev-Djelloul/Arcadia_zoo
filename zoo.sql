@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 14 juil. 2024 à 03:50
+-- Généré le : lun. 15 juil. 2024 à 21:20
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -76,6 +76,48 @@ INSERT INTO `avis` (`id`, `pseudo`, `avis`, `approuve`) VALUES
 (3, 'elodie ', 'je me suis bien amusé en famille, les enfants ont adoré ! je reviendrais très prochainement :)', 1),
 (8, 'batman', 'Les deux girafes se sont battues 🦒🤭', 1),
 (15, 'nicolette', 'Ma petite fille a adoré et moi aussi ! merci ! ', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `CommentairesHabitats`
+--
+
+CREATE TABLE `CommentairesHabitats` (
+  `IdCommentaire` int(11) NOT NULL,
+  `NomHabitat` int(11) NOT NULL,
+  `Commentaires` text NOT NULL,
+  `DateCommentaire` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `CommentairesHabitats`
+--
+
+INSERT INTO `CommentairesHabitats` (`IdCommentaire`, `NomHabitat`, `Commentaires`, `DateCommentaire`) VALUES
+(29, 9, 'risque pour les jours à venir ! ', '2024-07-15');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ComptesRendusVeterinaires`
+--
+
+CREATE TABLE `ComptesRendusVeterinaires` (
+  `IdCompteRendu` int(11) NOT NULL,
+  `Prenom` int(11) NOT NULL,
+  `EtatAnimal` varchar(255) NOT NULL,
+  `Nourriture` varchar(255) NOT NULL,
+  `Grammage` int(11) NOT NULL,
+  `DatePassage` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `ComptesRendusVeterinaires`
+--
+
+INSERT INTO `ComptesRendusVeterinaires` (`IdCompteRendu`, `Prenom`, `EtatAnimal`, `Nourriture`, `Grammage`, `DatePassage`) VALUES
+(11, 5, 'bon ', 'viande', 100, '2024-07-19');
 
 -- --------------------------------------------------------
 
@@ -161,6 +203,18 @@ ALTER TABLE `avis`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `CommentairesHabitats`
+--
+ALTER TABLE `CommentairesHabitats`
+  ADD PRIMARY KEY (`IdCommentaire`);
+
+--
+-- Index pour la table `ComptesRendusVeterinaires`
+--
+ALTER TABLE `ComptesRendusVeterinaires`
+  ADD PRIMARY KEY (`IdCompteRendu`);
+
+--
 -- Index pour la table `Habitat`
 --
 ALTER TABLE `Habitat`
@@ -195,6 +249,18 @@ ALTER TABLE `avis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT pour la table `CommentairesHabitats`
+--
+ALTER TABLE `CommentairesHabitats`
+  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT pour la table `ComptesRendusVeterinaires`
+--
+ALTER TABLE `ComptesRendusVeterinaires`
+  MODIFY `IdCompteRendu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT pour la table `Habitat`
 --
 ALTER TABLE `Habitat`
@@ -204,7 +270,7 @@ ALTER TABLE `Habitat`
 -- AUTO_INCREMENT pour la table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `IdService` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `IdService` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
