@@ -78,7 +78,44 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
         </div>
     <?php endif; ?>
 
-    <h2>Gérer les services</h2>
+
+
+
+    <!-- Ajout du formulaire pour l'alimentation des animaux -->
+<h2>Gestion de l'alimentation quotidienne des animaux</h2>
+<form action="alimentation_animaux.php" method="post">
+    <div class="form-group">
+        <label for="prenom">Prénom de l'animal :</label>
+        <select class="form-control" id="prenom" name="prenom" required>
+            <?php
+            $sql_animaux = "SELECT Prenom FROM Animal";
+            $stmt_animaux = $conn->query($sql_animaux);
+            while ($row = $stmt_animaux->fetch(PDO::FETCH_ASSOC)) {
+                echo "<option value='{$row['Prenom']}'>{$row['Prenom']}</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date">Date :</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+        <label for="heure">Heure :</label>
+        <input type="time" class="form-control" id="heure" name="heure" required>
+    </div>
+    <div class="form-group">
+        <label for="nourriture">Nourriture :</label>
+        <input type="text" class="form-control" id="nourriture" name="nourriture" required>
+    </div>
+    <div class="form-group">
+        <label for="quantite">Quantité (en grammes) :</label>
+        <input type="number" class="form-control" id="quantite" name="quantite" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+
+    <h2>Gestion des services du parc</h2>
     <form action="/back-end-php/users/employe/create_service_employe.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="service_name">Nom du service :</label>
@@ -96,7 +133,7 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
     </form>
 
 <!-- Liste des services existants -->
-<h2>Liste des services</h2>
+<h2>Liste des services du parc</h2>
 <table class="table">
     <thead>
         <tr>
@@ -125,9 +162,9 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
     </tbody>
 </table>
 
+ 
+
 </main>
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
