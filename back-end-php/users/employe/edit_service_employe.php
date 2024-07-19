@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         </div>
     </header>
 <div class="container mt-5">
-    <h1>Modifier  service</h1>
+    <h1>Modifier le service</h1>
     <form action="edit_service_employe.php" method="post">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($service['IdService']); ?>">
         <div class="form-group">
