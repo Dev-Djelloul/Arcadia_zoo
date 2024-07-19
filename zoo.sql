@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 15 juil. 2024 à 21:20
+-- Généré le : sam. 20 juil. 2024 à 01:06
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `zoo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `AlimentationAnimaux`
+--
+
+CREATE TABLE `AlimentationAnimaux` (
+  `id` int(11) NOT NULL,
+  `Prenom` varchar(255) NOT NULL,
+  `DateAlimentation` date NOT NULL,
+  `HeureAlimentation` time NOT NULL,
+  `Nourriture` varchar(255) NOT NULL,
+  `Quantite` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `AlimentationAnimaux`
+--
+
+INSERT INTO `AlimentationAnimaux` (`id`, `Prenom`, `DateAlimentation`, `HeureAlimentation`, `Nourriture`, `Quantite`) VALUES
+(7, 'Tango', '2024-07-19', '08:00:00', 'Fruits tropicaux', 100),
+(8, 'Tango', '2024-07-19', '12:00:00', 'Insectes', 50),
+(9, 'Tango', '2024-07-19', '16:00:00', 'Granulés pour toucans', 50),
+(10, 'Borneo', '2024-07-19', '09:00:00', 'Feuilles de bambou', 200),
+(11, 'Borneo', '2024-07-19', '13:00:00', 'Fruits frais', 150),
+(12, 'Borneo', '2024-07-19', '18:00:00', 'Granulés pour primates', 100);
 
 -- --------------------------------------------------------
 
@@ -85,7 +112,7 @@ INSERT INTO `avis` (`id`, `pseudo`, `avis`, `approuve`) VALUES
 
 CREATE TABLE `CommentairesHabitats` (
   `IdCommentaire` int(11) NOT NULL,
-  `NomHabitat` int(11) NOT NULL,
+  `NomHabitat` varchar(255) NOT NULL,
   `Commentaires` text NOT NULL,
   `DateCommentaire` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -95,7 +122,10 @@ CREATE TABLE `CommentairesHabitats` (
 --
 
 INSERT INTO `CommentairesHabitats` (`IdCommentaire`, `NomHabitat`, `Commentaires`, `DateCommentaire`) VALUES
-(29, 9, 'risque pour les jours à venir ! ', '2024-07-15');
+(32, 'La Savane', ' \"Les installations pour les girafes sont excellentes, mais il serait bénéfique d\'ajouter quelques arbres supplémentaires pour qu\'elles puissent se nourrir et se cacher un peu. Globalement, c\'est un endroit impressionnant.\"', '2024-07-09'),
+(33, 'Les Marais', '\"L\'habitat des crocodiles est fascinant, mais l\'eau pourrait être un peu plus claire pour une meilleure visibilité des animaux. Peut-être prévoir un nettoyage plus fréquent.\"', '2024-07-03'),
+(34, 'La Jungle', '\"L\'habitat est très bien conçu, avec beaucoup de végétation dense et des zones de jeu pour les animaux. Il serait utile d\'ajouter des panneaux éducatifs sur les différentes espèces de la jungle.\"', '2024-07-06'),
+(35, 'La Grande Volière ', '\"L\'habitat est très attrayant, surtout avec la variété d\'oiseaux exotiques. Peut-être qu\'un système de gestion de l\'humidité plus efficace améliorerait encore le confort des oiseaux.\"', '2024-07-04');
 
 -- --------------------------------------------------------
 
@@ -105,7 +135,7 @@ INSERT INTO `CommentairesHabitats` (`IdCommentaire`, `NomHabitat`, `Commentaires
 
 CREATE TABLE `ComptesRendusVeterinaires` (
   `IdCompteRendu` int(11) NOT NULL,
-  `Prenom` int(11) NOT NULL,
+  `Prenom` varchar(255) NOT NULL,
   `EtatAnimal` varchar(255) NOT NULL,
   `Nourriture` varchar(255) NOT NULL,
   `Grammage` int(11) NOT NULL,
@@ -117,7 +147,18 @@ CREATE TABLE `ComptesRendusVeterinaires` (
 --
 
 INSERT INTO `ComptesRendusVeterinaires` (`IdCompteRendu`, `Prenom`, `EtatAnimal`, `Nourriture`, `Grammage`, `DatePassage`) VALUES
-(11, 5, 'bon ', 'viande', 100, '2024-07-19');
+(18, 'Borneo', 'Bornéo est en excellente santé. Il est vif, alerte et montre des signes de comportement social normal. Aucune anomalie physique détectée lors de l\'examen.', ' Fruits tropicaux variés (bananes, mangues, papayes), feuilles de bambou et noix de coco.', 140, '2024-07-11'),
+(19, 'Maya', 'Maya est en bonne santé générale. Une légère perte de poids a été notée, mais elle est toujours dans les limites normales. Aucun signe de maladie ou de blessure.', 'Légumes frais (carottes, concombres, courgettes), insectes (crickets, larves), et petits fruits (baies, raisins).', 127, '2024-07-07'),
+(20, 'Malaya', 'Malaya est en excellente forme. Son pelage est brillant, elle est active et montre un comportement curieux et sociable. Aucun problème de santé détecté.', 'Feuilles de bambou fraîches, pommes, carottes et herbes grasses.', 240, '2024-07-11'),
+(21, 'Gator', 'Gator est en bonne santé. Il est actif et réactif aux stimulations. Aucune anomalie observée.', 'Poisson frais, poulet et foie de bœuf.', 450, '2024-07-13'),
+(22, 'Remy', 'Rémy est en pleine forme. Son pelage est dense et propre, il est alerte et montre un bon appétit.', ' Légumes frais, fruits et céréales.', 100, '2024-07-14'),
+(23, 'Hugo', 'Hugo est en excellent état. Son poids est stable, il est actif dans l\'eau et montre un bon comportement social.', 'Herbes aquatiques, légumes et foin.', 1000, '2024-07-15'),
+(24, 'Nala', ' Nala est en excellente santé. Elle est alerte, présente un bon appétit et son pelage est brillant.', 'Viande de bœuf, poulet et compléments alimentaires.', 500, '2024-07-12'),
+(25, 'Savannah', 'Savannah est en pleine forme. Elle est active et son comportement est normal. Son appétit est bon.', 'Feuilles d\'acacia, légumes et granulés pour girafes.', 800, '2024-07-14'),
+(26, 'Zara et Gizmo ', 'Zara et Gizmo sont en bonne santé. Leur comportement est normal et ils montrent un bon appétit.', ' Foin, herbes fraîches et granulés pour équidés.', 600, '2024-07-22'),
+(27, 'Rio et Azul', 'Rio et Azul sont en excellente santé. Ils sont actifs, ont un plumage brillant et un bon appétit.', 'Fruits frais, noix et graines spéciales pour aras.', 400, '2024-07-15'),
+(28, 'Tango', 'Tango est en pleine forme. Il est alerte, présente un bon appétit et son plumage est en bon état.', ' Fruits tropicaux, insectes et granulés pour toucans.', 250, '2024-07-12'),
+(29, 'Grisette ', 'Grisette est en bonne santé. Elle est active et son comportement est normal.', 'Poissons frais, crustacés et insectes.', 350, '2024-07-09');
 
 -- --------------------------------------------------------
 
@@ -160,7 +201,7 @@ CREATE TABLE `Services` (
 --
 
 INSERT INTO `Services` (`IdService`, `NomService`, `DescriptionService`, `ImageService`) VALUES
-(7, 'Notre coin resto monkey ', 'Manger dans notre nouveau restaurant pour tous en bonne compagnie 😝', '/uploads/fast-food-monkey.jpeg'),
+(7, 'Notre coin restauration ', 'Manger dans notre nouveau restaurant pour tous en bonne compagnie 😝', '/uploads/fast-food-monkey.jpeg'),
 (24, 'Le Train Magique', 'Découvrez le zoo à bord de notre train magique !', '/uploads/train-zoo.jpeg'),
 (25, 'Notre boutique de souvenirs ', 'Laissez vous charmer par notre boutique qui vous émerveillera par ses objets en tous genre pour les petits et les grands !  ', '/uploads/boutique-souvenirs-zoo.jpeg'),
 (32, 'La visite guidée', 'Explorez les habitats avec nos guides experts le temps d\'une après-midi ! ', '/uploads/guide-zoo.jpeg');
@@ -189,6 +230,12 @@ INSERT INTO `Utilisateur` (`Username`, `MotDePasse`, `TypeUtilisateur`) VALUES
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `AlimentationAnimaux`
+--
+ALTER TABLE `AlimentationAnimaux`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `Animal`
@@ -237,6 +284,12 @@ ALTER TABLE `Utilisateur`
 --
 
 --
+-- AUTO_INCREMENT pour la table `AlimentationAnimaux`
+--
+ALTER TABLE `AlimentationAnimaux`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT pour la table `Animal`
 --
 ALTER TABLE `Animal`
@@ -252,13 +305,13 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT pour la table `CommentairesHabitats`
 --
 ALTER TABLE `CommentairesHabitats`
-  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `ComptesRendusVeterinaires`
 --
 ALTER TABLE `ComptesRendusVeterinaires`
-  MODIFY `IdCompteRendu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IdCompteRendu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `Habitat`

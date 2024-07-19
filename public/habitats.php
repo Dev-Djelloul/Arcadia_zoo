@@ -1,8 +1,17 @@
 <?php
 require_once('../back-end-php/config.php');
 
-$sql = "SELECT id, NomHabitat, DescriptionHabitat, ImageHabitat FROM Habitat";
-$result = $conn->query($sql);
+// Récupération des habitats
+$sql_habitats = "SELECT id, NomHabitat, DescriptionHabitat, ImageHabitat FROM Habitat";
+$result_habitats = $conn->query($sql_habitats);
+
+// Récupération des commentaires sur les habitats
+$sql_comments = "SELECT NomHabitat, Commentaires FROM CommentairesHabitats";
+$result_comments = $conn->query($sql_comments);
+$comments = [];
+while ($row = $result_comments->fetch(PDO::FETCH_ASSOC)) {
+    $comments[$row['NomHabitat']][] = $row['Commentaires'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,9 +28,8 @@ $result = $conn->query($sql);
         .habitat h3 {
             margin-top: 10px;
         }
-
         .habitat h3:hover {
-        color: #bc8909;
+            color: #bc8909;
         }
         .habitat p {
             margin-bottom: 25px;
@@ -71,9 +79,10 @@ $result = $conn->query($sql);
         <h1 class="text-center mb-4">Laissez vos sens vous guider à travers nos merveilleux habitats le temps d'une belle après-midi 🌞</h1>
         <div class="row">
             <?php
-            if ($result !== false && $result->rowCount() > 0) {
+            if ($result_habitats !== false && $result_habitats->rowCount() > 0) {
                 $count = 0;
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                while ($row = $result_habitats->fetch(PDO::FETCH_ASSOC)) {
+                    $nomHabitat = htmlspecialchars($row['NomHabitat']);
                     ?>
                     <div class="col-md-6 mb-4">
                         <div class="habitat">
@@ -84,9 +93,20 @@ $result = $conn->query($sql);
                                 echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
                             }
                             ?>
-                            <h3><?php echo htmlspecialchars($row['NomHabitat']); ?></h3>
+                            <h3><?php echo $nomHabitat; ?></h3>
                             <p><?php echo htmlspecialchars($row['DescriptionHabitat']); ?></p>
-                            <a href="animal.php?NomHabitat=<?php echo urlencode($row['NomHabitat']); ?>" class="btn btn-primary">🐒 👈 Nos vedettes c'est par ici 👉 🐒</a>
+                            <a href="animal.php?NomHabitat=<?php echo urlencode($row['NomHabitat']); ?>" class="btn btn-primary">👈 Découvrez nos vedettes par ici 👉</a>
+
+                            <!-- Affichage des commentaires -->
+                            <?php if (isset($comments[$nomHabitat])): ?>
+                                <div class="mt-3">
+                                    <h5>Derniers commentaires laissés par le vétérinaire :</h5>
+                                    <?php foreach ($comments[$nomHabitat] as $commentaire): ?>
+                                        <h7><?php echo htmlspecialchars($commentaire); ?></h7>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                     <?php
