@@ -4,11 +4,26 @@ require_once('../back-end-php/config.php');
 if (isset($_GET['NomHabitat'])) {
     $NomHabitat = urldecode($_GET['NomHabitat']);
 
-    $sql = "SELECT * FROM Animal WHERE NomHabitat = :NomHabitat";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['NomHabitat' => $NomHabitat]);
+    // Récupérer les animaux dans l'habitat spécifié
+    $sql_animaux = "SELECT * FROM Animal WHERE NomHabitat = :NomHabitat";
+    $stmt_animaux = $conn->prepare($sql_animaux);
+    $stmt_animaux->execute(['NomHabitat' => $NomHabitat]);
+    $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
 
-    $animaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Préparer un tableau pour les comptes-rendus associés à chaque animal
+    $comptes_rendus = [];
+
+    foreach ($animaux as $animal) {
+        // Récupérer les comptes-rendus pour cet animal
+        $sql_comptes_rendus = "
+            SELECT * FROM ComptesRendusVeterinaires
+            WHERE Prenom = :Prenom
+            ORDER BY DatePassage DESC
+        ";
+        $stmt_comptes_rendus = $conn->prepare($sql_comptes_rendus);
+        $stmt_comptes_rendus->execute(['Prenom' => $animal['Prenom']]);
+        $comptes_rendus[$animal['Prenom']] = $stmt_comptes_rendus->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -60,8 +75,8 @@ if (isset($_GET['NomHabitat'])) {
     </header>
 
     <div class="container mt-4">
-    <h1> <?php echo htmlspecialchars($NomHabitat); ?></h1> 
-        <h3 class="text-center mb-4">Venez à la rencontre de nos icônes ! </h3>
+        <h1><?php echo htmlspecialchars($NomHabitat); ?></h1>
+        <h3 class="text-center mb-4">Venez à la rencontre de nos icônes !</h3>
         <div class="row">
             <?php
             if (!empty($animaux)) {
@@ -72,9 +87,25 @@ if (isset($_GET['NomHabitat'])) {
                             <img src="<?php echo htmlspecialchars($animal['ImageAnimal']); ?>" class="card-img-top" alt="Image de <?php echo htmlspecialchars($animal['Prenom']); ?>">
                             <div class="card-body">
                                 <p class="card-text">
-                                    <h2>Son prénom c'est   <?php echo htmlspecialchars($animal['Prenom']); ?> </h2><br>
-                                   <h4>Son espèce :</h4>  <?php echo htmlspecialchars($animal['Race']);?>
+                                    <h2>Son prénom c'est <?php echo htmlspecialchars($animal['Prenom']); ?></h2><br>
+                                    <h4>Son espèce </h4> <?php echo htmlspecialchars($animal['Race']); ?>
                                 </p>
+                                <!-- Affichage des comptes-rendus pour cet animal -->
+                                <?php if (isset($comptes_rendus[$animal['Prenom']])) : ?>
+                                    <h5 class="mt-3">Comptes-rendus du vétérinaire :</h5>
+                                    <div class="list-group">
+                                        <?php foreach ($comptes_rendus[$animal['Prenom']] as $cr) : ?>
+                                            <div class="list-group-item">
+                                                <h8><strong>Date de passage :</strong> <?php echo htmlspecialchars($cr['DatePassage']); ?></h8>
+                                                <h6><strong>État de l'animal :</strong> <?php echo htmlspecialchars($cr['EtatAnimal']); ?></h6>
+                                                <h7><strong>Nourriture proposée :</strong> <?php echo htmlspecialchars($cr['Nourriture']); ?></p>
+                                                <h6><strong>Grammage de la nourriture :</strong> <?php echo htmlspecialchars($cr['Grammage']); ?> g</h6>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php else : ?>
+                                    <p class="text-center">Aucun compte-rendu disponible pour cet animal.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -88,7 +119,6 @@ if (isset($_GET['NomHabitat'])) {
             ?>
         </div>
     </div>
-
 
     <footer class="bg-dark text-white py-4 mt-4">
         <div class="container">
