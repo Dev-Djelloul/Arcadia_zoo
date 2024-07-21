@@ -4,17 +4,17 @@ require_once('../back-end-php/config.php');
 if (isset($_GET['NomHabitat'])) {
     $NomHabitat = urldecode($_GET['NomHabitat']);
 
-    // Récupérer les animaux dans l'habitat spécifié
+    // Récupére les animaux dans l'habitat spécifié
     $sql_animaux = "SELECT * FROM Animal WHERE NomHabitat = :NomHabitat";
     $stmt_animaux = $conn->prepare($sql_animaux);
     $stmt_animaux->execute(['NomHabitat' => $NomHabitat]);
     $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
 
-    // Préparer un tableau pour les comptes-rendus associés à chaque animal
+    // Prépare un tableau pour les comptes-rendus associés à chaque animal
     $comptes_rendus = [];
 
     foreach ($animaux as $animal) {
-        // Récupérer les comptes-rendus pour cet animal
+        // Récupére les comptes-rendus pour cet animal
         $sql_comptes_rendus = "
             SELECT * FROM ComptesRendusVeterinaires
             WHERE Prenom = :Prenom
@@ -34,6 +34,7 @@ if (isset($_GET['NomHabitat'])) {
     <title>Animaux de <?php echo htmlspecialchars($NomHabitat); ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -92,7 +93,7 @@ if (isset($_GET['NomHabitat'])) {
                                 </p>
                                 <!-- Affichage des comptes-rendus pour cet animal -->
                                 <?php if (isset($comptes_rendus[$animal['Prenom']])) : ?>
-                                    <h5 class="mt-3">Comptes-rendus du vétérinaire :</h5>
+                                    <h5 class="mt-3">Les comptes-rendus du vétérinaire :</h5>
                                     <div class="list-group">
                                         <?php foreach ($comptes_rendus[$animal['Prenom']] as $cr) : ?>
                                             <div class="list-group-item">
@@ -106,6 +107,8 @@ if (isset($_GET['NomHabitat'])) {
                                 <?php else : ?>
                                     <p class="text-center">Aucun compte-rendu disponible pour cet animal.</p>
                                 <?php endif; ?>
+                                <!-- Bouton pour augmenter les consultations d'animaux par les visiteurs -->
+                                <button class="btn btn-primary mt-3 increase-consultation" data-prenom="<?php echo htmlspecialchars($animal['Prenom']); ?>">Si vous aimez cet animal, cliquez ici !</button>
                             </div>
                         </div>
                     </div>
@@ -146,34 +149,50 @@ if (isset($_GET['NomHabitat'])) {
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <p class="text-white">Lundi à Vendredi</p>
+                                <p class="text-white">9h00 - 18h00</p>
+                            </div>
+                            <div class="col-md-6">
                                 <p class="text-white">Samedi et Dimanche</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-white">De 9h à 18h</p>
-                                <p class="text-white">De 9h à 20h</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-white">Fermé le mardi et les jours fériés</p>
+                                <p class="text-white">10h00 - 19h00</p>
                             </div>
                         </div>
-                        <div>
-                            <h6>Suivez-nous</h6>
-                            <div class="d-flex justify-content-center">
-                                <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
-                                <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
-                                <a href="https://www.instagram.com/" class="social-icon mx-2"><i class="fab fa-instagram-square"></i> Instagram</a>
-                                <a href="https://www.linkedin.com/feed/" class="social-icon mx-2"><i class="fab fa-linkedin"></i> Linkedin</a>
-                            </div>
-                        </div>
+                    </div>
+                    <div>
+                        <h6>Suivez-nous</h6>
+                        <a href="https://www.facebook.com/ArcadiaZoo" target="_blank" class="text-white">Facebook</a> |
+                        <a href="https://www.instagram.com/ArcadiaZoo" target="_blank" class="text-white">Instagram</a> |
+                        <a href="https://twitter.com/ArcadiaZoo" target="_blank" class="text-white">Twitter</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fonction pour gérer le clic sur le bouton d'augmentation de consultation
+            $('.increase-consultation').click(function() {
+                var prenom = $(this).data('prenom'); // Récupére le prénom de l'animal
+                $.ajax({
+                    url: '/back-end-php/users/visiteur/update_consultation.php',
+                    type: 'GET',
+                    data: { Prenom: prenom },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert('Merci pour votre participation 😊');
+                        } else {
+                            alert('Erreur lors de la mise à jour de la consultation.');
+                        }
+                    },
+                    error: function() {
+                        alert('Erreur de requête.');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
-<?php
-$conn = null;
-?>
