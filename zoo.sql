@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : sam. 20 juil. 2024 à 01:06
+-- Généré le : lun. 22 juil. 2024 à 01:53
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -305,7 +305,7 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT pour la table `CommentairesHabitats`
 --
 ALTER TABLE `CommentairesHabitats`
-  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT pour la table `ComptesRendusVeterinaires`
