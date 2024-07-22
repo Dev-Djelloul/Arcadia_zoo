@@ -12,6 +12,20 @@ try {
     // Crée une connexion PDO à la base de données MySQL
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Définit le mode de gestion des erreurs
+    echo "Connexion réussie à la base de données !"; // Ligne de débogage pour afficher le succès de la connexion
+
+    // Récupère les noms des tables dans la base de données
+    $query = $conn->query("SHOW TABLES");
+    $tables = $query->fetchAll(PDO::FETCH_COLUMN);
+
+    if ($tables) {
+        echo "Tables dans la base de données : ";
+        foreach ($tables as $table) {
+            echo $table . " ";
+        }
+    } else {
+        echo "Aucune table trouvée dans la base de données.";
+    }
 } catch (PDOException $e) {
     // Affiche un message d'erreur en cas d'échec de connexion
     die("Erreur de connexion à la base de données: " . $e->getMessage());
