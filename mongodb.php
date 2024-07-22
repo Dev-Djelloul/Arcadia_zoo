@@ -1,26 +1,22 @@
 <?php
-// Connexion à une base de données MongoDB et affichage des collections.
-
-// Utilisation de la bibliothèque MongoDB pour PHP.
 require_once 'vendor/autoload.php';
 
 use MongoDB\Client;
 
 try {
-    // Connexion à MongoDB via l'URI de la variable d'environnement
-    $mongoUri = getenv('MONGODB_URI'); // Obtention de l'URI depuis les variables d'environnement
-    $client = new Client($mongoUri);
+    // Connexion à MongoDB
+    $client = new Client(getenv('MONGODB_URI'));
     $db = $client->selectDatabase('zoo_db');
 
-    echo "Connexion réussie à la base de données MongoDB!<br>";
+    echo "Connexion réussie à la base de données MongoDB!\n";
 
     // Liste des collections
     $collections = $db->listCollections();
-    echo "Collections dans 'zoo_db':<br>";
+    echo "Collections dans 'zoo_db':\n";
     foreach ($collections as $collection) {
-        echo $collection->getName() . "<br>";
+        echo $collection->getName() . "\n";
     }
 } catch (Exception $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
+    echo "Erreur de connexion : " . $e->getMessage() . "\n";
 }
 ?>
