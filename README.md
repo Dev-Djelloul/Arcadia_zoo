@@ -38,19 +38,21 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 - [MongoDB](https://www.mongodb.com/) (pour la gestion des consultations des animaux)
 
 
-
 ## Cloner le dépôt
 
 Pour accéder au projet, clonez ce dépôt Git sur votre machine locale :
 
 git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git
 
+**Ouvrez-le fichier dans votre éditeur de code VisualStudio** 
+
+Ouvrir un nouveau terminal à la racine du projet : cd votre/chemin/Arcadia_zoo  
 
 **Puis le lancer en local sur votre machine**
 
-- Lancez votre serveur web local (par exemple, en utilisant le serveur PHP) avec la ligne de commande suivante : 'php -S 127.0.0.1:4000' sur votre terminal 
+- Lancez votre serveur web local (par exemple, en utilisant le serveur PHP avec la ligne de commande suivante : 'php -S 127.0.0.1:4000') sur votre terminal 
 
-- Accédez à l'application via votre navigateur web à l'adresse : http://localhost:4000
+- Accédez ensuite à l'application via votre navigateur web à l'adresse : http://localhost:4000
 
 
 **Configuration**
