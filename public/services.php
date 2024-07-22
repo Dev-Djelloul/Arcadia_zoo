@@ -3,7 +3,11 @@ require_once('../back-end-php/config.php');
 
 $sql = "SELECT NomService, DescriptionService, ImageService FROM services"; // Assurez-vous que le nom de la table et des colonnes est correct
 $result = $conn->query($sql);
+
+echo "Page services.php chargée avec succès.";
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
