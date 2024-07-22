@@ -37,7 +37,7 @@ if (file_exists($autoloadPath)) {
 
 // Fonction pour obtenir le client MongoDB
 function getMongoClient() {
-    $mongoUrl = getenv('MONGODB_URL');
+    $mongoUrl = getenv('MONGODB_URI'); // Utilisez MONGODB_URI ici
     $client = new MongoDB\Client($mongoUrl);
     return $client->zoo_db;
 }
