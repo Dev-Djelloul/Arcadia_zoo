@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "zoo";
+// Connexion MySQL (assurez-vous que cette partie est également configurée correctement)
+$servername = "localhost"; // Vous utiliserez l'URL de JawsDB pour MySQL
+$username = "root"; // Vous utiliserez les identifiants de JawsDB pour MySQL
+$password = ""; // Vous utiliserez les identifiants de JawsDB pour MySQL
+$dbname = "zoo"; // Nom de la base de données MySQL
 $socket = "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock";
 
 try {
@@ -13,9 +14,11 @@ try {
 }
 
 // Connexion MongoDB
-require_once('/Users/macbook/DEVSPACE/Studi/Projets-Cours-Studi/Arcadia_zoo/vendor/autoload.php');
+require 'vendor/autoload.php'; // Assurez-vous que le chemin vers autoload.php est correct
+
 function getMongoClient() {
-    $client = new MongoDB\Client("mongodb://localhost:27017");
-    return $client->zoo_db;
+    $mongoUrl = getenv('MONGODB_URL'); // Assurez-vous que cette variable d'environnement est définie
+    $client = new MongoDB\Client($mongoUrl);
+    return $client->zoo_db; // Remplacez 'zoo_db' par le nom de votre base de données MongoDB
 }
 ?>
