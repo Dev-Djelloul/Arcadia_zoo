@@ -1,22 +1,19 @@
 body,
-h1,
-h2,
 h3,
 h4,
 p,
 ul,
 li,
 a {
-  margin: 5px;
-  padding: 0;
+  margin: 10px;
+  padding: 0px;
   list-style: none;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
-}
-
-ul {
   color: #096533;
 }
+
+
 
 h1,
 h2,
@@ -24,7 +21,7 @@ h5,
 h6 {
   color: #bc8909;
   text-align: center;
-  margin-bottom: 0px;
+  margin: 20px;
 }
 
 .container {
@@ -118,7 +115,6 @@ section {
 }
 
 .service {
-  background-color: #fdfbfa;
   text-align: center;
   padding: 10px;
   margin-bottom: 0px;
@@ -136,6 +132,7 @@ section {
 .habitat h3 {  
   color: #096533;
   transition: color 0.3s ease;  
+}
 
 .service h3:hover,
 .habitat h3:hover,

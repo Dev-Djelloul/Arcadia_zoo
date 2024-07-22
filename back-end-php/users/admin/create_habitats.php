@@ -7,32 +7,60 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
 
 require '../../config.php';
 
+
+// Traitement du formulaire d'ajout
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nomHabitat = $_POST['nomHabitat'];
-    $descriptionHabitat = $_POST['descriptionHabitat'];
+    $nomHabitat = $_POST['nomHabitat'] ?? '';
+    $descriptionHabitat = $_POST['descriptionHabitat'] ?? '';
     $imageHabitat = null;
 
-    if (!empty($_FILES['imageHabitat']['name'])) {
-        $target_dir = "../../uploads/";
-        $target_file = $target_dir . basename($_FILES["imageHabitat"]["name"]);
-        if (move_uploaded_file($_FILES["imageHabitat"]["tmp_name"], $target_file)) {
-            $imageHabitat = "/uploads/" . basename($_FILES["imageHabitat"]["name"]);
-        }
+    // Vérification des champs requis
+    if (empty($nomHabitat) || empty($descriptionHabitat)) {
+        $_SESSION['message'] = "Veuillez remplir tous les champs requis.";
+        $_SESSION['msg_type'] = "danger";
+        header("Location: admin_dashboard.php");
+        exit();
     }
 
-    $stmt = $conn->prepare("INSERT INTO Habitat (NomHabitat, DescriptionHabitat, ImageHabitat) VALUES (:nomHabitat, :descriptionHabitat, :imageHabitat)");
-    $stmt->bindParam(':nomHabitat', $nomHabitat);
-    $stmt->bindParam(':descriptionHabitat', $descriptionHabitat);
-    $stmt->bindParam(':imageHabitat', $imageHabitat);
+    // Gestion de l'image
+    if (!empty($_FILES['imageHabitat']['name']) && $_FILES['imageHabitat']['error'] === UPLOAD_ERR_OK) {
+        $imageFileName = $_FILES['imageHabitat']['name'];
+        $imageTmpName = $_FILES['imageHabitat']['tmp_name'];
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        $imagePath = $uploadDir . basename($imageFileName);
 
-    if ($stmt->execute()) {
-        $_SESSION['message'] = "Habitat ajouté avec succès";
-        $_SESSION['msg_type'] = "success";
-    } else {
-        $_SESSION['message'] = "Erreur lors de l'ajout de l'habitat";
+        // Déplacement de l'image vers le répertoire d'upload sur le serveur
+        if (!move_uploaded_file($imageTmpName, $imagePath)) {
+            $_SESSION['message'] = "Erreur lors du téléchargement de l'image.";
+            $_SESSION['msg_type'] = "danger";
+            header("Location: admin_dashboard.php");
+            exit();
+        }
+
+        $imageHabitat = "/uploads/" . basename($imageFileName);
+    }
+
+    // Insertion dans la base de données
+    try {
+        $sql = "INSERT INTO Habitat (NomHabitat, DescriptionHabitat, ImageHabitat) VALUES (:nomHabitat, :descriptionHabitat, :imageHabitat)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nomHabitat', $nomHabitat);
+        $stmt->bindParam(':descriptionHabitat', $descriptionHabitat);
+        $stmt->bindParam(':imageHabitat', $imageHabitat);
+
+        if ($stmt->execute()) {
+            $_SESSION['message'] = "Habitat ajouté avec succès.";
+            $_SESSION['msg_type'] = "success";
+        } else {
+            $_SESSION['message'] = "Erreur lors de l'ajout de l'habitat : " . $stmt->errorInfo()[2];
+            $_SESSION['msg_type'] = "danger";
+        }
+    } catch (PDOException $e) {
+        $_SESSION['message'] = "Erreur de base de données : " . $e->getMessage();
         $_SESSION['msg_type'] = "danger";
     }
 
+    // Redirection vers la page d'accueil
     header("Location: admin_dashboard.php");
     exit();
 }

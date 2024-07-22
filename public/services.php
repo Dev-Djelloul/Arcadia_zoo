@@ -3,8 +3,8 @@ require_once('../back-end-php/config.php');
 
 $sql = "SELECT NomService, DescriptionService, ImageService FROM services"; // Assurez-vous que le nom de la table et des colonnes est correct
 $result = $conn->query($sql);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,100 +55,116 @@ $result = $conn->query($sql);
   </header>
 
   <div class="container mt-4">
-    <h2 class="text-center mb-4">Une Journée bien remplie vous attend à Arcadia</h2>
-    <div class="row">
-      <?php
-      if ($result !== false && $result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          ?>
-          <div class="col-md-4">
-            <div class="service">
-              <?php
-              if (!empty($row['ImageService'])) {
-                echo '<img src="' . htmlspecialchars($row['ImageService']) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
-              } else {
-                echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
-              }
-              ?>
-              <h3><?php echo htmlspecialchars($row['NomService']); ?></h3>
-              <p><?php echo htmlspecialchars($row['DescriptionService']); ?></p>
+    <h2 class="text-center mb-4">Une Journée bien remplie vous attend à Arcadia !</h2>
+    <div id="carouselServices" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <?php
+        $active = true; // Pour gérer la classe 'active' sur la première diapositive
+        if ($result !== false && $result->rowCount() > 0) {
+          while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="carousel-item <?php echo $active ? 'active' : ''; ?>">
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="service">
+                    <?php
+                    if (!empty($row['ImageService'])) {
+                      echo '<img src="' . htmlspecialchars($row['ImageService']) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
+                    } else {
+                      echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
+                    }
+                    ?>
+                    <h3><?php echo htmlspecialchars($row['NomService']); ?></h3>
+                    <p><?php echo htmlspecialchars($row['DescriptionService']); ?></p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+            <?php
+            $active = false; // Définit la classe 'active' uniquement sur la première diapositive
+          }
+        } else {
+          ?>
+          <p class="text-center">Aucun service disponible pour le moment.</p>
           <?php
         }
-      } else {
         ?>
-        <p class="text-center">Aucun service disponible pour le moment.</p>
-        <?php
-      }
-      ?>
+      </div>
+      <a class="carousel-control-prev" href="#carouselServices" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Précédent</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselServices" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+      </a>
     </div>
   </div>
-<!-- Footer -->
-<footer class="bg-dark text-white py-4 mt-4">
-  <div class="container">
-    <div class="row">
-      <!-- Première colonne -->
-      <div class="col-md-4">
-        <div class="mb-4">
-          <h6 class="text-center">
-            Comment venir au parc zoologique d'Arcadia ?
-          </h6>
-          <p class="text-center text-white">
-            Arcadia Zoo<br />
-            123 Rue des Animaux<br />
-            Ville des Animaux, 12345<br />
-          </p>
-        </div>
 
-        <div>
-          <h6 class="text-center">Nous contacter</h6>
-          <p class="text-center text-white">
-            Téléphone: 0123-456-789<br />
-            Email: info.arcadiazoo@gmail.com
-          </p>
-        </div>
-      </div>
-      <!-- /Première colonne -->
-
-      <!-- Deuxième colonne -->
-      <div class="col-md-8 text-center">
-        <div class="mb-4">
-          <h6>Horaires d'ouverture </h6>
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <p class="text-white">Lundi à Vendredi</p>
-              <p class="text-white">Samedi et Dimanche</p>
-            </div>
-            <div class="col-md-6">
-              <p class="text-white">De 9h à 18h</p>
-              <p class="text-white">De 9h à 20h</p>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-4">
+    <div class="container">
+      <div class="row">
+        <!-- Première colonne -->
+        <div class="col-md-4">
+          <div class="mb-4">
+            <h6 class="text-center">Comment venir au parc zoologique d'Arcadia ?</h6>
+            <p class="text-center text-white">
+              Arcadia Zoo<br />
+              123 Rue des Animaux<br />
+              Ville des Animaux, 12345<br />
+            </p>
           </div>
+          <div>
+            <h6 class="text-center">Nous contacter</h6>
+            <p class="text-center text-white">
+              Téléphone: 0123-456-789<br />
+              Email: info.arcadiazoo@gmail.com
+            </p>
+          </div>
+        </div>
+        <!-- /Première colonne -->
+
+        <!-- Deuxième colonne -->
+        <div class="col-md-8 text-center">
+          <div class="mb-4">
+            <h6>Horaires d'ouverture </h6>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <p class="text-white">Lundi à Vendredi</p>
+                <p class="text-white">Samedi et Dimanche</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-white">De 9h à 18h</p>
+                <p class="text-white">De 9h à 20h</p>
+              </div>
+            </div>
             <div class="col-md-6">
               <p class="text-white">Fermé le mardi et les jours fériés</p>
-          </div>
+            </div>
 
-        <div>
-          <h6>Suivez-nous </h6>
-          <div class="d-flex justify-content-center">
-            <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://www.instagram.com/" class="social-icon mx-2"><i class="fab fa-instagram-square"></i> Instagram</a>
-            <a href="https://www.linkedin.com/feed/" class="social-icon mx-2"><i class="fab fa-linkedin"></i> Linkedin</a>
+            <div>
+              <h6>Suivez-nous </h6>
+              <div class="d-flex justify-content-center">
+                <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="https://www.instagram.com/" class="social-icon mx-2"><i class="fab fa-instagram-square"></i> Instagram</a>
+                <a href="https://www.linkedin.com/feed/" class="social-icon mx-2"><i class="fab fa-linkedin"></i> Linkedin</a>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- /Deuxième colonne -->
+
       </div>
-      <!-- /Deuxième colonne -->
-
     </div>
-  </div>
-</footer>
-
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 <?php
 // Fermeture de la connexion à la base de données
 $conn = null;

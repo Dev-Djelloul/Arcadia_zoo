@@ -5,9 +5,60 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php';
-?>
+require_once __DIR__ . '/../../config.php';
 
+// Connexion MongoDB
+$mongoDb = getMongoClient();
+$collection = $mongoDb->consultations; // Utiliser la collection correcte
+
+// Récupération du nombre de consultations par animal
+$pipeline = [
+    [
+        '$project' => [
+            'Prenom' => 1,
+            'Consultations' => 1
+        ]
+    ],
+    [
+        '$sort' => ['Consultations' => -1]
+    ]
+];
+$consultationsParAnimal = $collection->aggregate($pipeline)->toArray();
+
+// Traitement du filtre
+$animal_filter = '';
+$date_filter = '';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['animal'], $_GET['date'])) {
+    $animal_filter = $_GET['animal'];
+    $date_filter = $_GET['date'];
+}
+
+// Préparation de la requête pour les comptes rendus
+$sql_comptes_rendus = "SELECT * FROM ComptesRendusVeterinaires WHERE 1";
+$params = [];
+
+if ($animal_filter) {
+    $sql_comptes_rendus .= " AND Prenom = :animal";
+    $params[':animal'] = $animal_filter;
+}
+if ($date_filter) {
+    $sql_comptes_rendus .= " AND DatePassage = :date";
+    $params[':date'] = $date_filter;
+}
+
+$sql_comptes_rendus .= " ORDER BY DatePassage DESC";
+
+$stmt_comptes_rendus = $conn->prepare($sql_comptes_rendus);
+$stmt_comptes_rendus->execute($params);
+$comptes_rendus = $stmt_comptes_rendus->fetchAll(PDO::FETCH_ASSOC);
+
+// Récupération des animaux pour le filtre
+$sql_animaux = "SELECT DISTINCT Prenom FROM Animal";
+$stmt_animaux = $conn->query($sql_animaux);
+$animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
+
+// Affichage des messages de succès ou d'erreur
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,7 +73,7 @@ require '../../config.php';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-1">
-                <a href="index.html">
+                <a href="/index.html">
                     <img src="/assets/images/logo-arcadia.jpeg" alt="Logo Arcadia Zoo" class="logo" />
                 </a>
             </div>
@@ -56,9 +107,10 @@ require '../../config.php';
     </div>
 </header>
 
-<h1>Bienvenue dans votre espace administrateur</h1>
-
 <main class="container mt-4">
+
+<h1 class="text-center mb-4">Bienvenue dans votre espace administrateur</h1>
+
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-<?php echo $_SESSION['msg_type']; ?>">
             <?php echo $_SESSION['message']; ?>
@@ -67,8 +119,34 @@ require '../../config.php';
         </div>
     <?php endif; ?>
 
+     <!-- Liste des consultations -->
+     <h2>Consultations des animaux par les visiteurs</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nombre de consultations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (empty($consultationsParAnimal)): ?>
+                <tr>
+                    <td colspan="2">Aucune consultation trouvée.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($consultationsParAnimal as $consultation): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($consultation['Prenom']) ?></td>
+                        <td><?= htmlspecialchars($consultation['Consultations']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+
     <!-- Gestion des utilisateurs -->
-    <h2>Gérer les utilisateurs</h2>
+    <h2>Gestion des utilisateurs</h2>
     <form action="create_user.php" method="post">
         <div class="form-group">
             <label for="username">Nom d'utilisateur :</label>
@@ -83,7 +161,6 @@ require '../../config.php';
             <select class="form-control" id="userType" name="userType" required>
                 <option value="employe">Employé</option>
                 <option value="veterinaire">Vétérinaire</option>
-                <option value="administrateur">Administrateur</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Création d'un nouvel utilisateur</button>
@@ -119,7 +196,7 @@ require '../../config.php';
 
     <hr>
     <!-- Gestion des services -->
-    <h2>Gérer les services</h2>
+    <h2>Gestion des services du parc</h2>
     <form action="create_service.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="service_name">Nom du service :</label>
@@ -137,12 +214,13 @@ require '../../config.php';
     </form>
 
     <!-- Liste des services existants -->
-    <h2>Liste des services</h2>
+    <h2>Liste des services du parc</h2>
     <table class="table">
         <thead>
             <tr>
                 <th>Nom du service</th>
                 <th>Description du service</th>
+                <th>Image du service</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -154,6 +232,7 @@ require '../../config.php';
                 echo "<tr>";
                 echo "<td>{$row['NomService']}</td>";
                 echo "<td>{$row['DescriptionService']}</td>";
+                echo "<td><img src='{$row['ImageService']}' alt='Image du service' style='max-width: 100px;'></td>";
                 echo "<td>";
                 echo "<a href='edit_service.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
                 echo "<a href='delete_service.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
@@ -163,65 +242,183 @@ require '../../config.php';
             ?>
         </tbody>
     </table>
-    <hr>    
 
+    <!-- Gestion des habitats -->
+    <h2>Gestion des habitats du parc</h2>
+    <form action="create_habitats.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nomHabitat">Nom de l'habitat :</label>
+            <input type="text" class="form-control" id="nomHabitat" name="nomHabitat" required>
+        </div>
+        <div class="form-group">
+            <label for="descriptionHabitat">Description de l'habitat :</label>
+            <textarea class="form-control" id="descriptionHabitat" name="descriptionHabitat" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imageHabitat">Image de l'habitat :</label>
+            <input type="file" class="form-control-file" id="imageHabitat" name="imageHabitat" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter l'Habitat</button>
+    </form>
 
+    <!-- Table des habitats existants -->
+    <h2>Liste des habitats du parc</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type d'habitat</th>
+                <th>Description de l'habitat</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sql_habitats = "SELECT * FROM Habitat";
+            $stmt_habitats = $conn->query($sql_habitats);
+            while ($row = $stmt_habitats->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>{$row['NomHabitat']}</td>";
+                echo "<td>{$row['DescriptionHabitat']}</td>";
+                echo "<td><img src='{$row['ImageHabitat']}' alt='Image' style='max-width: 100px;'></td>";
+                echo "<td>";
+                echo "<a href='edit_habitats.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
+                echo "<a href='delete_habitats.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
 
-<!-- Gestion des habitats -->
-<h2>Gérer les habitats</h2>
-<form action="create_habitats.php" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="nomHabitat">Nom de l'Habitat :</label>
-        <input type="text" class="form-control" id="nomHabitat" name="nomHabitat" required>
-    </div>
-    <div class="form-group">
-        <label for="descriptionHabitat">Description de l'Habitat :</label>
-        <textarea class="form-control" id="descriptionHabitat" name="descriptionHabitat" rows="3" required></textarea>
-    </div>
-    <div class="form-group">
-        <label for="imageHabitat">Image de l'Habitat :</label>
-        <input type="file" class="form-control-file" id="imageHabitat" name="imageHabitat" accept="image/*">
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter l'Habitat</button>
-</form>
+    <!-- Gestion des animaux -->
+    <section id="gestion-animaux">
+        <h2>Gestion des animaux du parc</h2>
+        <form action="create_animal.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="prenom">Prénom de l'animal :</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+                <label for="race">Race de l'animal :</label>
+                <input type="text" class="form-control" id="race" name="race" required>
+            </div>
+            <div class="form-group">
+                <label for="nomHabitat">Type d'habitat :</label>
+                <select class="form-control" id="nomHabitat" name="nomHabitat" required>
+                    <?php
+                    $sql_habitats = "SELECT NomHabitat FROM Habitat";
+                    $stmt_habitats = $conn->query($sql_habitats);
+                    while ($row = $stmt_habitats->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='{$row['NomHabitat']}'>{$row['NomHabitat']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="imageAnimal">Image de l'animal :</label>
+                <input type="file" class="form-control-file" id="imageAnimal" name="imageAnimal" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter l'animal</button>
+        </form>
 
-<!-- Table des habitats existants -->
-<h2>Liste des habitats</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nom de l'Habitat</th>
-            <th>Description de l'Habitat</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $sql_habitats = "SELECT * FROM Habitat";
-        $stmt_habitats = $conn->query($sql_habitats);
-        while ($row = $stmt_habitats->fetch(PDO::FETCH_ASSOC)) {
-            echo "<tr>";
-            echo "<td>{$row['NomHabitat']}</td>";
-            echo "<td>{$row['DescriptionHabitat']}</td>";
-            echo "<td><img src='{$row['ImageHabitat']}' alt='Image' style='max-width: 100px;'></td>";
-            echo "<td>";
-            echo "<a href='edit_habitats.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
-            echo "<a href='delete_habitats.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
-            echo "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-</table>
+        <hr>
+
+        <h2>Liste des animaux du parc</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Race</th>
+                    <th>Image</th>
+                    <th>Type d'habitat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql_animaux = "SELECT * FROM Animal";
+                $stmt_animaux = $conn->query($sql_animaux);
+                while ($row = $stmt_animaux->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>{$row['Prenom']}</td>";
+                    echo "<td>{$row['Race']}</td>";
+                    echo "<td><img src='{$row['ImageAnimal']}' alt='Image de l'animal' style='max-width: 100px;'></td>";
+                    echo "<td>{$row['NomHabitat']}</td>";
+                    echo "<td>";
+                    echo "<a href='edit_animal.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
+                    echo "<a href='delete_animal.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </section>
+
+   <!-- Table des comptes rendus -->
+   <h2>Comptes-rendus du vétérinaire sur les animaux du parc</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>État de l'animal</th>
+                <th>Nourriture</th>
+                <th>Grammage</th>
+                <th>Date de passage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (empty($comptes_rendus)): ?>
+                <tr>
+                    <td colspan="5">Aucun compte rendu trouvé.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($comptes_rendus as $cr): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($cr['Prenom']) ?></td>
+                        <td><?= htmlspecialchars($cr['EtatAnimal']) ?></td>
+                        <td><?= htmlspecialchars($cr['Nourriture']) ?></td>
+                        <td><?= htmlspecialchars($cr['Grammage']) ?></td>
+                        <td><?= htmlspecialchars($cr['DatePassage']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <!-- Formulaire de filtrage des comptes rendus -->
+    <h5>Filtrage des comptes-rendus</h5>
+    <form action="admin_dashboard.php" method="GET">
+        <div class="form-group">
+            <label for="animal">Animal :</label>
+            <select class="form-control" id="animal" name="animal">
+                <option value="">Tous les animaux</option>
+                <?php foreach ($animaux as $animal): ?>
+                    <option value="<?= htmlspecialchars($animal['Prenom']) ?>" <?= $animal_filter === $animal['Prenom'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($animal['Prenom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="date">Date :</label>
+            <input type="date" class="form-control" id="date" name="date" value="<?= htmlspecialchars($date_filter) ?>">
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+    </form>
 </main>
 
 <footer>
-<ul>
-<li class="nav-item">
-<a href="/index.html" class="nav-link" style="font-size: 20px">&copy; 2024 Arcadia Zoo</a>
-</li>
-</ul>
+    <ul>
+        <li class="nav-item">
+            <a href="/index.html" class="nav-link" style="font-size: 20px">&copy; 2024 Arcadia Zoo</a>
+        </li>
+    </ul>
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
