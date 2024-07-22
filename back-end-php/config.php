@@ -1,5 +1,5 @@
-// config.php
 <?php
+// Récupération des informations de connexion à la base de données MySQL
 $dbUrl = getenv('JAWSDB_URL');
 $dbParts = parse_url($dbUrl);
 
@@ -15,8 +15,10 @@ try {
     die("Erreur de connexion à la base de données: " . $e->getMessage());
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
+// Chargement de l'autoloader de Composer
+require_once __DIR__ . '/../vendor/autoload.php'; // Chemin mis à jour
 
+// Fonction pour obtenir le client MongoDB
 function getMongoClient() {
     $mongoUrl = getenv('MONGODB_URL');
     $client = new MongoDB\Client($mongoUrl);
