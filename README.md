@@ -90,6 +90,9 @@ Employé
 • Email: employe@arcadiazoo.com
 • Mot de passe: arcadia
 
+Email du zoo : info.arcadiazoo@gmail.com
+mot de passe : arcadia
+
 
 ## Visiteurs :
 
