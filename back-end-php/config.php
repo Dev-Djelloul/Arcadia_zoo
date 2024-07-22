@@ -1,50 +1,34 @@
 <?php
 header('Content-Type: text/plain');
-echo "Configuration test\n";
 
-// Récupération des informations de connexion à la base de données MySQL
+// Afficher les variables d'environnement pour débogage
+echo "Configuration test\n\n";
+echo "JAWSDB_URL: " . getenv('JAWSDB_URL') . "\n\n";
+
+// Décomposer l'URL de la base de données
 $dbUrl = getenv('JAWSDB_URL');
-echo "JAWSDB_URL: " . $dbUrl . "\n";
-
 $dbParts = parse_url($dbUrl);
+
 echo "DB Parts:\n";
 print_r($dbParts);
 
-$servername = $dbParts['host'];
-$username = $dbParts['user'];
-$password = $dbParts['pass'];
-$dbname = ltrim($dbParts['path'], '/');
+// Autoloader
+echo "\nAutoloader Path: " . __DIR__ . '/../vendor/autoload.php' . "\n";
 
-echo "Servername: $servername\n";
-echo "Username: $username\n";
-echo "Database Name: $dbname\n";
-
+// Affichage de la connexion à la base de données
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion à la base de données réussie.\n";
+    $conn = new PDO("mysql:host=" . $dbParts['host'] . ";dbname=" . ltrim($dbParts['path'], '/'), $dbParts['user'], $dbParts['pass']);
+    echo "\nConnexion à la base de données réussie.\n";
 } catch (PDOException $e) {
-    echo "Erreur de connexion à la base de données: " . $e->getMessage() . "\n";
+    echo "\nErreur de connexion à la base de données: " . $e->getMessage() . "\n";
 }
 
-// Chargement de l'autoloader de Composer
-$autoloadPath = __DIR__ . '/../vendor/autoload.php';
-echo "Autoloader Path: $autoloadPath\n";
-
-if (file_exists($autoloadPath)) {
-    require_once $autoloadPath;
+// Vérifiez si le autoloader fonctionne
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
     echo "Autoloader chargé.\n";
 } else {
     echo "Autoloader non trouvé.\n";
 }
 
-// Fonction pour obtenir le client MongoDB
-function getMongoClient() {
-    $mongoUrl = getenv('MONGODB_URL');
-    echo "MONGODB_URL: " . $mongoUrl . "\n";
-    $client = new MongoDB\Client($mongoUrl);
-    return $client->zoo_db;
-}
-
-echo "Script terminé.\n";
 ?>
