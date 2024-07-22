@@ -34,7 +34,6 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 - [Composer](https://getcomposer.org/) (pour la gestion des dépendances PHP)
 - [Git](https://git-scm.com/) (pour le clonage du dépôt)
 - Un compte [Heroku](https://www.heroku.com/) (pour la base de données MySQL)
-- [FileZilla](https://filezilla-project.org/) (pour le déploiement de fichiers)
 - [MongoDB](https://www.mongodb.com/) (pour la gestion des consultations des animaux)
 
 
@@ -42,14 +41,14 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
 Pour accéder au projet en local, clonez ce dépôt Git sur votre machine :
 
-git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git
+"git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git"
 
 
 **Puis ouvrez-le fichier dans votre éditeur de code Visual Studio Code** 
 
-Ouvrir un nouveau terminal dans l'éditeur à la racine du projet : 
+Ouvrir un nouveau terminal à la racine du projet : 
 
-cd votre/chemin/Arcadia_zoo  
+'cd votre/chemin/Arcadia_zoo'
 
 
 **Puis lancez votre serveur web local**
@@ -63,15 +62,15 @@ cd votre/chemin/Arcadia_zoo
 
 Configuration de la base de données MySQL :
 
-- Créez une base de données MySQL sur Heroku (ou localement si vous préférez).
+- Créez une nouvelle base de données "zoo" et importer le fichier MySQL "zoo.sql" fourni dans le dépôt Git  
 
-- Mettez à jour les informations de connexion à la base de données dans le fichier back-end-php/config.php
+- Mettez à jour les informations de connexion à la base de données dans le code PHP au besoin 
 
 Configuration de MongoDB : 
 
 - Assurez-vous que MongoDB est installé et en cours d'exécution.
 
-- Mettez à jour les informations de connexion à MongoDB dans le code PHP 
+- Mettez à jour les informations de connexion à MongoDB dans le code PHP au besoin
 
 
 **Utilisation de l'application web**
