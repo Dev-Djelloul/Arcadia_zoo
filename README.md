@@ -46,6 +46,12 @@ Pour accéder au projet, clonez ce dépôt Git sur votre machine locale :
 git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git
 
 
+**Puis le lancer en local sur votre machine**
+
+- Lancez votre serveur web local (par exemple, en utilisant le serveur PHP) avec la ligne de commande suivante : 'php -S 127.0.0.1:4000' sur votre terminal 
+
+- Accédez à l'application via votre navigateur web à l'adresse : http://localhost:4000
+
 
 **Configuration**
 
@@ -62,20 +68,21 @@ Configuration de MongoDB :
 - Mettez à jour les informations de connexion à MongoDB dans le code PHP 
 
 
-
-
-**Lancer l'application en local sur votre machine**
-
-- Lancez votre serveur web local (par exemple, en utilisant XAMPP).
-
-- Placez les fichiers du projet dans le répertoire de votre serveur web (en utilisant htdocs pour XAMPP).
-
-- Accédez à l'application via votre navigateur web à l'adresse : http://localhost/Arcadia_zoo
-
-
-
-
 **Utilisation de l'application web**
+
+Les espaces personnels de connexion des utilisateurs sont accessibles avec les identifiants suivants : 
+
+Administrateur
+• Email: admin@arcadiazoo.com
+• Mot de passe: arcadia
+
+Vétérinaire
+• Email: veterinaire@arcadiazoo.com
+• Mot de passe: arcadia
+
+Employé
+• Email: employe@arcadiazoo.com
+• Mot de passe: arcadia
 
 
 ## Visiteurs :
