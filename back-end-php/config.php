@@ -1,34 +1,73 @@
 <?php
-header('Content-Type: text/plain');
 
-// Afficher les variables d'environnement pour débogage
-echo "Configuration test\n\n";
-echo "JAWSDB_URL: " . getenv('JAWSDB_URL') . "\n\n";
+// Affichage de la configuration pour débogage (peut être désactivé en production)
+$debug = true;
+
+if ($debug) {
+    echo "<pre>";
+    echo "Configuration test\n\n";
+    echo "JAWSDB_URL: " . getenv('JAWSDB_URL') . "\n\n";
+}
 
 // Décomposer l'URL de la base de données
 $dbUrl = getenv('JAWSDB_URL');
 $dbParts = parse_url($dbUrl);
 
-echo "DB Parts:\n";
-print_r($dbParts);
-
-// Autoloader
-echo "\nAutoloader Path: " . __DIR__ . '/../vendor/autoload.php' . "\n";
-
-// Affichage de la connexion à la base de données
-try {
-    $conn = new PDO("mysql:host=" . $dbParts['host'] . ";dbname=" . ltrim($dbParts['path'], '/'), $dbParts['user'], $dbParts['pass']);
-    echo "\nConnexion à la base de données réussie.\n";
-} catch (PDOException $e) {
-    echo "\nErreur de connexion à la base de données: " . $e->getMessage() . "\n";
+if ($debug) {
+    echo "DB Parts:\n";
+    print_r($dbParts);
 }
 
-// Vérifiez si le autoloader fonctionne
-if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
-    require_once __DIR__ . '/../vendor/autoload.php';
-    echo "Autoloader chargé.\n";
+// Connexion à la base de données
+try {
+    $servername = $dbParts['host'];
+    $username = $dbParts['user'];
+    $password = $dbParts['pass'];
+    $dbname = ltrim($dbParts['path'], '/');
+
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if ($debug) {
+        echo "\nConnexion à la base de données réussie.\n";
+    }
+} catch (PDOException $e) {
+    if ($debug) {
+        echo "\nErreur de connexion à la base de données: " . $e->getMessage() . "\n";
+    } else {
+        // En production, vous pouvez enregistrer l'erreur dans un log sans l'afficher à l'utilisateur
+        error_log("Erreur de connexion à la base de données: " . $e->getMessage());
+    }
+}
+
+// Vérification de l'existence et chargement de l'autoloader
+$autoloadPath = __DIR__ . '/../vendor/autoload.php';
+
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+
+    if ($debug) {
+        echo "Autoloader chargé.\n";
+    }
 } else {
-    echo "Autoloader non trouvé.\n";
+    if ($debug) {
+        echo "Autoloader non trouvé.\n";
+    } else {
+        // En production, vous pouvez également enregistrer cette erreur dans un log
+        error_log("Autoloader non trouvé à : " . $autoloadPath);
+    }
+}
+
+// Fonction pour obtenir le client MongoDB
+function getMongoClient() {
+    $mongoUrl = getenv('MONGODB_URL');
+    $client = new MongoDB\Client($mongoUrl);
+    return $client->zoo_db;
+}
+
+// Fin du débogage
+if ($debug) {
+    echo "</pre>";
 }
 
 ?>
