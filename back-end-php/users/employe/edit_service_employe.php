@@ -5,11 +5,13 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'employe') {
     exit();
 }
 
-require '../../config.php'; // Assurez-vous d'inclure correctement config.php
+require '../../config.php'; // Inclusion de la connexion à la base de données
 
+// Récupération du service à modifier
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $idService = $_GET['id'];
 
+    // Requête de récupération du service
     $sql = "SELECT * FROM Services WHERE IdService = :idService";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':idService', $idService);
@@ -18,17 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $service = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// Traitement du formulaire de modification
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $idService = $_POST['id'];
     $nomService = $_POST['service_name'];
     $descriptionService = $_POST['service_description'];
 
+
+    // Vérification des champs requis
     $sql = "UPDATE Services SET NomService = :nomService, DescriptionService = :descriptionService WHERE IdService = :idService";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':idService', $idService);
     $stmt->bindParam(':nomService', $nomService);
     $stmt->bindParam(':descriptionService', $descriptionService);
 
+
+    // Exécution de la requête
     if ($stmt->execute()) {
         $_SESSION['message'] = "Le service a été mis à jour avec succès.";
         $_SESSION['msg_type'] = "success";
@@ -37,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         $_SESSION['msg_type'] = "danger";
     }
 
-    header("Location: employe_dashboard.php");  // Redirige vers la page de l'employé après l'opération
+    // Redirection vers la page d'administration
+    header("Location: employe_dashboard.php");
     exit();
 }
 ?>
@@ -91,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         </div>
     </header>
 <div class="container mt-5">
-    <h1>Modifier un service</h1>
+    <h1>Modifier le service</h1>
     <form action="edit_service_employe.php" method="post">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($service['IdService']); ?>">
         <div class="form-group">

@@ -1,17 +1,13 @@
 <?php
 session_start();
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 if (!isset($_SESSION['userType']) || ($_SESSION['userType'] !== 'administrateur' && $_SESSION['userType'] !== 'employe')) {
     header("Location: /public/connexion.html");
     exit();
 }
 
-require '../../config.php'; // Assurez-vous d'inclure correctement config.php
+require '../../config.php'; // Inclusion de la connexion à la base de données
 
+// Récupération des données du service à modifier
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $idService = $_GET['id'];
 
@@ -23,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $service = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// Traitement du formulaire de modification
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $idService = $_POST['id'];
     $nomService = isset($_POST['service_name']) ? trim($_POST['service_name']) : null;
@@ -37,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     }
 
     // Gestion de l'image
-    $imagePath = null;
+    $imagePath = null; // On garde l'image actuelle par défaut
     if (isset($_FILES['service_image']) && $_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
         $imageFileName = $_FILES['service_image']['name'];
         $imageTmpName = $_FILES['service_image']['tmp_name'];
         $uploadDir = '/uploads/';
         $imagePath = $uploadDir . basename($imageFileName);
 
-        // Déplacez l'image vers le répertoire d'upload sur votre serveur
+        // Déplacement de l'image vers le répertoire d'upload sur le serveur
         if (!move_uploaded_file($imageTmpName, $_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
             $_SESSION['message'] = "Erreur lors du téléchargement de l'image.";
             $_SESSION['msg_type'] = "danger";
@@ -80,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         $_SESSION['msg_type'] = "danger";
     }
 
-    header("Location: admin_dashboard.php");  // Redirige vers la page d'administration après l'opération
+    // Redirection vers la page d'accueil
+    header("Location: admin_dashboard.php");
     exit();
 }
 ?>
@@ -90,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modification du service</title>
+    <title>Modifier le service</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -149,6 +147,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 <label for="service_image">Image du service :</label>
                 <input type="file" class="form-control-file" id="service_image" name="service_image" accept="image/*">
             </div>
+            <?php if (!empty($service['ImageService'])): ?>
+                <div class="form-group">
+                    <img src="<?php echo htmlspecialchars($service['ImageService']); ?>" alt="Current Image" style="max-width: 100px;" class="mt-2">
+                </div>
+            <?php endif; ?>
             <button type="submit" class="btn btn-primary">Mettre à jour</button>
         </form>
     </main>

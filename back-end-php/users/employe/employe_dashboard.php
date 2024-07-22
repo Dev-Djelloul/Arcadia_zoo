@@ -4,7 +4,7 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'employe') {
     header("Location: /public/connexion.html");
     exit();
 }
-require '../../config.php';
+require '../../config.php'; // Inclusion de la connexion à la base de données
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ require '../../config.php';
                             <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                            <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                         </li>
                         <li class="nav-item">
                             <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
@@ -78,7 +78,44 @@ require '../../config.php';
         </div>
     <?php endif; ?>
 
-    <h2>Gérer les services</h2>
+
+
+
+    <!-- Ajout du formulaire pour l'alimentation des animaux -->
+<h2>Gestion de l'alimentation quotidienne des animaux</h2>
+<form action="alimentation_animaux.php" method="post">
+    <div class="form-group">
+        <label for="prenom">Prénom de l'animal :</label>
+        <select class="form-control" id="prenom" name="prenom" required>
+            <?php
+            $sql_animaux = "SELECT Prenom FROM Animal";
+            $stmt_animaux = $conn->query($sql_animaux);
+            while ($row = $stmt_animaux->fetch(PDO::FETCH_ASSOC)) {
+                echo "<option value='{$row['Prenom']}'>{$row['Prenom']}</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date">Date :</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+        <label for="heure">Heure :</label>
+        <input type="time" class="form-control" id="heure" name="heure" required>
+    </div>
+    <div class="form-group">
+        <label for="nourriture">Nourriture :</label>
+        <input type="text" class="form-control" id="nourriture" name="nourriture" required>
+    </div>
+    <div class="form-group">
+        <label for="quantite">Quantité (en grammes) :</label>
+        <input type="number" class="form-control" id="quantite" name="quantite" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+
+    <h2>Gestion des services du parc</h2>
     <form action="/back-end-php/users/employe/create_service_employe.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="service_name">Nom du service :</label>
@@ -95,36 +132,39 @@ require '../../config.php';
         <button type="submit" class="btn btn-primary">Ajouter le service</button>
     </form>
 
-    <!-- Table des services existants -->
-    <h2>Liste des services</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom du service</th>
-                <th>Description du service</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sql_services = "SELECT * FROM Services";
-            $stmt_services = $conn->query($sql_services);
-            while ($row = $stmt_services->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
-                echo "<td>{$row['NomService']}</td>";
-                echo "<td>{$row['DescriptionService']}</td>";
-                echo "<td>";
-                echo "<a href='edit_service_employe.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
-                echo "<a href='delete_service_employe.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+<!-- Liste des services existants -->
+<h2>Liste des services du parc</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom du service</th>
+            <th>Description du service</th>
+            <th>Image du service</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $sql_services = "SELECT * FROM Services";
+        $stmt_services = $conn->query($sql_services);
+        while ($row = $stmt_services->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>{$row['NomService']}</td>";
+            echo "<td>{$row['DescriptionService']}</td>";
+            echo "<td><img src='{$row['ImageService']}' alt='Image du service' style='max-width: 100px;'></td>";
+            echo "<td>";
+            echo "<a href='edit_service_employe.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
+            echo "<a href='delete_service_employe.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
+ 
+
 </main>
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

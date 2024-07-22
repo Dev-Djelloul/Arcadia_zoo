@@ -5,11 +5,13 @@ if (!isset($_SESSION['userType']) || ($_SESSION['userType'] !== 'administrateur'
     exit();
 }
 
-require '../../config.php';  // Assurez-vous d'inclure correctement config.php
+require '../../config.php';  // Inclusion de la connexion à la base de données
 
+// Suppression du service
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $idService = $_GET['id'];
 
+    // Requête de suppression du service
     $sql = "DELETE FROM Services WHERE IdService = :idService";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':idService', $idService);
@@ -22,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         $_SESSION['msg_type'] = "danger";
     }
 
-    header("Location: employe_dashboard.php");  // Redirige vers la page d'administration après l'opération
+    // Redirection vers la page d'administration
+    header("Location: employe_dashboard.php");  
     exit();
 }
 ?>
