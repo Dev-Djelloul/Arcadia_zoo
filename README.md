@@ -1,25 +1,123 @@
-**Projet Zoo Application Web**
+___________________________________________________________________________________________
 
-Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats, les services offerts et les horaires du zoo.
-L'application fournira également un espace pour les vétérinaires et le personnel du zoo pour saisir des informations sur les animaux.
 
-**Installation**
+## Table des matières
 
-Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
-git clone ...
+Ce modèle de README.md couvre les étapes essentielles pour installer, configurer, et lancer votre application. Vous pouvez ajuster les détails en fonction des spécificités de votre projet.
 
-**Utilisation**
 
-À compléter une fois les étapes de déploiement détaillées (...)
+- [Présentation du projet]
+- [Prérequis d'installation]
+- [Cloner le dépôt]
+- [Configuration]
+- [Lancer l'application]
+- [Utilisation]
+- [Contribution]
+- [Dépannage]
+
+
+___________________________________________________________________________________________
+
+
+
+## Présentation du projet
+
+Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats et les services offerts. L'application fournira également un espace pour l'administrateur, les vétérinaires et le personnel du zoo pour saisir et visualiser des informations internes sur les animaux au parc.
+
+
+
+## Prérequis d'installation
+
+Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
+
+- [XAMPP](https://www.apachefriends.org/index.html) (ou tout autre serveur web local)
+- [Composer](https://getcomposer.org/) (pour la gestion des dépendances PHP)
+- [Git](https://git-scm.com/) (pour le clonage du dépôt)
+- Un compte [Heroku](https://www.heroku.com/) (pour la base de données MySQL)
+- [FileZilla](https://filezilla-project.org/) (pour le déploiement de fichiers)
+- [MongoDB](https://www.mongodb.com/) (pour la gestion des consultations des animaux)
+
+
+
+## Cloner le dépôt
+
+Pour accéder au projet, clonez ce dépôt Git sur votre machine locale :
+
+git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git
+
+
+
+**Configuration**
+
+Configuration de la base de données MySQL :
+
+- Créez une base de données MySQL sur Heroku (ou localement si vous préférez).
+
+- Mettez à jour les informations de connexion à la base de données dans le fichier back-end-php/config.php
+
+Configuration de MongoDB : 
+
+- Assurez-vous que MongoDB est installé et en cours d'exécution.
+
+- Mettez à jour les informations de connexion à MongoDB dans le code PHP 
+
+
+
+
+**Lancer l'application en local sur votre machine**
+
+- Lancez votre serveur web local (par exemple, en utilisant XAMPP).
+
+- Placez les fichiers du projet dans le répertoire de votre serveur web (en utilisant htdocs pour XAMPP).
+
+- Accédez à l'application via votre navigateur web à l'adresse : http://localhost/Arcadia_zoo
+
+
+
+
+**Utilisation de l'application web**
+
+
+## Visiteurs :
+
+Les visiteurs peuvent naviguer sur le site pour voir les différentes sections :
+
+- Accueil
+- Nos Services
+- Nos Habitats
+- Contact
+
+## Administrateur et Personnel :
+
+Les administrateurs et le personnel peuvent accéder à l'interface de gestion pour :
+
+- Ajouter/Modifier/Supprimer des informations sur les animaux et leurs habitats ainsi que les services du parc
+- Consulter les comptes-rendus vétérinaires
+- Suivre les consultations des animaux via MongoDB
+ 
+
 
 **Contribution**
 
-Toutes les contributions sont les bienvenues! 
-N'hésitez pas à ouvrir une Pull Request pour proposer des améliorations ou signaler un problème.
+Les contributions sont les bienvenues !
 
-**Licence**
+Pour contribuer :
 
-Voir le fichier LICENSE pour plus de détails.
-=======
-# ZooArcadia
-Arcadia
+- Fork ce dépôt.
+- Créez une branche pour votre fonctionnalité (git checkout -b feature/ma-nouvelle-fonctionnalité).
+- Commitez vos changements (git commit -am 'Ajoute une nouvelle fonctionnalité').
+- Poussez votre branche (git push origin feature/ma-nouvelle-fonctionnalité).
+- Créez une Pull Request.
+
+
+**Dépannage**
+
+- Erreur de connexion à la base de données : Vérifiez que les informations de connexion dans config.php sont correctes.
+
+- Problèmes avec Composer : Assurez-vous que Composer est correctement installé et que toutes les dépendances sont à jour.
+
+- Problèmes avec MongoDB : Assurez-vous que le service MongoDB est en cours d'exécution et que les informations de connexion sont correctes.
+
+
+
+
