@@ -5,7 +5,25 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur')
     exit();
 }
 
-require '../../config.php';
+require_once __DIR__ . '/../../config.php';
+
+// Connexion MongoDB
+$mongoDb = getMongoClient();
+$collection = $mongoDb->consultations; // Utiliser la collection correcte
+
+// Récupération du nombre de consultations par animal
+$pipeline = [
+    [
+        '$project' => [
+            'Prenom' => 1,
+            'Consultations' => 1
+        ]
+    ],
+    [
+        '$sort' => ['Consultations' => -1]
+    ]
+];
+$consultationsParAnimal = $collection->aggregate($pipeline)->toArray();
 
 // Traitement du filtre
 $animal_filter = '';
@@ -101,6 +119,32 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
+     <!-- Liste des consultations -->
+     <h2>Consultations des animaux par les visiteurs</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nombre de consultations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (empty($consultationsParAnimal)): ?>
+                <tr>
+                    <td colspan="2">Aucune consultation trouvée.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ($consultationsParAnimal as $consultation): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($consultation['Prenom']) ?></td>
+                        <td><?= htmlspecialchars($consultation['Consultations']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+
     <!-- Gestion des utilisateurs -->
     <h2>Gestion des utilisateurs</h2>
     <form action="create_user.php" method="post">
@@ -115,7 +159,6 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
         <div class="form-group">
             <label for="userType">Type d'utilisateur :</label>
             <select class="form-control" id="userType" name="userType" required>
-                <option value="administrateur">Administrateur</option>
                 <option value="employe">Employé</option>
                 <option value="veterinaire">Vétérinaire</option>
             </select>
@@ -314,7 +357,7 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
     </section>
 
    <!-- Table des comptes rendus -->
-   <h2>Comptes-rendus du vétérinaire sur les animaux</h2>
+   <h2>Comptes-rendus du vétérinaire sur les animaux du parc</h2>
     <table class="table">
         <thead>
             <tr>
@@ -364,8 +407,6 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <button type="submit" class="btn btn-primary">Filtrer</button>
     </form>
-
-
 </main>
 
 <footer>
