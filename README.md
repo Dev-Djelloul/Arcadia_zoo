@@ -44,11 +44,15 @@ Pour accéder au projet, clonez ce dépôt Git sur votre machine locale :
 
 git clone https://github.com/Dev-Djelloul/Arcadia_zoo.git
 
-**Ouvrez-le fichier dans votre éditeur de code VisualStudio** 
 
-Ouvrir un nouveau terminal à la racine du projet : cd votre/chemin/Arcadia_zoo  
+**Il est important d'ouvrir le fichier dans votre éditeur de code VisualStudio !** 
 
-**Puis le lancer en local sur votre machine**
+Ouvrir un nouveau terminal dans l'éditeur à la racine du projet : 
+
+cd votre/chemin/Arcadia_zoo  
+
+
+**Puis de le lancer en local sur votre machine**
 
 - Lancez votre serveur web local (par exemple, en utilisant le serveur PHP avec la ligne de commande suivante : 'php -S 127.0.0.1:4000') sur votre terminal 
 
