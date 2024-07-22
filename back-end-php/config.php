@@ -1,26 +1,26 @@
 <?php
-// Connexion MySQL (assurez-vous que cette partie est également configurée correctement)
-$servername = "localhost"; // Vous utiliserez l'URL de JawsDB pour MySQL
-$username = "root"; // Vous utiliserez les identifiants de JawsDB pour MySQL
-$password = ""; // Vous utiliserez les identifiants de JawsDB pour MySQL
-$dbname = "zoo"; // Nom de la base de données MySQL
-$socket = "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock";
+// Connexion MySQL
+$dbUrl = getenv('JAWSDB_URL');
+$dbParts = parse_url($dbUrl);
+
+$servername = $dbParts['host'];
+$username = $dbParts['user'];
+$password = $dbParts['pass'];
+$dbname = ltrim($dbParts['path'], '/');
 
 try {
-    // Crée une connexion PDO à la base de données MySQL
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Définit le mode de gestion des erreurs
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // Affiche un message d'erreur en cas d'échec de connexion
     die("Erreur de connexion à la base de données: " . $e->getMessage());
 }
 
 // Connexion MongoDB
-require 'vendor/autoload.php'; // Assurez-vous que le chemin vers autoload.php est correct
+require_once __DIR__ . '/vendor/autoload.php';
 
 function getMongoClient() {
-    $mongoUrl = getenv('MONGODB_URL'); // Assurez-vous que cette variable d'environnement est définie
+    $mongoUrl = getenv('MONGODB_URL');
     $client = new MongoDB\Client($mongoUrl);
-    return $client->zoo_db; // Remplacez 'zoo_db' par le nom de votre base de données MongoDB
+    return $client->zoo_db;
 }
 ?>
