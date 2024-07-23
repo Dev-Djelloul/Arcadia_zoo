@@ -3,7 +3,7 @@ ________________________________________________________________________________
 
 ## Table des matières
 
-Ce modèle de README.md couvre les étapes essentielles pour installer, configurer, et lancer votre application. Vous pouvez ajuster les détails en fonction des spécificités de votre projet.
+Ce fichier README.md couvre les étapes essentielles pour installer, configurer, et lancer l' application. 
 
 
 - [Présentation du projet]
@@ -22,7 +22,8 @@ ________________________________________________________________________________
 
 ## Présentation du projet
 
-Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats et les services offerts. L'application fournira également un espace pour l'administrateur, les vétérinaires et le personnel du zoo pour saisir et visualiser des informations internes sur les animaux au parc.
+Ce projet consiste à développer une application web pour un zoo, permettant aux visiteurs de visualiser les animaux, leurs habitats et les services offerts. 
+L'application fournira également un espace pour l'administrateur, les vétérinaires et le personnel du zoo pour saisir et visualiser des informations internes sur les animaux au parc.
 
 
 
