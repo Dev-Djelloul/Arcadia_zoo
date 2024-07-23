@@ -3,7 +3,7 @@ ________________________________________________________________________________
 
 ## Table des matières
 
-Ce fichier README.md couvre les étapes essentielles pour installer, configurer, et lancer l' application. 
+Ce document README.md couvre les étapes essentielles pour installer, configurer, et lancer l'application. 
 
 
 - [Présentation du projet]
