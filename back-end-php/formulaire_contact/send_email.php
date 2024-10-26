@@ -8,8 +8,8 @@ $sendgridApiKey = getenv('SENDGRID_API_KEY') ?: $_ENV['SENDGRID_API_KEY'];
 
 // Récupération et sanitisation des données du formulaire
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Utiliser FILTER_SANITIZE_FULL_SPECIAL_CHARS
+$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Utiliser FILTER_SANITIZE_FULL_SPECIAL_CHARS
 
 // Échapper les caractères spéciaux pour éviter les problèmes d'encodage
 $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
@@ -21,13 +21,16 @@ $email = mb_convert_encoding($email, 'UTF-8');
 $subject = mb_convert_encoding($subject, 'UTF-8');
 $description = mb_convert_encoding($description, 'UTF-8');
 
+// Créer une nouvelle instance de Mail
 $mail = new Mail();
 $mail->setFrom('info.arcadiazoo@gmail.com', 'Contact client');
 $mail->setSubject($subject);
 $mail->addTo('info.arcadiazoo@gmail.com', 'Arcadia Zoo');
 
+// Construire le contenu de l'e-mail
 $emailContent = "Vous avez reçu un nouveau message de la part d'un client.<br><br>";
 $emailContent .= "Email: $email<br>";
+$emailContent .= "Objet: $subject<br>";
 $emailContent .= "Description:<br>$description<br>";
 
 // Ajoute le contenu au format HTML
