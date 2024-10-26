@@ -1,5 +1,5 @@
 <?php
-require '../config.php';  
+require '../config.php';
 
 try {
     $sql = "SELECT * FROM avis WHERE approuve = 1";
