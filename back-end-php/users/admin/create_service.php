@@ -12,6 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomService = $_POST['service_name'] ?? '';  // Utilisation de l'opérateur de fusion null (??) pour éviter les erreurs si non défini
     $descriptionService = $_POST['service_description'] ?? '';
 
+    // Vérification des champs requis
+    if (empty($nomService) || empty($descriptionService)) {
+        $_SESSION['message'] = "Veuillez remplir tous les champs.";
+        $_SESSION['msg_type'] = "danger";
+        header("Location: admin_dashboard.php");
+        exit();
+    }
+
     // Gestion de l'image
     $imagePath = null;
     if (isset($_FILES['service_image']) && $_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
@@ -29,15 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = '/uploads/' . $imageFileName; // Chemin où l'image sera stockée sur le serveur
 
         // Déplacez l'image vers le répertoire d'upload sur votre serveur
-        move_uploaded_file($imageTmpName, $_SERVER['DOCUMENT_ROOT'] . $imagePath);
-    }
-
-    // Vérification des champs requis
-    if (empty($nomService) || empty($descriptionService)) {
-        $_SESSION['message'] = "Veuillez remplir tous les champs.";
-        $_SESSION['msg_type'] = "danger";
-        header("Location: admin_dashboard.php");
-        exit();
+        if (!move_uploaded_file($imageTmpName, $_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
+            $_SESSION['message'] = "Erreur lors de l'upload de l'image.";
+            $_SESSION['msg_type'] = "danger";
+            header("Location: admin_dashboard.php");
+            exit();
+        }
     }
 
     // Insertion dans la base de données
@@ -56,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Redirection vers la page d'accueil
-    header("Location: admin_dashboard.php");  
+    header("Location: admin_dashboard.php");
     exit();
 }
 ?>
