@@ -1,7 +1,7 @@
 <?php
 require_once('../back-end-php/config.php');
 
-$sql = "SELECT NomService, DescriptionService, ImageService FROM services"; // Assurez-vous que le nom de la table et des colonnes est correct
+$sql = "SELECT NomService, DescriptionService, ImageService FROM Services"; // Assurez-vous que le nom de la table et des colonnes est correct
 $result = $conn->query($sql);
 
 // Debug : Affichage d'un message pour vérifier si la page se charge correctement
