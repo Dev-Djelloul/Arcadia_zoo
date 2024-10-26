@@ -20,6 +20,7 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
         array (
             'Symfony\\Polyfill\\Php81\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
+<<<<<<< HEAD
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'SendGrid\\Stats\\' => 15,
@@ -28,16 +29,22 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
             'SendGrid\\EventWebhook\\' => 22,
             'SendGrid\\Contacts\\' => 18,
             'SendGrid\\' => 9,
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+<<<<<<< HEAD
             'PhpOption\\' => 10,
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         ),
         'M' => 
         array (
             'MongoDB\\' => 8,
         ),
+<<<<<<< HEAD
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
@@ -46,6 +53,8 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
         array (
             'Dotenv\\' => 7,
         ),
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
     );
 
     public static $prefixDirsPsr4 = array (
@@ -57,6 +66,7 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+<<<<<<< HEAD
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -89,18 +99,24 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
         array (
             0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
         ),
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
         ),
+<<<<<<< HEAD
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         'MongoDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
+<<<<<<< HEAD
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
@@ -109,18 +125,27 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
     );
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+<<<<<<< HEAD
         'BaseSendGridClientInterface' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/BaseSendGridClientInterface.php',
+=======
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
+<<<<<<< HEAD
         'SendGrid' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TwilioEmail' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/TwilioEmail.php',
+=======
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+>>>>>>> 05e5c9491c5cbac74de17581d8f9a34f68385a35
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
