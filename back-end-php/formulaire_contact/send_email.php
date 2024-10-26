@@ -1,5 +1,7 @@
 <?php
-require '/../../vendor/autoload.php'; // Assurez-vous que vous avez installé SendGrid via Composer
+require __DIR__ . '/../../../vendor/autoload.php';
+
+// Assurez-vous que vous avez installé SendGrid via Composer
 
 use SendGrid\Mail\Mail;
 
