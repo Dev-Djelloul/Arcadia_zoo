@@ -16,6 +16,11 @@ $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 $subject = htmlspecialchars($subject, ENT_QUOTES, 'UTF-8');
 $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
 
+// Convertir en UTF-8
+$email = mb_convert_encoding($email, 'UTF-8');
+$subject = mb_convert_encoding($subject, 'UTF-8');
+$description = mb_convert_encoding($description, 'UTF-8');
+
 $mail = new Mail();
 $mail->setFrom('info.arcadiazoo@gmail.com', 'Contact client');
 $mail->setSubject($subject);
@@ -28,6 +33,7 @@ $emailContent .= "Description:<br>$description<br>";
 // Ajoute le contenu au format HTML
 $mail->addContent('text/html', $emailContent);
 
+// Envoi de l'e-mail
 $sendgrid = new \SendGrid($sendgridApiKey);
 
 try {
