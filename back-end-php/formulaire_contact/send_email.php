@@ -2,14 +2,9 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SendGrid\Mail\Mail;
-use Dotenv\Dotenv;
-
-// Charger les variables d’environnement depuis .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
 
 // Récupérer la clé API depuis les variables d’environnement
-$sendgridApiKey = $_ENV['SENDGRID_API_KEY'];
+$sendgridApiKey = getenv('SENDGRID_API_KEY'); // ou $_ENV['SENDGRID_API_KEY']
 
 // Récupération et sanitisation des données du formulaire
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
