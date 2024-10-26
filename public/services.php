@@ -3,7 +3,6 @@ require_once('../back-end-php/config.php');
 
 $sql = "SELECT NomService, DescriptionService, ImageService FROM Services"; // Assurez-vous que le nom de la table et des colonnes est correct
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -57,32 +56,48 @@ $result = $conn->query($sql);
 
   <div class="container mt-4">
     <h2 class="text-center mb-4">Une Journée bien remplie vous attend à Arcadia !</h2>
-    <div class="row">
-      <?php
-      if ($result !== false && $result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          ?>
-          <div class="col-md-6 mb-4">
-            <div class="service">
-              <?php
-              if (!empty($row['ImageService'])) {
-                echo '<img src="' . htmlspecialchars($row['ImageService']) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
-              } else {
-                echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
-              }
-              ?>
-              <h3><?php echo htmlspecialchars($row['NomService']); ?></h3>
-              <p><?php echo htmlspecialchars($row['DescriptionService']); ?></p>
+    <div id="carouselServices" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <?php
+        $active = true; // Pour gérer la classe 'active' sur la première diapositive
+        if ($result !== false && $result->rowCount() > 0) {
+          while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="carousel-item <?php echo $active ? 'active' : ''; ?>">
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="service">
+                    <?php
+                    if (!empty($row['ImageService'])) {
+                      echo '<img src="' . htmlspecialchars($row['ImageService']) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
+                    } else {
+                      echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
+                    }
+                    ?>
+                    <h3><?php echo htmlspecialchars($row['NomService']); ?></h3>
+                    <p><?php echo htmlspecialchars($row['DescriptionService']); ?></p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+            <?php
+            $active = false; // Définit la classe 'active' uniquement sur la première diapositive
+          }
+        } else {
+          ?>
+          <p class="text-center">Aucun service disponible pour le moment.</p>
           <?php
         }
-      } else {
         ?>
-        <p class="text-center">Aucun service disponible pour le moment.</p>
-        <?php
-      }
-      ?>
+      </div>
+      <a class="carousel-control-prev" href="#carouselServices" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Précédent</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselServices" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+      </a>
     </div>
   </div>
 
@@ -90,6 +105,7 @@ $result = $conn->query($sql);
   <footer class="bg-dark text-white py-4 mt-4">
     <div class="container">
       <div class="row">
+        <!-- Première colonne -->
         <div class="col-md-4">
           <div class="mb-4">
             <h6 class="text-center">Comment venir au parc zoologique d'Arcadia ?</h6>
@@ -107,9 +123,12 @@ $result = $conn->query($sql);
             </p>
           </div>
         </div>
+        <!-- /Première colonne -->
+
+        <!-- Deuxième colonne -->
         <div class="col-md-8 text-center">
           <div class="mb-4">
-            <h6>Horaires d'ouverture</h6>
+            <h6>Horaires d'ouverture </h6>
             <div class="row justify-content-center">
               <div class="col-md-6">
                 <p class="text-white">Lundi à Vendredi</p>
@@ -123,8 +142,9 @@ $result = $conn->query($sql);
             <div class="col-md-6">
               <p class="text-white">Fermé le mardi et les jours fériés</p>
             </div>
+
             <div>
-              <h6>Suivez-nous</h6>
+              <h6>Suivez-nous </h6>
               <div class="d-flex justify-content-center">
                 <a href="https://www.facebook.com/" class="social-icon mx-2"><i class="fab fa-facebook"></i> Facebook</a>
                 <a href="https://twitter.com/?lang=fr" class="social-icon mx-2"><i class="fab fa-twitter"></i> Twitter</a>
@@ -134,11 +154,14 @@ $result = $conn->query($sql);
             </div>
           </div>
         </div>
+        <!-- /Deuxième colonne -->
+
       </div>
     </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 
