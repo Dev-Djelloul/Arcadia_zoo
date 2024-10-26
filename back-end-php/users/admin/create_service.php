@@ -15,6 +15,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gestion de l'image
     $imagePath = null;
     if (isset($_FILES['service_image']) && $_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
+        // Vérifier la taille maximale du fichier
+        $maxFileSize = 20 * 1024 * 1024; // 20 Mo
+        if ($_FILES['service_image']['size'] > $maxFileSize) {
+            $_SESSION['message'] = "L'image dépasse la taille maximale autorisée de 20 Mo.";
+            $_SESSION['msg_type'] = "danger";
+            header("Location: admin_dashboard.php");
+            exit();
+        }
+
         $imageFileName = $_FILES['service_image']['name'];
         $imageTmpName = $_FILES['service_image']['tmp_name'];
         $imagePath = '/uploads/' . $imageFileName; // Chemin où l'image sera stockée sur le serveur
@@ -25,13 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérification des champs requis
     if (empty($nomService) || empty($descriptionService)) {
-        $_SESSION['message'] = "L'image dépasse la taille maximale autorisée de 20 MB.";
+        $_SESSION['message'] = "Veuillez remplir tous les champs.";
         $_SESSION['msg_type'] = "danger";
         header("Location: admin_dashboard.php");
         exit();
     }
 
- 
     // Insertion dans la base de données
     $sql = "INSERT INTO Services (NomService, DescriptionService, ImageService) VALUES (:nomService, :descriptionService, :imagePath)";
     $stmt = $conn->prepare($sql);
