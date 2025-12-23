@@ -1,6 +1,7 @@
 {
     "require": {
         "mongodb/mongodb": "^2.0",
+        "ext-mongodb": "*",
         "sendgrid/sendgrid": "^8.1",
         "vlucas/phpdotenv": "^5.6"
     }

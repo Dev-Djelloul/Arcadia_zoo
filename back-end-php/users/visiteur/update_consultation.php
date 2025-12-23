@@ -1,12 +1,9 @@
 <?php
 // Connexion à une base de données MongoDB et mise à jour du compteur de consultations.
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../config.php';
 
-use MongoDB\Client;
-
-// Création de la connexion MongoDB
-$client = new Client("mongodb://localhost:27017");
-$collection = $client->zoo_db->consultations;
+$db = getMongoClient();
+$collection = $db->consultations;
 
 // Traitement de la requête
 if (isset($_GET['Prenom'])) {
