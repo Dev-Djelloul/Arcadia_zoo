@@ -1,0 +1,6 @@
+.git
+.gitignore
+node_modules
+vendor
+uploads
+back-end-php/formulaire_contact/messages.log

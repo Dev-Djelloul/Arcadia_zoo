@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: arcadia-zoo
+    env: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: APP_BASE_PATH
+        value: ""
+      - key: DATABASE_URL
+        sync: false
+      - key: JAWSDB_URL
+        sync: false
+      - key: MONGODB_URI
+        sync: false
