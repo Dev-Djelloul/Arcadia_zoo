@@ -3,7 +3,7 @@ session_start();
 
 // Vérification du type d'utilisateur
 if (!isset($_SESSION['userType']) || ($_SESSION['userType'] !== 'administrateur' && $_SESSION['userType'] !== 'employe')) {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="imageAnimal">Image de l'animal :</label>
             <input type="file" class="form-control-file" id="imageAnimal" name="imageAnimal" accept="image/*">
             <?php if (!empty($animal['ImageAnimal'])): ?>
-                <img src="<?php echo htmlspecialchars($animal['ImageAnimal']); ?>" alt="Image de l'animal" style="max-width: 100px;">
+                <img src="<?php echo htmlspecialchars(app_path($animal['ImageAnimal'])); ?>" alt="Image de l'animal" style="max-width: 100px;">
             <?php endif; ?>
         </div>
         <div class="form-group">

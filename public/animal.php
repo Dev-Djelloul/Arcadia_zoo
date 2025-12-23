@@ -85,7 +85,7 @@ if (isset($_GET['NomHabitat'])) {
                     ?>
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img src="<?php echo htmlspecialchars($animal['ImageAnimal']); ?>" class="card-img-top" alt="Image de <?php echo htmlspecialchars($animal['Prenom']); ?>">
+                            <img src="<?php echo htmlspecialchars(app_path($animal['ImageAnimal'])); ?>" class="card-img-top" alt="Image de <?php echo htmlspecialchars($animal['Prenom']); ?>">
                             <div class="card-body">
                                 <p class="card-text">
                                     <h2>Son prénom c'est <?php echo htmlspecialchars($animal['Prenom']); ?></h2><br>

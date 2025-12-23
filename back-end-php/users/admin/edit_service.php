@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || ($_SESSION['userType'] !== 'administrateur' && $_SESSION['userType'] !== 'employe')) {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                                 <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                                <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
             </div>
             <?php if (!empty($service['ImageService'])): ?>
                 <div class="form-group">
-                    <img src="<?php echo htmlspecialchars($service['ImageService']); ?>" alt="Current Image" style="max-width: 100px;" class="mt-2">
+                    <img src="<?php echo htmlspecialchars(app_path($service['ImageService'])); ?>" alt="Current Image" style="max-width: 100px;" class="mt-2">
                 </div>
             <?php endif; ?>
             <button type="submit" class="btn btn-primary">Mettre à jour</button>

@@ -69,7 +69,7 @@ $result = $conn->query($sql);
                   <div class="service">
                     <?php
                     if (!empty($row['ImageService'])) {
-                      echo '<img src="' . htmlspecialchars($row['ImageService']) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
+                      echo '<img src="' . htmlspecialchars(app_path($row['ImageService'])) . '" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />';
                     } else {
                       echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomService']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
                     }

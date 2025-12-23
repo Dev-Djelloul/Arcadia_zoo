@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur') {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 // Inclusion du fichier de configuration pour la connexion à la base de données

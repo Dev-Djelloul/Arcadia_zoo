@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur') {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
@@ -232,7 +232,8 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
                 echo "<tr>";
                 echo "<td>{$row['NomService']}</td>";
                 echo "<td>{$row['DescriptionService']}</td>";
-                echo "<td><img src='{$row['ImageService']}' alt='Image du service' style='max-width: 100px;'></td>";
+                $imageServicePath = htmlspecialchars(app_path($row['ImageService']));
+                echo "<td><img src='{$imageServicePath}' alt='Image du service' style='max-width: 100px;'></td>";
                 echo "<td>";
                 echo "<a href='edit_service.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
                 echo "<a href='delete_service.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";
@@ -280,7 +281,8 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
                 echo "<tr>";
                 echo "<td>{$row['NomHabitat']}</td>";
                 echo "<td>{$row['DescriptionHabitat']}</td>";
-                echo "<td><img src='{$row['ImageHabitat']}' alt='Image' style='max-width: 100px;'></td>";
+                $imageHabitatPath = htmlspecialchars(app_path($row['ImageHabitat']));
+                echo "<td><img src='{$imageHabitatPath}' alt='Image' style='max-width: 100px;'></td>";
                 echo "<td>";
                 echo "<a href='edit_habitats.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";
                 echo "<a href='delete_habitats.php?id={$row['id']}' class='btn btn-danger'>Supprimer</a>";
@@ -343,7 +345,8 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
                     echo "<tr>";
                     echo "<td>{$row['Prenom']}</td>";
                     echo "<td>{$row['Race']}</td>";
-                    echo "<td><img src='{$row['ImageAnimal']}' alt='Image de l'animal' style='max-width: 100px;'></td>";
+                    $imageAnimalPath = htmlspecialchars(app_path($row['ImageAnimal']));
+                    echo "<td><img src='{$imageAnimalPath}' alt='Image de l'animal' style='max-width: 100px;'></td>";
                     echo "<td>{$row['NomHabitat']}</td>";
                     echo "<td>";
                     echo "<a href='edit_animal.php?id={$row['id']}' class='btn btn-warning'>Modifier</a> ";

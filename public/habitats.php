@@ -88,7 +88,7 @@ while ($row = $result_comments->fetch(PDO::FETCH_ASSOC)) {
                         <div class="habitat">
                             <?php
                             if (!empty($row['ImageHabitat'])) {
-                                echo '<img src="' . htmlspecialchars($row['ImageHabitat']) . '" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />';
+                                echo '<img src="' . htmlspecialchars(app_path($row['ImageHabitat'])) . '" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />';
                             } else {
                                 echo '<img src="/assets/images/default-service-image.jpg" alt="' . htmlspecialchars($row['NomHabitat']) . '" class="img-fluid" />'; // Image par défaut si aucune image spécifiée
                             }

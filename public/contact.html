@@ -80,6 +80,9 @@
 
     <div class="container mt-4">
       <h2 class="text-center mb-4">Contactez-nous</h2>
+      <div id="contactAlert" class="alert alert-success d-none" role="alert">
+        Votre message a bien ete enregistre. Nous vous repondrons des que possible.
+      </div>
       <form action="/back-end-php/formulaire_contact/send_email.php" method="POST">
         <div class="form-group">
           <label for="email">Email :</label>
@@ -177,6 +180,18 @@
     </div>
   </div>
 </footer>
+
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get("sent") === "1") {
+          var alertEl = document.getElementById("contactAlert");
+          if (alertEl) {
+            alertEl.classList.remove("d-none");
+          }
+        }
+      })();
+    </script>
 
 
   </body>

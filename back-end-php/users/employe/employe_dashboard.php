@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'employe') {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 require '../../config.php'; // Inclusion de la connexion à la base de données
@@ -151,7 +151,8 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
             echo "<tr>";
             echo "<td>{$row['NomService']}</td>";
             echo "<td>{$row['DescriptionService']}</td>";
-            echo "<td><img src='{$row['ImageService']}' alt='Image du service' style='max-width: 100px;'></td>";
+            $imagePath = htmlspecialchars(app_path($row['ImageService']));
+            echo "<td><img src='{$imagePath}' alt='Image du service' style='max-width: 100px;'></td>";
             echo "<td>";
             echo "<a href='edit_service_employe.php?id={$row['IdService']}' class='btn btn-warning'>Modifier</a> ";
             echo "<a href='delete_service_employe.php?id={$row['IdService']}' class='btn btn-danger'>Supprimer</a>";

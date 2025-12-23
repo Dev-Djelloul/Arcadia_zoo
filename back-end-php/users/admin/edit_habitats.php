@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || ($_SESSION['userType'] !== 'administrateur' && $_SESSION['userType'] !== 'employe')) {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                                 <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                                <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>
@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 <input type="file" class="form-control-file" id="habitat_image" name="habitat_image" accept="image/*">
                 <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($habitat['ImageHabitat']); ?>">
                 <?php if (!empty($habitat['ImageHabitat'])): ?>
-                    <img src="<?php echo htmlspecialchars($habitat['ImageHabitat']); ?>" alt="Current Image" style="max-width: 100px;" class="mt-2">
+                    <img src="<?php echo htmlspecialchars(app_path($habitat['ImageHabitat'])); ?>" alt="Current Image" style="max-width: 100px;" class="mt-2">
                 <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary">Mettre à jour</button>

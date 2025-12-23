@@ -4,21 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
+class ComposerStaticInit0020e9b94129cadb50a8efb436eaeb9f
 {
     public static $files = array (
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '79f66bc0a1900f77abe4a9a299057a0a' => __DIR__ . '/..' . '/starkbank/ecdsa/src/ellipticcurve.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '606a39d89246991a373564698c2d8383' => __DIR__ . '/..' . '/symfony/polyfill-php85/bootstrap.php',
         '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'S' =>
         array (
-            'Symfony\\Polyfill\\Php81\\' => 23,
+            'Symfony\\Polyfill\\Php85\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -29,83 +29,83 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
             'SendGrid\\Contacts\\' => 18,
             'SendGrid\\' => 9,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\Log\\' => 8,
             'PhpOption\\' => 10,
         ),
-        'M' => 
+        'M' =>
         array (
             'MongoDB\\' => 8,
         ),
-        'G' => 
+        'G' =>
         array (
             'GrahamCampbell\\ResultType\\' => 26,
         ),
-        'D' => 
+        'D' =>
         array (
             'Dotenv\\' => 7,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Php81\\' => 
+        'Symfony\\Polyfill\\Php85\\' =>
         array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php85',
         ),
-        'Symfony\\Polyfill\\Php80\\' => 
+        'Symfony\\Polyfill\\Php80\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Polyfill\\Ctype\\' => 
+        'Symfony\\Polyfill\\Ctype\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'SendGrid\\Stats\\' => 
+        'SendGrid\\Stats\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/stats',
         ),
-        'SendGrid\\Mail\\' => 
+        'SendGrid\\Mail\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/mail',
         ),
-        'SendGrid\\Helper\\' => 
+        'SendGrid\\Helper\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/helper',
         ),
-        'SendGrid\\EventWebhook\\' => 
+        'SendGrid\\EventWebhook\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/eventwebhook',
         ),
-        'SendGrid\\Contacts\\' => 
+        'SendGrid\\Contacts\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/contacts',
         ),
-        'SendGrid\\' => 
+        'SendGrid\\' =>
         array (
             0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
         ),
-        'Psr\\Log\\' => 
+        'Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
         ),
-        'PhpOption\\' => 
+        'PhpOption\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
-        'MongoDB\\' => 
+        'MongoDB\\' =>
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
         ),
-        'GrahamCampbell\\ResultType\\' => 
+        'GrahamCampbell\\ResultType\\' =>
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
-        'Dotenv\\' => 
+        'Dotenv\\' =>
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
@@ -114,10 +114,9 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BaseSendGridClientInterface' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/BaseSendGridClientInterface.php',
-        'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'NoDiscard' => __DIR__ . '/..' . '/symfony/polyfill-php85/Resources/stubs/NoDiscard.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
         'SendGrid' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TwilioEmail' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/TwilioEmail.php',
@@ -128,9 +127,9 @@ class ComposerStaticInit3ce9224d1346ef988442f824f13c0602
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3ce9224d1346ef988442f824f13c0602::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3ce9224d1346ef988442f824f13c0602::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3ce9224d1346ef988442f824f13c0602::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0020e9b94129cadb50a8efb436eaeb9f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0020e9b94129cadb50a8efb436eaeb9f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0020e9b94129cadb50a8efb436eaeb9f::$classMap;
 
         }, null, ClassLoader::class);
     }

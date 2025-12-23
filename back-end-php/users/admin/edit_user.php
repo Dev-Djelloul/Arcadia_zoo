@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur') {
-    header("Location: /public/connexion.html");
+    header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a href="/public/services.php" class="nav-link" style="font-size: 20px">Nos Services</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/public/habitats.html" class="nav-link" style="font-size: 20px">Nos Habitats</a>
+                                <a href="/public/habitats.php" class="nav-link" style="font-size: 20px">Nos Habitats</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/public/contact.html" class="nav-link" style="font-size: 20px">Contact</a>

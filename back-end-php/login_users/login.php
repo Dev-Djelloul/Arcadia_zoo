@@ -20,31 +20,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $username;
 
                 if ($user['TypeUtilisateur'] == 'administrateur') {
-                    header("Location: /back-end-php/users/admin/admin_dashboard.php");
+                    header("Location: " . app_path("/back-end-php/users/admin/admin_dashboard.php"));
                 } elseif ($user['TypeUtilisateur'] == 'veterinaire') {
-                    header("Location: /back-end-php/users/veterinaire/veterinaire_dashboard.php");
+                    header("Location: " . app_path("/back-end-php/users/veterinaire/veterinaire_dashboard.php"));
                 } elseif ($user['TypeUtilisateur'] == 'employe') {
-                    header("Location: /back-end-php/users/employe/employe_dashboard.php");
+                    header("Location: " . app_path("/back-end-php/users/employe/employe_dashboard.php"));
                 } else {
-                    header("Location: /public/visiteur_dashboard.php");
+                    header("Location: " . app_path("/public/visiteur_dashboard.php"));
                 }
                 exit();
             } else {
                 $_SESSION['message'] = "Nom d'utilisateur ou mot de passe incorrect.";
                 $_SESSION['msg_type'] = "danger";
-                header("Location: /public/connexion.html");
+                header("Location: " . app_path("/public/connexion.html"));
                 exit();
             }
         } else {
             $_SESSION['message'] = "Nom d'utilisateur ou mot de passe incorrect.";
             $_SESSION['msg_type'] = "danger";
-            header("Location: /public/connexion.html");
+            header("Location: " . app_path("/public/connexion.html"));
             exit();
         }
     } catch (PDOException $e) {
         $_SESSION['message'] = "Erreur : " . $e->getMessage();
         $_SESSION['msg_type'] = "danger";
-        header("Location: /public/connexion.html");
+        header("Location: " . app_path("/public/connexion.html"));
         exit();
     }
 }
