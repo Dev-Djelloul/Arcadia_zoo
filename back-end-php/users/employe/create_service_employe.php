@@ -16,17 +16,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gestion de l'image
     $imagePath = null;
     if (isset($_FILES['service_image']) && $_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
-        $imageFileName = $_FILES['service_image']['name'];
         $imageTmpName = $_FILES['service_image']['tmp_name'];
-        $imagePath = '/uploads/' . $imageFileName; // Chemin où l'image sera stockée sur le serveur
+        $uploadDir = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/uploads/';
 
-        // Déplacez l'image vers le répertoire d'upload sur votre serveur
-        move_uploaded_file($imageTmpName, $_SERVER['DOCUMENT_ROOT'] . $imagePath);
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0775, true);
+        }
+
+        $originalName = basename($_FILES['service_image']['name']);
+        $baseName = pathinfo($originalName, PATHINFO_FILENAME);
+        $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+        $safeBase = preg_replace('/[^A-Za-z0-9._-]/', '_', $baseName);
+        $finalName = ($safeBase !== '' ? $safeBase : 'service') . '_' . uniqid();
+        if ($extension !== '') {
+            $finalName .= '.' . $extension;
+        }
+
+        $imagePath = '/uploads/' . $finalName;
+        $targetPath = $uploadDir . $finalName;
+
+        if (!move_uploaded_file($imageTmpName, $targetPath)) {
+            $_SESSION['message'] = "Erreur lors de l'envoi de l'image.";
+            $_SESSION['msg_type'] = "danger";
+            header("Location: employe_dashboard.php");
+            exit();
+        }
     }
 
     // Vérification des champs requis
     if (empty($nomService) || empty($descriptionService)) {
-        $_SESSION['message'] = "L'image dépasse la taille maximale autorisée de 2 MB.";
+        $_SESSION['message'] = "Veuillez renseigner le nom et la description du service.";
         $_SESSION['msg_type'] = "danger";
         header("Location: employe_dashboard.php");
         exit();
