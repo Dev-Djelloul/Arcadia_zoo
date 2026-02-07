@@ -178,7 +178,7 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
             success: function(avis) {
                 avis.forEach(function(avi) {
                     var avisHtml = `
-                        <div class="col-md-4">
+                        <div class="col-md-4 avis-item" data-id="${avi.id}">
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <p class="card-text">${avi.avis}</p>
@@ -199,8 +199,9 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
 
         // Approuver ou rejeter un avis
         $(document).on("click", ".approuverAvis, .rejeterAvis", function() {
+            var $button = $(this);
             var id = $(this).data("id");
-            var approuve = $(this).hasClass("approuverAvis") ? 1 : 0;
+            var approuve = $(this).hasClass("approuverAvis") ? 1 : -1;
 
             $.ajax({
                 type: "POST",
@@ -210,7 +211,10 @@ require '../../config.php'; // Inclusion de la connexion à la base de données
                 success: function(response) {
                     alert(response.message);
                     if (response.success) {
-                        location.reload();
+                        $button.closest(".avis-item").remove();
+                        if ($("#avisEnAttente .avis-item").length === 0) {
+                            $("#avisEnAttente").html('<p class="text-center w-100">Aucun avis en attente.</p>');
+                        }
                     }
                 },
                 error: function(xhr, status, error) {

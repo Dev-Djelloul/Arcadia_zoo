@@ -2,8 +2,9 @@
 require '../config.php'; // Assurez-vous que ce fichier contient les informations de connexion à la base de données
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $approuve = $_POST['approuve'];
+    $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
+    $approuveInput = isset($_POST['approuve']) ? (int) $_POST['approuve'] : 0;
+    $approuve = ($approuveInput === 1) ? 1 : -1;
 
     $sql = "UPDATE avis SET approuve = :approuve WHERE id = :id";
     $stmt = $conn->prepare($sql);
