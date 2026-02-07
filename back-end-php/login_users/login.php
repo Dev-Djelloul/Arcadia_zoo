@@ -3,7 +3,7 @@ session_start();
 require '../config.php'; // Vérifiez bien le chemin pour inclure correctement config.php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'];
 
     try {
@@ -16,14 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             // Vérifier le mot de passe
             if (password_verify($password, $user['MotDePasse'])) {
-                $_SESSION['userType'] = $user['TypeUtilisateur'];
+                $userTypeRaw = strtolower(trim((string) $user['TypeUtilisateur']));
+                if ($userTypeRaw === 'admin') {
+                    $userTypeRaw = 'administrateur';
+                }
+
+                $_SESSION['userType'] = $userTypeRaw;
                 $_SESSION['username'] = $username;
 
-                if ($user['TypeUtilisateur'] == 'administrateur') {
+                if ($userTypeRaw === 'administrateur') {
                     header("Location: " . app_path("/back-end-php/users/admin/admin_dashboard.php"));
-                } elseif ($user['TypeUtilisateur'] == 'veterinaire') {
+                } elseif ($userTypeRaw === 'veterinaire') {
                     header("Location: " . app_path("/back-end-php/users/veterinaire/veterinaire_dashboard.php"));
-                } elseif ($user['TypeUtilisateur'] == 'employe') {
+                } elseif ($userTypeRaw === 'employe') {
                     header("Location: " . app_path("/back-end-php/users/employe/employe_dashboard.php"));
                 } else {
                     header("Location: " . app_path("/public/visiteur_dashboard.php"));

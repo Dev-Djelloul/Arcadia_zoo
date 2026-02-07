@@ -3,17 +3,11 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 require_once __DIR__ . '/../../config.php';
 
-use MongoDB\Client;
-
 header('Content-Type: application/json; charset=utf-8');
 
 try {
-    $mongoUri = env_value('MONGODB_URI', 'mongodb://localhost:27017');
-    $mongoDbName = env_value('MONGODB_DB', 'zoo_db');
-
     // Création de la connexion MongoDB
-    $client = new Client($mongoUri);
-    $collection = $client->selectDatabase($mongoDbName)->consultations;
+    $collection = getMongoClient()->consultations;
 
     // Traitement de la requête
     if (isset($_GET['Prenom'])) {
@@ -41,6 +35,6 @@ try {
         echo json_encode(['status' => 'error', 'message' => 'Aucun prénom fourni']);
     }
 } catch (Throwable $e) {
-    echo json_encode(['status' => 'error', 'message' => 'Connexion MongoDB impossible']);
+    echo json_encode(['status' => 'error', 'message' => 'Service MongoDB indisponible']);
 }
 ?>

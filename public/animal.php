@@ -183,7 +183,7 @@ if (isset($_GET['NomHabitat'])) {
                         if (response.status === 'success') {
                             alert('Merci pour votre participation 😊');
                         } else {
-                            alert('Erreur lors de la mise à jour de la consultation.');
+                            alert(response.message || 'Erreur lors de la mise à jour de la consultation.');
                         }
                     },
                     error: function() {

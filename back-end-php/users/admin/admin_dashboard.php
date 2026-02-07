@@ -1,29 +1,34 @@
 <?php
 session_start();
+require_once __DIR__ . '/../../config.php';
+
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'administrateur') {
     header("Location: " . app_path("/public/connexion.html"));
     exit();
 }
 
-require_once __DIR__ . '/../../config.php';
+$consultationsParAnimal = [];
+$mongoWarning = null;
+try {
+    $mongoDb = getMongoClient();
+    $collection = $mongoDb->consultations; // Utiliser la collection correcte
 
-// Connexion MongoDB
-$mongoDb = getMongoClient();
-$collection = $mongoDb->consultations; // Utiliser la collection correcte
-
-// Récupération du nombre de consultations par animal
-$pipeline = [
-    [
-        '$project' => [
-            'Prenom' => 1,
-            'Consultations' => 1
+    // Récupération du nombre de consultations par animal
+    $pipeline = [
+        [
+            '$project' => [
+                'Prenom' => 1,
+                'Consultations' => 1
+            ]
+        ],
+        [
+            '$sort' => ['Consultations' => -1]
         ]
-    ],
-    [
-        '$sort' => ['Consultations' => -1]
-    ]
-];
-$consultationsParAnimal = $collection->aggregate($pipeline)->toArray();
+    ];
+    $consultationsParAnimal = $collection->aggregate($pipeline)->toArray();
+} catch (Throwable $e) {
+    $mongoWarning = "Statistiques MongoDB indisponibles. Configurez MONGODB_URI sur Heroku.";
+}
 
 // Traitement du filtre
 $animal_filter = '';
@@ -121,6 +126,9 @@ $animaux = $stmt_animaux->fetchAll(PDO::FETCH_ASSOC);
 
      <!-- Liste des consultations -->
      <h2>Consultations des animaux par les visiteurs</h2>
+    <?php if ($mongoWarning): ?>
+        <div class="alert alert-warning"><?php echo htmlspecialchars($mongoWarning); ?></div>
+    <?php endif; ?>
     <table class="table">
         <thead>
             <tr>

@@ -100,9 +100,17 @@ function app_path($path) {
 }
 
 function getMongoClient() {
-    $mongoUri = env_value('MONGODB_URI', 'mongodb://localhost:27017');
+    $mongoUri = env_value('MONGODB_URI');
+    if ($mongoUri === null) {
+        if (env_value('DYNO') !== null) {
+            throw new RuntimeException('MONGODB_URI non configure');
+        }
+        $mongoUri = 'mongodb://localhost:27017';
+    }
+
     $mongoDbName = env_value('MONGODB_DB', 'zoo_db');
-    $client = new MongoDB\Client($mongoUri);
+    $timeoutMs = (int) env_value('MONGODB_TIMEOUT_MS', '2000');
+    $client = new MongoDB\Client($mongoUri, [], ['serverSelectionTimeoutMS' => $timeoutMs]);
     return $client->selectDatabase($mongoDbName);
 }
 ?>
