@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             // Vérifier le mot de passe
             if (password_verify($password, $user['MotDePasse'])) {
+                unset($_SESSION['message'], $_SESSION['msg_type']);
+
                 $userTypeRaw = strtolower(trim((string) $user['TypeUtilisateur']));
                 if ($userTypeRaw === 'admin') {
                     $userTypeRaw = 'administrateur';
